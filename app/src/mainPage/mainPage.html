@@ -1,0 +1,6 @@
+<!--UI-Bootstrap-->
+<div ng-controller="alertController">
+	<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+	<div uib-alert style="background-color:#fa39c3;color:white">A happy alert!</div>
+	<button type="button" class='btn btn-default' ng-click="addAlert()">Add Alert</button>
+</div>
