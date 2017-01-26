@@ -3,8 +3,6 @@
 // Declare app level module which depends on views, and components
 
 angular.module('NewsFeed', [
-	'NewsFeed.services',
-	'NewsFeed.controllers',
 	'ngRoute',
 	'ngAnimate',
 	'ngSanitize',
@@ -13,9 +11,10 @@ angular.module('NewsFeed', [
  ])
 .config(['$routeProvider', function ($routeProvider) {
 
-	$routeProvider.when('/newsfeed', {
-		controller  : 'mainPageController',
-		templateUrl: 'src/mainPage/mainPage/mainPage.html'
+	$routeProvider.when('/', {
+		controller  : 'mainPageCtrl',
+		// templateUrl: 'src/mainPage/mainPage/mainPage.html'
+		template:'<div>Hello</div>'
 	});
 
 
