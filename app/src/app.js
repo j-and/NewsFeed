@@ -18,27 +18,27 @@ angular.module('NewsFeed', [
 	});
 
 
-	$routeProvider.when('/newsfeed/searchResults', {
-		templateUrl: 'src/mainPage/searchResults/searchResults.html'
-	});
-
-	$routeProvider.when('/newsfeed/fullNews', {
-		templateUrl: 'src/mainPage/fullNews/fullNews.html'
-	});
-
-	//User
-	$routeProvider.when('/newsfeed/user/myNews', {
-		templateUrl: 'src/alerts/myNews/myNews.html'
-	});
-
-	//Admin
-	$routeProvider.when('/newsfeed/admin/pendingNews', {
-		templateUrl: 'src/alerts/pendingNews/pendingNews.html'
-	});
-
-	$routeProvider.when('/newsfeed/admin/usersList', {
-		templateUrl: 'src/alerts/usersList/usersList.html' //with features of admin
-	});
+	// $routeProvider.when('/newsfeed/searchResults', {
+	// 	templateUrl: 'src/mainPage/searchResults/searchResults.html'
+	// });
+	//
+	// $routeProvider.when('/newsfeed/fullNews', {
+	// 	templateUrl: 'src/mainPage/fullNews/fullNews.html'
+	// });
+	//
+	// //User
+	// $routeProvider.when('/newsfeed/user/myNews', {
+	// 	templateUrl: 'src/alerts/myNews/myNews.html'
+	// });
+	//
+	// //Admin
+	// $routeProvider.when('/newsfeed/admin/pendingNews', {
+	// 	templateUrl: 'src/alerts/pendingNews/pendingNews.html'
+	// });
+	//
+	// $routeProvider.when('/newsfeed/admin/usersList', {
+	// 	templateUrl: 'src/alerts/usersList/usersList.html' //with features of admin
+	// });
 
 	//.otherwise({redirectTo: '/newsfeed'});
  }]);
