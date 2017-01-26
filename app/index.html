@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="NewsFeed">
 <head>
 	<title>NewsFeed</title>
 
@@ -25,14 +25,23 @@
 
 	<!--Scripts-->
 	<script src="src/app.js"></script>
-	<script src="src/mainPage/mainPage-service.js"></script>
-	<script src="src/mainPage/mainPage-controller.js"></script>
+	<script src="src/header/header-controller.js"></script>
+	<script src="src/header/header-directive.js"></script>
+	<script src="src/header/profileModal/profileModal-controller.js"></script>
+
+
 	<!--END Scripts-->
+
+
 </head>
+<body>
 
-<body ng-app="NewsFeed">
-
-<ng-view></ng-view>
+<div ng-controller="headerCtrl">
+	<header></header>
+</div>
+<div>
+	<ng-view></ng-view>
+</div>
 
 </body>
 </html>
