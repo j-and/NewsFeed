@@ -28,6 +28,10 @@
 				templateUrl: '/src/addNews/addNewsModal.html',
 				controller: 'addNewsModalCtrl'
 			})
-		}
+		};
+		//TO DO
+		$scope.savePendingNews=function(){
+			alert("TODO: save Pending News");
+		};
 	}]);
 })();

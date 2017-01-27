@@ -22,6 +22,14 @@ angular.module('NewsFeed').controller('myNewsCtrl',['$scope','$uibModal', functi
 			templateUrl: '/src/addNews/addNewsModal.html',
 			controller: 'addNewsModalCtrl'
 		})
+	};
+	//TO DO
+	$scope.sendNews = function () {
+		alert("TODO: Send news");
+	};
+	//TO DO
+	$scope.deleteNews = function () {
+		alert("TODO: Delete news");
 	}
 }]);
 })();

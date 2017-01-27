@@ -8,7 +8,15 @@ angular.module('NewsFeed')
 				templateUrl: '/src/alerts/usersList/deleteUserModal/deleteUserModal.html',
 				controller: 'deleteUserModalCtrl'
 			})
-		}
+		};
+		//TO DO
+		$scope.addPendingUser = function () {
+			alert('TODO: add Pending User');
+		};
+		//TO DO
+		$scope.searchUser = function () {
+			alert('TODO: Search User');
+		};
 	}]);
 })();
 

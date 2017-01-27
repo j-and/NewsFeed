@@ -32,5 +32,13 @@
 				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};
+		//TO DO
+		$ctrl.forgotPassword = function () {
+			alert('TO DO: forgot password');
+		};
+		//TO DO
+		$ctrl.logIn = function () {
+			alert('TO DO: Log in');
+		};
 	}]);
 })();

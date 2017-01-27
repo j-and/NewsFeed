@@ -33,5 +33,12 @@
 					$log.info('Modal dismissed at: ' + new Date());
 				});
 			};
+//TO DO
+			$ctrl.deleteUser = function () {
+				alert('TODO: Delete User');
+			};
+			$ctrl.closeModal = function () {
+				alert('TODO: Close Modal');
+			};
 		});
 })();

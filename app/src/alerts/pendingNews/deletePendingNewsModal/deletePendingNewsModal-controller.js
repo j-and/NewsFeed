@@ -33,5 +33,9 @@
 					$log.info('Modal dismissed at: ' + new Date());
 				});
 			};
+			//TO DO
+			$ctrl.saveComment = function () {
+				alert('Save comment');
+			};
 		});
 })();

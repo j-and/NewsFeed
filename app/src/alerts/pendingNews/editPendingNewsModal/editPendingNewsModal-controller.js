@@ -7,7 +7,7 @@
 			$ctrl.items = ['item1', 'item2', 'item3'];
 
 			$ctrl.animationsEnabled = true;
-
+			
 			$ctrl.open = function (size, parentSelector) {
 				var parentElem = parentSelector ?
 					angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
@@ -33,5 +33,11 @@
 					$log.info('Modal dismissed at: ' + new Date());
 				});
 			};
+			//TO DO
+			$ctrl.saveNews = function () {
+				alert('TODO: Save added news');
+			};
 		});
+
+	
 })();
