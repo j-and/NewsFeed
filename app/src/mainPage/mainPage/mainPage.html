@@ -1,0 +1,15 @@
+<div class="jumbotron col-md-8 col-md-offset-2">
+	<div class="col-md-4">
+		<img src="src/Screenshots/pic1.jpg" class="col-md-12">
+	</div>
+	<div class="col-md-8">
+		<h2>{{news.title}}</h2>
+		<p><b>{{news.summary}}</b></p>
+		<span class="col-md-8"><a href="?#!/newsfeed/fullNews">More</a></span>
+		<span class="text-right">By {{news.author}} | {{news.time}}</span>
+	</div>
+</div>
+
+<button class="btn btn-default" ng-click="openAddNewsModal()"><span class="glyphicon glyphicon-plus-sign"
+                                                                    aria-hidden="true"></span></button>
+

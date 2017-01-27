@@ -18,8 +18,6 @@
 	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
 	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 
 	<!--END Vendor Scripts-->
 
@@ -28,9 +26,19 @@
 	<script src="src/header/header-controller.js"></script>
 	<script src="src/header/header-directive.js"></script>
 	<script src="src/header/profileModal/profileModal-controller.js"></script>
+	<script src="src/header/editProfileModal/editProfileModal-controller.js"></script>
 	<script src="src/mainPage/mainPage/mainPage-controller.js"></script>
+	<script src="src/addNews/addNewsModal-controller.js"></script>
+	<script src="src/mainPage/fullNews/fullNews-controller.js"></script>
+	<script src="src/mainPage/searchResults/searchResults-controller.js"></script>
+	<script src="src/alerts/myNews/myNews-controller.js"></script>
+	<script src="src/alerts/myNews/referenceModal/referenceModal-controller.js"></script>
+	<script src="src/alerts/usersList/usersList-controller.js"></script>
+	<script src="src/alerts/usersList/deleteUserModal/deleteUserModal-controller.js"></script>
+	<script src="src/alerts/pendingNews/pendingNews-controller.js"></script>
+	<script src="src/alerts/pendingNews/deletePendingNewsModal/deletePendingNewsModal-controller.js"></script>
+	<script src="src/alerts/pendingNews/editPendingNewsModal/editPendingNewsModal-controller.js"></script>
 	<!--END Scripts-->
-
 
 </head>
 <body>
@@ -38,9 +46,8 @@
 <div ng-controller="headerCtrl">
 	<header></header>
 </div>
-<div>
-	<ng-view></ng-view>
-</div>
+
+<div ng-view></div>
 
 </body>
 </html>
