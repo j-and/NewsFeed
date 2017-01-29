@@ -26,7 +26,6 @@
 					<span class="dropdown">
 						<button class="btn btn-default dropdown-toggle"
 						        type="button"
-						        id="dropdownMenu1"
 						        data-toggle="dropdown"
 						        aria-haspopup="true"
 						        aria-expanded="true">
@@ -39,14 +38,16 @@
 
 						</ul>
 					</span>
-					<button type="submit" class="btn btn-default"  ng-click="search()"><span class="glyphicon glyphicon-search"
-					                                                    aria-hidden="true"></span></button>
+					<button type="submit"
+					        class="btn btn-default"
+					        ng-click="search()"><span class="glyphicon glyphicon-search"
+					                                  aria-hidden="true"></span></button>
 					<button type="submit" class="btn btn-default  hidden"><span class="glyphicon glyphicon-remove"
 					                                                            aria-hidden="true"></span></button>
 					<span class="dropdown">
-						<button class="btn btn-default dropdown-toggle"
+						<!--Hidden button if unregistered-->
+						<button id="alertsButtonId" class="btn btn-default dropdown-toggle"
 						        type="button"
-						        id="dropdownMenu1"
 						        data-toggle="dropdown"
 						        aria-haspopup="true"
 						        aria-expanded="true">
@@ -54,28 +55,30 @@
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							<li><b>News</b></li>
-							<li><a href="/?#!/newsfeed/admin/pendingNews">Go to pending news page</a></li>
+							<li><a href="/?#!/newsfeed">Go to pending news page</a></li>
 				<li><b>Users</b></li>
-							<li><a href="/?#!/newsfeed/admin/usersList">Go to users page</a></li>
-							<li><a href="/?#!/newsfeed/user/myNews">Go to myNews page</a></li>
+							<li><a href="/?#!/newsfeed/usersList">Go to users page</a></li>
+							<li><a href="/?#!/newsfeed">Go to myNews page</a></li>
 						</ul>
 					</span>
-					<button class="btn btn-default dropdown-toggle"
+					<button id="profileButtonId" class="btn btn-default dropdown-toggle"
 					        type="button"
-					        id="dropdownMenu1"
 					        data-toggle="dropdown"
 					        aria-haspopup="true"
 					        aria-expanded="true">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<li ng-click="openProfileModal()"><a href="#">Profile</a></li>
+							<li ng-click="openProfileModal()"><a href="#">Profile{{role}}</a></li>
 				<li ng-click="signOut()"><a href="#">Sign out</a></li>
 						</ul>
 				</span>
 
 					</div>
-
+					<span id="exclamationSignIconId"
+					      class="glyphicon glyphicon-exclamation-sign hidden"
+					      aria-hidden="true"></span>
+					<span id="kingIconId" class="glyphicon glyphicon-king hidden" aria-hidden="true"></span>
 				</form>
 				<ul class="nav navbar-nav  col-md-12">
 					<li class="active col-md-2"><a href="#">Top stories <span class="sr-only">(current)</span></a></li>

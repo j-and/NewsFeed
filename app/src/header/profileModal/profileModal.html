@@ -1,27 +1,49 @@
-
 <div ng-controller="profileModalCtrl as $ctrl" class="modal-demo">
-		<div class="modal-header">
+	<div class="modal-header">
            <span class="modal-title" id="modal-title">
-	           <h3><a href="">Log in</a></h3>
-               <a href="">Sign up</a></span>
-		</div>
-		<div class="modal-body" id="modal-body">
+	           <a href="" id="logInTitle" ng-click="$ctrl.openLogInModal()"><h3>Log in</h3></a>
+               <a href="" id="signUpTitle" ng-click="$ctrl.openSignUpModal()">Sign up</a></span>
+	</div>
+	<!--Toggle to sign up modal-->
+	<div id="logInModalBodyId">
+		<div class="modal-body">
 
-			<form id="logIn">
+			<form>
 				<div class="form-group">
-					<label for="exampleInputEmail1">Log in or email</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+					<label>Log in or email</label>
+					<input type="email" class="form-control" placeholder="Email">
 				</div>
 				<div class="form-group">
 					<label>Password</label>
-					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+					<input type="password" class="form-control" placeholder="Password">
 				</div>
 			</form>
 
 			<div class="modal-footer"><a href="" ng-click="$ctrl.forgotPassword()">Forgot password?</a>
-				<button class="btn btn-primary" type="button"  ng-click="$ctrl.logIn()">Log in</button>
+				<button class="btn btn-primary" type="button" ng-click="$ctrl.logIn()">Log in</button>
 			</div>
 		</div>
+	</div>
+
+	<div id="signUpModalBodyId" class="hidden">
+		<div class="modal-body">
+
+			<form>
+				<div class="form-group">
+					<label>Email</label>
+					<input type="email" class="form-control" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input type="password" class="form-control" placeholder="Password">
+				</div>
+			</form>
+
+			<div class="modal-footer">
+				<button class="btn btn-primary" type="button" ng-click="$ctrl.signUp()">Sign up</button>
+			</div>
+		</div>
+	</div>
 
 
 </div>

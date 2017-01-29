@@ -3,6 +3,28 @@
 
 	angular.module('NewsFeed').controller('profileModalCtrl', ['$uibModal', '$log', '$document', function ($uibModal, $log, $document) {
 		var $ctrl = this;
+
+		var logInModalBodyId=document.getElementById("logInModalBodyId");
+		var signUpModalBodyId=document.getElementById("signUpModalBodyId");
+		var logInTitle=document.getElementById("logInTitle");
+		var signUpTitle=document.getElementById("signUpTitle");
+		//Login modal view in dependence of unregistered user choice
+		$ctrl.openSignUpModal=function(){
+			console.log('sign up is chosen');
+			logInModalBodyId.setAttribute("class","hidden");
+			signUpModalBodyId.removeAttribute("class","hidden");
+			logInTitle.innerHTML='<a href="">Log in</a>';
+			signUpTitle.innerHTML='<h3>Sign up</h3>';
+		};
+
+		$ctrl.openLogInModal=function() {
+				console.log('log in is chosen');
+				logInModalBodyId.removeAttribute("class", "hidden");
+				signUpModalBodyId.setAttribute("class", "hidden");
+				logInTitle.innerHTML = '<h3>Log in</h3>';
+				signUpTitle.innerHTML = '<a href="">Sign up</a>';
+		};
+
 		$ctrl.items = ['item1', 'item2', 'item3'];
 
 		$ctrl.animationsEnabled = true;
@@ -35,10 +57,16 @@
 		//TO DO
 		$ctrl.forgotPassword = function () {
 			alert('TO DO: forgot password');
+			
 		};
 		//TO DO
 		$ctrl.logIn = function () {
 			alert('TO DO: Log in');
+		};
+
+		//TO DO
+		$ctrl.signUp = function () {
+			alert('TO DO: Sign up');
 		};
 	}]);
 })();

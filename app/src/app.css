@@ -1,6 +1,45 @@
 /* app css stylesheet */
-.summary{
-	color:red;
-	font-size:12px;
+
+/*admin*/
+.adminView{
+	border: 5px solid yellow;
 }
 
+.adminViewButton{
+	display:inline;
+	visibility:visible;
+}
+
+/*user*/
+.userViewPendingNews{
+	border: 5px solid yellow;
+}
+
+.userViewNotApprovedNews{
+	border: 5px solid red;
+}
+
+.userViewApprovedNews{
+	border: 5px solid green;
+}
+
+.userViewButtonNotAprovedNews{
+	display:inline;
+	visibility:visible;
+}
+
+#kingIconId{
+	color:darkgoldenrod;
+	position:relative;
+	top:-5px;
+	left:-40px;
+	z-index: 10;
+}
+
+#exclamationSignIconId{
+	color:red;
+	position:relative;
+	top:-5px;
+	left:-60px;
+	z-index: 10;
+}
