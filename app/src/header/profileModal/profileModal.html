@@ -5,7 +5,7 @@
                <a href="" id="signUpTitle" ng-click="$ctrl.openSignUpModal()">Sign up</a></span>
 	</div>
 	<!--Toggle to sign up modal-->
-	<div id="logInModalBodyId">
+	<div id="logInModalBodyId" ng-show="$ctrl.openLogIn">
 		<div class="modal-body">
 
 			<form>
@@ -25,7 +25,7 @@
 		</div>
 	</div>
 
-	<div id="signUpModalBodyId" class="hidden">
+	<div id="signUpModalBodyId" ng-show="$ctrl.openSignUp">
 		<div class="modal-body">
 
 			<form>

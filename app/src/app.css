@@ -1,44 +1,44 @@
 /* app css stylesheet */
 
 /*admin*/
-.adminView{
+.adminView {
 	border: 2px solid goldenrod;
 }
 
 /*user*/
-.userViewPendingNews{
+.userViewPendingNews {
 	border: 2px solid yellow;
 }
 
-.userViewNotApprovedNews{
+.userViewNotApprovedNews {
 	border: 5px solid red;
 }
 
-.userViewApprovedNews{
+.userViewApprovedNews {
 	border: 5px solid green;
 }
 
 /*addButton*/
-.addButton{
-	position:relative;
-	top:300px;
-	left:50px;
+.addButton {
+	position: relative;
+	top: 275px;
+	left: 50px;
 	z-index: 10;
 }
 
 /*header icons*/
-#kingIconId{
-	color:darkgoldenrod;
-	position:relative;
-	top:-5px;
-	left:-40px;
+#kingIconId {
+	color: darkgoldenrod;
+	position: relative;
+	top: -5px;
+	left: -40px;
 	z-index: 10;
 }
 
-#exclamationSignIconId{
-	color:red;
-	position:relative;
-	top:-5px;
-	left:-60px;
+#exclamationSignIconId {
+	color: red;
+	position: relative;
+	top: -5px;
+	left: -60px;
 	z-index: 10;
 }

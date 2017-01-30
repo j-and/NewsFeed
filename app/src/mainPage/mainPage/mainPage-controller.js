@@ -3,39 +3,10 @@
 
 	angular.module('NewsFeed')
 		.controller('mainPageCtrl', ['$scope', '$uibModal', function ($scope, $uibModal) {
-//Page view depending on the role and news status
 
 			$scope.role = 'admin';
 			$scope.newsStatus = 'pending';
-
-			var newsCard = document.getElementById('newsCardId');
-			var adminBottomPanel = document.getElementById('adminBottomPanelId');
-			var userBottomPanel = document.getElementById('userBottomPanelId');
-			var addButton = document.getElementById('addButtonId');
-
-			if ($scope.role === 'admin') {
-				newsCard.setAttribute('class', 'adminView jumbotron col-md-8 col-md-offset-2');
-				adminBottomPanel.removeAttribute('class', 'hidden');
-				adminBottomPanel.setAttribute('class', 'col-md-4 col-md-offset-8');
-				addButton.removeAttribute('class', 'hidden');
-				addButton.setAttribute('class', 'btn btn-default btn-lg addButton');
-			}
-			else if ($scope.role === 'user') {
-				if ($scope.newsStatus == 'pending') {
-					newsCard.setAttribute('class', 'userViewPendingNews jumbotron col-md-8 col-md-offset-2');
-				}
-				if ($scope.newsStatus === 'notApproved') {
-					userBottomPanel.removeAttribute('class', 'hidden');
-					userBottomPanel.setAttribute('class', 'col-md-4 col-md-offset-8');
-					newsCard.setAttribute('class', 'userViewNotApprovedNews jumbotron col-md-8 col-md-offset-2');
-				}
-				if ($scope.newsStatus == 'approved') {
-					console.log('class=userViewApprovedNews');
-					newsCard.setAttribute('class', 'userViewApprovedNews jumbotron col-md-8 col-md-offset-2');
-				}
-				addButton.removeAttribute('class', 'hidden');
-				addButton.setAttribute('class', 'btn btn-default btn-lg addButton');
-			}
+			//$scope.view ='searchResults';
 
 			$scope.news = {
 				author: 'John Doe',

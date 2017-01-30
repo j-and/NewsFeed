@@ -1,10 +1,11 @@
-<!--<div ng-model="role">{{role}}</div>-->
 <div>
 	<!--for searchResults-->
-	<div class="col-md-1 hidden">In news</div>
+	<div ng-show="view == 'searchResults'">In news</div>
+	<div ng-show="view == 'searchResults'">In my news</div>
 	<!--CSS classes adminView,userViewPendingNews,userViewNotApprovedNews,userViewApprovedNews-->
 	<div>
-		<div id="newsCardId" class="jumbotron col-md-8 col-md-offset-2">
+		<div class="jumbotron col-md-8 col-md-offset-2"
+		     ng-class="(role=='admin') ? 'adminView' : (role=='user'&&newsStatus=='pending')?'userViewPendingNews': (role=='user'&&newsStatus=='notApproved')?'userViewNotApprovedNews':(role=='user'&&newsStatus=='approved')?'userViewApprovedNews':'unregistered'">
 			<div class="col-md-4">
 				<img src="src/Screenshots/pic1.jpg" class="col-md-12">
 			</div>
@@ -17,9 +18,8 @@
 
 			<!--CSS classes adminViewButton,userViewButtonNotAprovedNews-->
 
-
 			<!--adminViewButton(pending news)-->
-			<div id="adminBottomPanelId" class="hidden" >
+			<div class="col-md-4 col-md-offset-8" ng-show="role == 'admin'">
 				<button class="btn btn-default" ng-click="savePendingNews()"><span class="glyphicon glyphicon-ok-sign"
 				                                                                   aria-hidden="true"></span></button>
 				<button class="btn btn-default"
@@ -33,7 +33,7 @@
 			</div>
 
 			<!--userViewButtonNotAprovedNews(not aprovedNews news)-->
-			<div id="userBottomPanelId" class="hidden">
+			<div class="col-md-4 col-md-offset-8" ng-show="role == 'user'&&newsStatus == 'notApproved'">
 				<button class="btn btn-default"
 				        ng-click="openReferenceModal()"><span class="glyphicon glyphicon-question-sign"
 				                                              aria-hidden="true"></span></button>
@@ -50,8 +50,8 @@
 		</div>
 	</div>
 </div>
-<button id="addButtonId"
-        class="hidden"
-        ng-click="openAddNewsModal()"><span class="glyphicon glyphicon-plus-sign"
-                                            aria-hidden="true"></span></button>
+<button
+	ng-show="role == 'admin'||role == 'user'" class="btn btn-default btn-lg addButton"
+	ng-click="openAddNewsModal()"><span class="glyphicon glyphicon-plus-sign"
+                                        aria-hidden="true"></span></button>
 

@@ -69,16 +69,20 @@
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<li ng-click="openProfileModal()"><a href="#">Profile{{role}}</a></li>
+							<li ng-click="(role=='user'||role=='admin')?openEditProfileModal():openProfileModal()"><a
+								href="#">Profile</a></li>
 				<li ng-click="signOut()"><a href="#">Sign out</a></li>
 						</ul>
 				</span>
 
 					</div>
-					<span id="exclamationSignIconId"
-					      class="glyphicon glyphicon-exclamation-sign hidden"
+					<span id="exclamationSignIconId" ng-show="alerts"
+					      class="glyphicon glyphicon-exclamation-sign"
 					      aria-hidden="true"></span>
-					<span id="kingIconId" class="glyphicon glyphicon-king hidden" aria-hidden="true"></span>
+					<span id="kingIconId"
+					      ng-show="role=='admin'"
+					      class="glyphicon glyphicon-king"
+					      aria-hidden="true"></span>
 				</form>
 				<ul class="nav navbar-nav  col-md-12">
 					<li class="active col-md-2"><a href="#">Top stories <span class="sr-only">(current)</span></a></li>
