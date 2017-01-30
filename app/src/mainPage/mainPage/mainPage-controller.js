@@ -3,46 +3,46 @@
 
 	angular.module('NewsFeed')
 		.controller('mainPageCtrl', ['$scope', '$uibModal', function ($scope, $uibModal) {
-//Page view depending on the role
-			$scope.role='admin';
-			var newsCardId=document.getElementById('newsCardId');
-			var bottomPanelId=document.getElementById('bottomPanelId');
-			var addButtonId=document.getElementById('addButtonId');
-			var authorDateId=document.getElementById('authorDateId');
-			if($scope.role==='admin'){
-				console.log('class=adminView');
-				//newsCardId.setAttribute('class','adminView');
-				//bottomPanelId.removeAttribute('class','hidden').setAttribute('class','adminViewButton');
-				//addButtonId.removeAttribute('class','hidden');
+//Page view depending on the role and news status
+
+			$scope.role = 'admin';
+			$scope.newsStatus = 'pending';
+
+			var newsCard = document.getElementById('newsCardId');
+			var adminBottomPanel = document.getElementById('adminBottomPanelId');
+			var userBottomPanel = document.getElementById('userBottomPanelId');
+			var addButton = document.getElementById('addButtonId');
+
+			if ($scope.role === 'admin') {
+				newsCard.setAttribute('class', 'adminView jumbotron col-md-8 col-md-offset-2');
+				adminBottomPanel.removeAttribute('class', 'hidden');
+				adminBottomPanel.setAttribute('class', 'col-md-4 col-md-offset-8');
+				addButton.removeAttribute('class', 'hidden');
+				addButton.setAttribute('class', 'btn btn-default btn-lg addButton');
 			}
-			else if($scope.role==='user'){
-				if($scope.newsStatus=='pending'){
-					console.log('class=userViewPendingNews');
-					//newsCardId.setAttribute('class','userViewPendingNews');
+			else if ($scope.role === 'user') {
+				if ($scope.newsStatus == 'pending') {
+					newsCard.setAttribute('class', 'userViewPendingNews jumbotron col-md-8 col-md-offset-2');
 				}
-				if($scope.newsStatus=='notApproved'){
-					console.log('class=userViewNotApprovedNews');
-					//newsCardId.setAttribute('class','userViewNotApprovedNews');
-					// bottomPanelId.removeAttribute('class','hidden').setAttribute('class','adminViewButton');
+				if ($scope.newsStatus === 'notApproved') {
+					userBottomPanel.removeAttribute('class', 'hidden');
+					userBottomPanel.setAttribute('class', 'col-md-4 col-md-offset-8');
+					newsCard.setAttribute('class', 'userViewNotApprovedNews jumbotron col-md-8 col-md-offset-2');
 				}
-				if($scope.newsStatus=='approved'){
+				if ($scope.newsStatus == 'approved') {
 					console.log('class=userViewApprovedNews');
-					//newsCardId.setAttribute('class','userViewApprovedNews');
+					newsCard.setAttribute('class', 'userViewApprovedNews jumbotron col-md-8 col-md-offset-2');
 				}
-				//addButtonId.removeAttribute('class','hidden');
-			}
-			else {
-				console.log('class=unregisteredView');
-				//newsCardId.setAttribute('class','unregisteredView');
-				//bottomPanelId.setAttribute('class','unregisteredView');
+				addButton.removeAttribute('class', 'hidden');
+				addButton.setAttribute('class', 'btn btn-default btn-lg addButton');
 			}
 
 			$scope.news = {
 				author: 'John Doe',
 				summary: "Day reappeared. The tempest still raged with undiminished fury; but the window returned to the south-east. ",
-				tag:'#accident',
+				tag: '#accident',
 				text: "Day reappeared. The tempest still raged with undiminished fury; but the window returned to the south-east. Day reappeared. The tempest still raged with undiminished fury; but the window returned to the south-east.Day reappeared. The tempest still raged with undiminished fury; but the window returned to the south-east.",
-				theme:'Belarus',
+				theme: 'Belarus',
 				time: '11:25',
 				title: 'Accident'
 			};
@@ -73,9 +73,9 @@
 			//TO DO
 			$scope.deleteNews = function () {
 				alert("TODO: Delete news");
-			}
+			};
 
-			
+
 			//admin
 			$scope.openDeletePendingNewsModal = function () {
 				$uibModal.open({
@@ -96,7 +96,7 @@
 				})
 			};
 			//TO DO
-			$scope.savePendingNews=function(){
+			$scope.savePendingNews = function () {
 				alert("TODO: save Pending News");
 			};
 
