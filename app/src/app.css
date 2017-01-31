@@ -1,0 +1,91 @@
+/* app css stylesheet */
+
+/*admin*/
+.admin {
+	border: 2px solid goldenrod;
+}
+.view-button {
+	position: absolute;
+	top: 180px;
+	z-index: 10;
+	/*left: 100px;*/
+}
+
+/*user*/
+.user-pending-news {
+	border: 2px solid yellow;
+}
+
+.user-not-approved-news {
+	border: 5px solid red;
+}
+
+.user-approved-news {
+	border: 5px solid green;
+}
+
+
+/*addButton*/
+.add-button {
+	position: relative;
+	top: 180px;
+	left: 50px;
+
+}
+
+.add-button-size {
+	font-size:50px;
+}
+
+/*header icons*/
+#king-icon {
+	color: yellow;
+	position: relative;
+	top: 10px;
+	left: 810px;
+	z-index: 10;
+}
+
+#exclamation-sign-icon {
+	color: red;
+	position: relative;
+	top: 10px;
+	left: 785px;
+	z-index: 10;
+}
+
+.input-button{
+	/*color:yellow;*/
+	position:relative;
+	left:-20px;
+	z-index:10;
+}
+/*.jumbotron*/
+.jumbotron{
+	min-height:250px;
+	margin-bottom: 0;
+}
+
+/*texr*/
+.jumbotron p b{
+	font-size:16px;
+	font-family:  "Helvetica Neue",Helvetica, Arial, sans-serif;
+	font-weight: 200;
+}
+
+.jumbotron h2{
+	font-size:26px;
+	font-weight:bold;
+	margin-top: -20px;
+	font-family:  "Helvetica Neue",Helvetica, Arial, sans-serif;
+}
+
+/*newsImage*/
+img.news-image {
+	padding: 0;
+	margin-top:-20px;
+}
+
+.profile-buttons {
+	color:white;
+}
