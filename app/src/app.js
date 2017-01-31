@@ -14,6 +14,7 @@ angular.module('NewsFeed', [
 		});
 
 		$routeProvider.when('/newsfeed/fullNews', {
+			controller: 'fullNewsCtrl',
 			templateUrl: 'src/mainPage/fullNews/fullNews.html'
 		});
 		

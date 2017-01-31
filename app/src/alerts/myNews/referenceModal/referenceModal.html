@@ -1,16 +1,13 @@
-<div ng-controller="referenceModalCtrl as $ctrl" class="modal-demo">
+<div class="modal-demo">
 	<div class="modal-header">
-           <span class="modal-title" id="modal-title">
-	           <h3>Your news was not approved
-	           </h3>
-           </span>
+		<h3 class="modal-title" id="modal-title">Your news was not approved </h3>
 	</div>
 	<div class="modal-body" id="modal-body">
 		<p>Information in summary doesn't match full text</p>
 	</div>
 
 	<div class="modal-footer">
-		<button class="btn btn-primary" type="button" ng-click="$ctrl.closeModal()">OK</button>
+		<button class="btn btn-primary" type="button" ng-click="reference.closeModal()">OK</button>
 	</div>
 </div>
 

@@ -6,7 +6,8 @@ angular.module('NewsFeed')
 		$scope.openProfileModal = function () {
 			$uibModal.open({
 				templateUrl: '/src/alerts/usersList/deleteUserModal/deleteUserModal.html',
-				controller: 'deleteUserModalCtrl'
+				controller: 'deleteUserModalCtrl',
+				controllerAs:'deleteUser'
 			})
 		};
 		//TO DO

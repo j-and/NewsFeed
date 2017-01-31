@@ -1,11 +1,11 @@
-<div ng-controller="profileModalCtrl as $ctrl" class="modal-demo">
+<div class="modal-demo">
 	<div class="modal-header">
            <span class="modal-title" id="modal-title">
-	           <a href="" id="logInTitle" ng-click="$ctrl.openLogInModal()"><h3>Log in</h3></a>
-               <a href="" id="signUpTitle" ng-click="$ctrl.openSignUpModal()">Sign up</a></span>
+	           <a href="" id="logInTitle" ng-click="profile.openLogInModal()"><h3>Log in</h3></a>
+               <a href="" id="signUpTitle" ng-click="profile.openSignUpModal()">Sign up</a></span>
 	</div>
 	<!--Toggle to sign up modal-->
-	<div id="logInModalBodyId" ng-show="$ctrl.openLogIn">
+	<div id="logInModalBodyId" ng-show="profile.openLogIn">
 		<div class="modal-body">
 
 			<form>
@@ -19,13 +19,13 @@
 				</div>
 			</form>
 
-			<div class="modal-footer"><a href="" ng-click="$ctrl.forgotPassword()">Forgot password?</a>
-				<button class="btn btn-primary" type="button" ng-click="$ctrl.logIn()">Log in</button>
+			<div class="modal-footer"><a href="" ng-click="profile.forgotPassword()">Forgot password?</a>
+				<button class="btn btn-primary" type="button" ng-click="profile.logIn()">Log in</button>
 			</div>
 		</div>
 	</div>
 
-	<div id="signUpModalBodyId" ng-show="$ctrl.openSignUp">
+	<div id="signUpModalBodyId" ng-show="profile.openSignUp">
 		<div class="modal-body">
 
 			<form>
@@ -40,7 +40,7 @@
 			</form>
 
 			<div class="modal-footer">
-				<button class="btn btn-primary" type="button" ng-click="$ctrl.signUp()">Sign up</button>
+				<button class="btn btn-primary" type="button" ng-click="profile.signUp()">Sign up</button>
 			</div>
 		</div>
 	</div>

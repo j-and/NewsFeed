@@ -4,20 +4,21 @@
 		.controller('headerCtrl', ['$scope', '$uibModal', function ($scope, $uibModal) {
 			//Header view depending on the alerts and role
 			$scope.alerts = true;
-			$scope.role = 'admin';
-			$scope.searchTerm=0 ;
-			$scope.searchTerm=true;
+			$scope.role = 'user';
+			$scope.searchInput = "";
 
 			$scope.openProfileModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/header/profileModal/profileModal.html',
-					controller: 'profileModalCtrl'
+					controller: 'profileModalCtrl',
+					controllerAs: 'profile'
 				});
 			};
 			$scope.openEditProfileModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/header/editProfileModal/editProfileModal.html',
-					controller: 'editProfileModalCtrl'
+					controller: 'editProfileModalCtrl',
+					controllerAs: 'editProfile'
 				})
 
 			};

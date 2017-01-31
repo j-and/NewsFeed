@@ -20,7 +20,8 @@
 			$scope.openAddNewsModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/addNews/addNewsModal.html',
-					controller: 'addNewsModalCtrl'
+					controller: 'addNewsModalCtrl',
+					controllerAs: 'addNews'
 				})
 			};
 
@@ -28,15 +29,11 @@
 			$scope.openReferenceModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/alerts/myNews/referenceModal/referenceModal.html',
-					controller: 'referenceModalCtrl'
+					controller: 'referenceModalCtrl',
+					controllerAs: 'reference'
 				})
 			};
-			$scope.openAddNewsModal = function () {
-				$uibModal.open({
-					templateUrl: '/src/addNews/addNewsModal.html',
-					controller: 'addNewsModalCtrl'
-				})
-			};
+
 			//TO DO
 			$scope.sendNews = function () {
 				alert("TODO: Send news");
@@ -51,21 +48,18 @@
 			$scope.openDeletePendingNewsModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/alerts/pendingNews/deletePendingNewsModal/deletePendingNewsModal.html',
-					controller: 'deletePendingNewsModalCtrl'
+					controller: 'deletePendingNewsModalCtrl',
+					controllerAs: 'deletePendingNews'
 				})
 			};
 			$scope.openEditPendingNewsModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/alerts/pendingNews/editPendingNewsModal/editPendingNewsModal.html',
-					controller: 'editPendingNewsModalCtrl'
+					controller: 'editPendingNewsModalCtrl',
+					controllerAs: 'editPendingNews'
 				})
 			};
-			$scope.openAddNewsModal = function () {
-				$uibModal.open({
-					templateUrl: '/src/addNews/addNewsModal.html',
-					controller: 'addNewsModalCtrl'
-				})
-			};
+
 			//TO DO
 			$scope.savePendingNews = function () {
 				alert("TODO: save Pending News");

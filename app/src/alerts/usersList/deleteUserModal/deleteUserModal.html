@@ -1,15 +1,12 @@
-<div ng-controller="deleteUserModalCtrl as $ctrl" class="modal-demo">
+<div class="modal-demo">
 	<div class="modal-header">
-           <span class="modal-title" id="modal-title">
-	          <h3> <a href="">Delete user</a>
-	          </h3>
-           </span>
+		<h3 class="modal-title" id="modal-title">Delete user</h3>
 	</div>
 	<div class="modal-body" id="modal-body">
 		<p>Delete selected user?</p>
 		<div class="modal-footer">
-			<button class="btn btn-primary" type="button" ng-click="$ctrl.deleteUser()">OK</button>
-			<button class="btn btn-warning" type="button" ng-click="$ctrl.closeModal()">Cancel</button>
+			<button class="btn btn-primary" type="button" ng-click="deleteUser.deleteUser()">OK</button>
+			<button class="btn btn-warning" type="button" ng-click="deleteUser.closeModal()">Cancel</button>
 		</div>
 	</div>
 </div>

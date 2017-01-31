@@ -22,13 +22,9 @@
 					<div class="input-group">
 						<form class="form-inline" role="form" name="searchForm">
 							<div class="form-group has-feedback">
-								<label class="control-label"></label>
-								<input type="text" class="form-control" name="myName">
-
-								<span class="glyphicon glyphicon-search form-control-feedback"></span>
-								<!--<span class="glyphicon glyphicon-remove removeSearchButton" ng-show="searchTerm"></span>-->
-								<span class="glyphicon glyphicon-remove removeSearchButton"
-								      ng-show="searchForm.myName.$touched"></span>
+								<input type="text" class="form-control" name="myName" ng-model="searchInput">
+								<span class="glyphicon glyphicon-search form-control-feedback" ng-show="!searchInput"></span>
+								<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="searchInput"></span>
 							</div>
 						</form>
 

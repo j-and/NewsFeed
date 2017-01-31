@@ -1,62 +1,36 @@
 (function () {
 	'use strict';
 
-	angular.module('NewsFeed').controller('profileModalCtrl', ['$uibModal', '$log', '$document', function ($uibModal, $log, $document) {
-		var $ctrl = this;
+	angular.module('NewsFeed').controller('profileModalCtrl', ['$uibModal', '$uibModalInstance', function ($uibModal, $uibModalInstance) {
 
-		$ctrl.openLogIn = true;
-		$ctrl.openSignUpModal = function () {
-			$ctrl.openLogIn = false;
-			$ctrl.openSignUp = true;
+		var vm = this;
+
+		vm.openLogIn = true;
+		vm.openSignUpModal = function () {
+			vm.openLogIn = false;
+			vm.openSignUp = true;
 		};
 
-		$ctrl.openLogInModal = function () {
+		vm.openLogInModal = function () {
 			$ctrl.openLogIn = true;
 			$ctrl.openSignUp = false;
 		};
 
-		$ctrl.items = ['item1', 'item2', 'item3'];
-
-		$ctrl.animationsEnabled = true;
-
-		$ctrl.open = function (size, parentSelector) {
-			var parentElem = parentSelector ?
-				angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
-			var modalInstance = $uibModal.open({
-				animation: $ctrl.animationsEnabled,
-				ariaLabelledBy: 'modal-title',
-				ariaDescribedBy: 'modal-body',
-				templateUrl: 'myModalContent.html',
-				controller: 'ModalInstanceCtrl',
-				controllerAs: '$ctrl',
-				size: size,
-				appendTo: parentElem,
-				resolve: {
-					items: function () {
-						return $ctrl.items;
-					}
-				}
-			});
-
-			modalInstance.result.then(function (selectedItem) {
-				$ctrl.selected = selectedItem;
-			}, function () {
-				$log.info('Modal dismissed at: ' + new Date());
-			});
-		};
 		//TO DO
-		$ctrl.forgotPassword = function () {
+		vm.forgotPassword = function () {
 			alert('TO DO: forgot password');
 
 		};
 		//TO DO
-		$ctrl.logIn = function () {
+		vm.logIn = function () {
 			alert('TO DO: Log in');
+			$uibModalInstance.dismiss('cancel');
 		};
 
 		//TO DO
-		$ctrl.signUp = function () {
+		vm.signUp = function () {
 			alert('TO DO: Sign up');
+			$uibModalInstance.dismiss('cancel');
 		};
 	}]);
 })();
