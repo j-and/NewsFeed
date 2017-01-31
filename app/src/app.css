@@ -1,10 +1,10 @@
 /* app css stylesheet */
 
 /*admin*/
-.adminView {
+.admin {
 	border: 2px solid goldenrod;
 }
-.viewButton {
+.view-button {
 	position: absolute;
 	top: 180px;
 	z-index: 10;
@@ -12,33 +12,33 @@
 }
 
 /*user*/
-.userViewPendingNews {
+.user-pending-news {
 	border: 2px solid yellow;
 }
 
-.userViewNotApprovedNews {
+.user-not-approved-news {
 	border: 5px solid red;
 }
 
-.userViewApprovedNews {
+.user-approved-news {
 	border: 5px solid green;
 }
 
 
 /*addButton*/
-.addButton {
+.add-button {
 	position: relative;
 	top: 180px;
 	left: 50px;
 
 }
 
-.addButtonSize {
+.add-button-size {
 	font-size:50px;
 }
 
 /*header icons*/
-#kingIconId {
+#king-icon {
 	color: yellow;
 	position: relative;
 	top: 10px;
@@ -46,7 +46,7 @@
 	z-index: 10;
 }
 
-#exclamationSignIconId {
+#exclamation-sign-icon {
 	color: red;
 	position: relative;
 	top: 10px;
@@ -54,10 +54,9 @@
 	z-index: 10;
 }
 
-.removeSearchButton{
+.input-button{
 	/*color:yellow;*/
 	position:relative;
-	top:-20px;
 	left:-20px;
 	z-index:10;
 }
@@ -82,11 +81,11 @@
 }
 
 /*newsImage*/
-img.newsImage {
+img.news-image {
 	padding: 0;
 	margin-top:-20px;
 }
 
-.profileButtons {
+.profile-buttons {
 	color:white;
 }

@@ -20,34 +20,37 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<form class="navbar-form navbar-right">
 					<div class="input-group">
-						<form class="form-inline" role="form" name="searchForm">
-							<div class="form-group has-feedback">
-								<input type="text" class="form-control" name="myName" ng-model="searchInput">
-								<span class="glyphicon glyphicon-search form-control-feedback" ng-show="!searchInput"></span>
-								<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="searchInput"></span>
+						<form class="form-inline">
+							<div class="form-group">
+								<input type="text" class="form-control" ng-model="searchInput">
+								<span type="submit"
+								      class="glyphicon glyphicon-search input-button"
+								      ng-show="!searchInput"></span>
+								<span type="submit"
+								      class="glyphicon glyphicon-remove input-button"
+								      ng-show="searchInput"></span>
 							</div>
 						</form>
 
 						<!-- Button and dropdown menu -->
-					<span class="dropdown">
-						<button class="btn btn-default dropdown-toggle"
-						        type="button"
-						        data-toggle="dropdown"
-						        aria-haspopup="true"
-						        aria-expanded="true">
-							<span class="caret"></span>
+
+							<span class="dropdown"><button class="btn btn-default dropdown-toggle"
+							                               type="button"
+							                               data-toggle="dropdown"
+							                               aria-haspopup="true"
+							                               aria-expanded="true"><span class="caret">
+							</span>
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							<li><a href="#">Date</a></li>
 				<li><a href="#">Theme</a></li>
    			<li><a href="#">Tag</a></li>
-
 						</ul>
 					</span>
-					<span class="dropdown">
-						<!--Hidden button if unregistered-->
 
-							<span class="btn glyphicon glyphicon-bell dropdown-toggle profileButtons" type="button"
+						<!--Hidden button if unregistered-->
+<span class="dropdown">
+							<span class="btn glyphicon glyphicon-bell dropdown-toggle profile-buttons" type="button"
 							      data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
 						<ul class="dropdown-menu">
 							<li><b>News</b></li>
@@ -58,7 +61,7 @@
 						</ul>
 					</span>
 
-							<span class=" btn glyphicon glyphicon-user dropdown-toggle profileButtons"
+							<span class=" btn glyphicon glyphicon-user dropdown-toggle profile-buttons"
 							      data-toggle="dropdown"
 							      aria-haspopup="true"
 							      aria-expanded="true"
@@ -72,10 +75,10 @@
 						</span>
 
 					</div>
-					<span id="exclamationSignIconId" ng-show="alerts"
+					<span id="exclamation-sign-icon" ng-show="alerts"
 					      class="glyphicon glyphicon-exclamation-sign"
 					      aria-hidden="true"></span>
-					<span id="kingIconId"
+					<span id="king-icon"
 					      ng-show="role=='admin'"
 					      class="glyphicon glyphicon-king"
 					      aria-hidden="true"></span>

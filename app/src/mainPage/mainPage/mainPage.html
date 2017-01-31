@@ -2,12 +2,12 @@
 	<!--for searchResults-->
 	<div ng-show="view == 'searchResults'">In news</div>
 	<div ng-show="view == 'searchResults'">In my news</div>
-	<!--CSS classes adminView,userViewPendingNews,userViewNotApprovedNews,userViewApprovedNews-->
+	<!--CSS classes admin,user-pending-news,user-not-approved-news,user-approved-news-->
 	<div>
 		<div class="jumbotron col-md-8 col-md-offset-2"
-		     ng-class="(role=='admin') ? 'adminView' : (role=='user'&&newsStatus=='pending')?'userViewPendingNews': (role=='user'&&newsStatus=='notApproved')?'userViewNotApprovedNews':(role=='user'&&newsStatus=='approved')?'userViewApprovedNews':'unregistered'">
+		     ng-class="(role=='admin') ? 'admin' : (role=='user'&&newsStatus=='pending')?'user-pending-news': (role=='user'&&newsStatus=='notApproved')?'user-not-approved-news':(role=='user'&&newsStatus=='approved')?'user-approved-news':'unregistered'">
 			<div class="col-md-4">
-				<img src="src/Screenshots/pic1.jpg" class="col-md-12 newsImage">
+				<img src="src/Screenshots/pic1.jpg" class="col-md-12 news-image">
 			</div>
 			<div class="col-md-8">
 				<h2>{{news.title}}</h2>
@@ -16,25 +16,26 @@
 				<span class="text-right">By {{news.author}} | {{news.time}}</span>
 			</div>
 
-			<!--CSS classes adminViewButton,userViewButtonNotAprovedNews-->
-
-			<!--adminViewButton(pending news)-->
-			<div class=" col-md-offset-9 viewButton" ng-show="role == 'admin'">
+			<!--CSS classes view-button-->
+			<!--admin(pending news)-->
+			<div class=" col-md-offset-9 view-button" ng-show="role == 'admin'">
 				<h3 class="glyphicon glyphicon-ok-sign" aria-hidden="true" ng-click="savePendingNews()"></h3>
 				<h3 class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="openEditPendingNewsModal()"></h3>
-				<h3 class="glyphicon glyphicon-remove"  aria-hidden="true" ng-click="openDeletePendingNewsModal()"></h3>
+				<h3 class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="openDeletePendingNewsModal()"></h3>
 			</div>
 
-			<!--userViewButtonNotAprovedNews(not aprovedNews news)-->
-			<div class="col-md-offset-9 viewButton" ng-show="role == 'user'&&newsStatus == 'notApproved'">
-			<h3 class="glyphicon glyphicon-question-sign" aria-hidden="true" ng-click="openReferenceModal()"></h3>
+			<!--user(not aprovedNews news)-->
+			<div class="col-md-offset-9 view-button" ng-show="role == 'user'&&newsStatus == 'notApproved'">
+				<h3 class="glyphicon glyphicon-question-sign" aria-hidden="true" ng-click="openReferenceModal()"></h3>
 				<h3 class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true" ng-click="sendNews()"></h3>
-				<h3 class="glyphicon glyphicon-remove" aria-hidden="true"  ng-click="deleteNews()"></h3>
+				<h3 class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="deleteNews()"></h3>
 			</div>
 
 		</div>
 	</div>
 </div>
-<div class="addButton"><h1 class="glyphicon glyphicon-plus-sign addButtonSize"
-                                        aria-hidden="true" ng-show="role == 'admin'||role == 'user'" ng-click="openAddNewsModal()"></h1></div>
+<div class="add-button"><h1 class="glyphicon glyphicon-plus-sign add-button-size"
+                            aria-hidden="true"
+                            ng-show="role == 'admin'||role == 'user'"
+                            ng-click="openAddNewsModal()"></h1></div>
 
