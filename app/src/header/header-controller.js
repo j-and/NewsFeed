@@ -5,6 +5,8 @@
 			//Header view depending on the alerts and role
 			$scope.alerts = true;
 			$scope.role = 'admin';
+			$scope.searchTerm=0 ;
+			$scope.searchTerm=true;
 
 			$scope.openProfileModal = function () {
 				$uibModal.open({

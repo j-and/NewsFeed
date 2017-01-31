@@ -4,8 +4,8 @@
 	angular.module('NewsFeed')
 		.controller('mainPageCtrl', ['$scope', '$uibModal', function ($scope, $uibModal) {
 
-			$scope.role = 'admin';
-			$scope.newsStatus = 'pending';
+			$scope.role = 'user';
+			$scope.newsStatus = 'notApproved';
 			//$scope.view ='searchResults';
 
 			$scope.news = {

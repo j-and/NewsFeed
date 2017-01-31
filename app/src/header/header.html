@@ -20,9 +20,19 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<form class="navbar-form navbar-right">
 					<div class="input-group">
-						<input type="text" class="form-control" aria-label="...">
-				<span class="input-group-btn">
-					<!-- Button and dropdown menu -->
+						<form class="form-inline" role="form" name="searchForm">
+							<div class="form-group has-feedback">
+								<label class="control-label"></label>
+								<input type="text" class="form-control" name="myName">
+
+								<span class="glyphicon glyphicon-search form-control-feedback"></span>
+								<!--<span class="glyphicon glyphicon-remove removeSearchButton" ng-show="searchTerm"></span>-->
+								<span class="glyphicon glyphicon-remove removeSearchButton"
+								      ng-show="searchForm.myName.$touched"></span>
+							</div>
+						</form>
+
+						<!-- Button and dropdown menu -->
 					<span class="dropdown">
 						<button class="btn btn-default dropdown-toggle"
 						        type="button"
@@ -38,22 +48,12 @@
 
 						</ul>
 					</span>
-					<button type="submit"
-					        class="btn btn-default"
-					        ng-click="search()"><span class="glyphicon glyphicon-search"
-					                                  aria-hidden="true"></span></button>
-					<button type="submit" class="btn btn-default  hidden"><span class="glyphicon glyphicon-remove"
-					                                                            aria-hidden="true"></span></button>
 					<span class="dropdown">
 						<!--Hidden button if unregistered-->
-						<button id="alertsButtonId" class="btn btn-default dropdown-toggle"
-						        type="button"
-						        data-toggle="dropdown"
-						        aria-haspopup="true"
-						        aria-expanded="true">
-							<span class="glyphicon glyphicon-bell"></span>
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+							<span class="btn glyphicon glyphicon-bell dropdown-toggle profileButtons" type="button"
+							      data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
+						<ul class="dropdown-menu">
 							<li><b>News</b></li>
 							<li><a href="/?#!/newsfeed">Go to pending news page</a></li>
 				<li><b>Users</b></li>
@@ -61,19 +61,19 @@
 							<li><a href="/?#!/newsfeed">Go to myNews page</a></li>
 						</ul>
 					</span>
-					<button id="profileButtonId" class="btn btn-default dropdown-toggle"
-					        type="button"
-					        data-toggle="dropdown"
-					        aria-haspopup="true"
-					        aria-expanded="true">
-							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</button>
+
+							<span class=" btn glyphicon glyphicon-user dropdown-toggle profileButtons"
+							      data-toggle="dropdown"
+							      aria-haspopup="true"
+							      aria-expanded="true"
+							      aria-hidden="true"></span>
+
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							<li ng-click="(role=='user'||role=='admin')?openEditProfileModal():openProfileModal()"><a
 								href="#">Profile</a></li>
-				<li ng-click="signOut()"><a href="#">Sign out</a></li>
+							<li ng-click="signOut()"><a href="#">Sign out</a></li>
 						</ul>
-				</span>
+						</span>
 
 					</div>
 					<span id="exclamationSignIconId" ng-show="alerts"
@@ -95,7 +95,6 @@
 			</div>
 		</div>
 	</nav>
-</div>
 
 
 
