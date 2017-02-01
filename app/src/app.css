@@ -89,3 +89,10 @@ img.news-image {
 .profile-buttons {
 	color:white;
 }
+
+/*typeahead*/
+.dropdown-menu.typeahead{
+	display:block;
+	position:absolute;
+	top:15px;
+}
