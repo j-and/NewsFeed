@@ -18,7 +18,7 @@
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<form class="navbar-form navbar-right">
+				<form class="navbar-form navbar-right" ng-submit="showSearchResults()">
 					<div class="input-group">
 
 						<form class="form-inline">
@@ -35,6 +35,21 @@
 								       typeahead-callback="callback"/>
 							</div>
 						</form>
+						<!--Dropdown with searchResults-->
+
+						<ul class="custom-dropdown" ng-show="searchResults&&input" ng-click="searchResults=!searchResults">
+							<li class="form-group"><input type="checkbox" ng-click="selectFilter()">Date</li>
+							<li class="form-group"><input type="checkbox" ng-click="selectFilter()">Theme</li>
+							<li class="form-group"><input type="checkbox" ng-click="selectFilter()">Tag</li>
+							<li role="separator" class="divider"></li>
+							<li><b>Title1</b></li>
+							<li><b>Title2</b></li>
+							<li><a href="/?#!/newsfeed">Go to news page</a></li>
+							<li role="separator" class="divider"></li>
+							<li><b>Title1</b></li>
+							<li><a href="/?#!/newsfeed">Go to my news page</a></li>
+						</ul>
+
 
 						<!--Hidden button if unregistered-->
 <span class="dropdown">

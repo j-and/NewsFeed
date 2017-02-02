@@ -7,6 +7,7 @@
 			$scope.alerts = true;
 			$scope.role = 'user';
 			$scope.input = "";
+			$scope.searchResults = false;
 
 			$scope.openProfileModal = function () {
 				$uibModal.open({
@@ -23,12 +24,35 @@
 				})
 			};
 			//Typeahead
-			$scope.news = [{title: "Title1"}, {title: "Title10"}, {title: "Title100"}, {title: "Title10000"}, {title: "Title10001"}];
+			$scope.news = [{title: "Title1", author: "John Doe"},
+				{title: "Title10", author: "John Doe"},
+				{title: "Title100", author: "John Doe"},
+				{title: "Title10000", author: "John Doe"},
+				{title: "Title10001"}];
+
+			var typeaheadArray = [];
+			for (var i = 0; i < $scope.news.length; i++) {
+				typeaheadArray.push($scope.news[i].title);
+			}
 
 			$scope.callback = function (news) {
-				$scope.news = news
+				$scope.news = typeaheadArray;
+				$scope.showSearchResults();
 			};
 
+			$scope.showSearchResults = function () {
+				if ($scope.searchResults) {
+					return $scope.searchResults = false;
+				}
+				else {
+					$scope.searchResults = true
+				}
+			};
+			
+			//TO DO
+			$scope.selectFilter = function () {
+				alert('TODO: selected filter=');
+			};
 
 			//TO DO
 			$scope.search = function () {
@@ -40,29 +64,35 @@
 			};
 
 		}])
-		.directive('typeahead', ['$compile', '$timeout', function ($compile, $timeout) {
-			return {
-				restrict: 'A',
-				transclude: true,
-				scope: {
-					ngModel: '=',
-					typeahead: '=',
-					typeaheadCallback: "="
-				},
-				link: function (scope, elem, attrs) {
-					var template = '<div class="dropdown">' +
-						'<ul class="dropdown-menu typeahead" ' +
-						' ng-hide="!ngModel.length || !filitered.length || selected">' +
-						// '<li class="form-group"><input type="checkbox"> Date</li>'+
-						// '<li class="form-group"><input type="checkbox"> Theme</li>'+
-						// '<li class="form-group"><input type="checkbox"> Tag</li>'+
-						// 	'<li role="separator" class="divider"></li>'+
-						'<li ng-repeat="item in filitered = (typeahead | filter:{title:ngModel} | limitTo:5) track by $index" ' +
-						'ng-click="click(item)" style="cursor:pointer" ng-class="{active:$index==active}" ' +
-						'ng-mouseenter="mouseenter($index)">' +
-						'<a>{{item.title}}</a></li>' +
-						'</ul>' +
-						'</div>';
+		
+		// .directive('typeahead', ['$compile', '$timeout', function ($compile, $timeout) {
+
+			.directive('typeahead', typeahead);
+
+			function typeahead($compile, $timeout) {
+				var directive = {
+					restrict: 'A',
+					transclude: true,
+					scope: {
+						ngModel: '=',
+						typeahead: '=',
+						typeaheadCallback: "="
+					},
+					link: link
+				};
+				return directive;
+
+
+				 function link(scope, elem, attrs) {
+					 var template = '<div class="dropdown">' +
+						 '<ul class="dropdown-menu typeahead" ' +
+						 ' ng-hide="!ngModel.length || !filtered.length || selected">' +
+						 '<li ng-repeat="item in filtered = (typeahead | filter:{title:ngModel} | limitTo:3) track by $index" ' +
+						 'ng-click="click(item)" ng-class="{active:$index==active}" ' +
+						 'ng-mouseenter="mouseenter($index)">' +
+						 '<a>{{item.title}}</a></li>' +
+						 '</ul>' +
+						 '</div>';
 
 					// elem.bind('blur', function () {
 					// 	$timeout(function () {
@@ -71,16 +101,17 @@
 					//
 					// });
 
+
 					elem.bind("keydown", function ($event) {
 						if ($event.keyCode == 38 && scope.active > 0) { // arrow up
 							scope.active--;
 							scope.$digest()
-						} else if ($event.keyCode == 40 && scope.active < scope.filitered.length - 1) { // arrow down
+						} else if ($event.keyCode == 40 && scope.active < scope.filtered.length - 1) { // arrow down
 							scope.active++;
 							scope.$digest()
 						} else if ($event.keyCode == 13) { // enter
 							scope.$apply(function () {
-								scope.click(scope.filitered[scope.active])
+								scope.click(scope.filtered[scope.active])
 							})
 						}
 					});
@@ -90,7 +121,6 @@
 						scope.selected = item;
 						if (scope.typeaheadCallback) {
 							scope.typeaheadCallback(item);
-
 						}
 						elem[0].blur()
 					};
@@ -108,14 +138,12 @@
 						scope.selected = false;
 
 						// if we have an exact match and there is only one item in the list, automatically select it
-						if (input && scope.filitered.length == 1 && scope.filitered[0].title.toLowerCase() == input.toLowerCase()) {
-							scope.click(scope.filitered[0])
+						if (input && scope.filtered.length == 1 && scope.filtered[0].title.toLowerCase() == input.toLowerCase()) {
+							scope.click(scope.filtered[0])
 						}
 					});
-
 					elem.after($compile(template)(scope))
-				}
+			}}
 			}
-
-		}])
-})();
+		// }])
+)();
