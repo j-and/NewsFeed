@@ -1,5 +1,7 @@
 /* app css stylesheet */
-
+div.page-header{
+	margin-top:0;
+}
 /*admin*/
 .admin {
 	border: 2px solid goldenrod;
@@ -41,16 +43,16 @@
 #king-icon {
 	color: yellow;
 	position: relative;
-	top: 10px;
-	left: 810px;
+	top: -5px;
+	left: -35px;
 	z-index: 10;
 }
 
 #exclamation-sign-icon {
 	color: red;
 	position: relative;
-	top: 10px;
-	left: 785px;
+	top:-5px ;
+	left: -65px;
 	z-index: 10;
 }
 
@@ -88,22 +90,17 @@ img.news-image {
 
 .profile-buttons {
 	color:white;
-}
-
-/*typeahead*/
-.dropdown-menu.typeahead{
-	display:block;
-	position:absolute;
-	top:15px;
+	position: relative;
 }
 
 .custom-dropdown {
 	position: absolute;
-	top: 100%;
-	left: 0;
+	top: 45px;
+	left: 396px;
+	width:500px;
 	z-index: 1000;
 	/*display: none;*/
-	float: left;
+	/*float: left;*/
 	min-width: 160px;
 	padding: 5px 0;
 	margin: 2px 0 0;
@@ -114,8 +111,11 @@ img.news-image {
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
 	border: 1px solid #ccc;
-	border: 1px solid rgba(0, 0, 0, .15);
 	border-radius: 4px;
 	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+#searchInput{
+	width:500px;
 }

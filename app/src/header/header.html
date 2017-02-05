@@ -1,4 +1,4 @@
-<div class="page-header">
+<div class="page-header" ng-click="hideDropdown()">
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -17,39 +17,27 @@
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<form class="navbar-form navbar-right" ng-submit="showSearchResults()">
+			<div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+				<form class="navbar-form navbar-right">
 					<div class="input-group">
-
 						<form class="form-inline">
-							<div class="form-group"><span class="glyphicon glyphicon-search input-button"
-							                              ng-show="!input"></span>
+							<div class="form-group">
+								<span class="glyphicon glyphicon-search input-button"
+								      ng-show="!searchInput"></span>
 								<span class="glyphicon glyphicon-remove input-button"
-								      ng-show="input"></span>
-								<input class="form-control"
+								      ng-show="searchInput"></span>
+								<input id="searchInput"
+								       class="form-control"
 								       type="text"
-								       autocomplete="false"
-								       ng-model="input"
+								       autocomplete="off"
+								       ng-model="searchInput"
 								       placeholder="Start typing a title"
-								       typeahead="news"
-								       typeahead-callback="callback"/>
+								       ng-keyup="searchTitle()"
+								       >
+								<!--&lt;!&ndash;Dropdown with searchResults&ndash;&gt;-->
+								<!--<searchdropdown></searchdropdown>-->
 							</div>
 						</form>
-						<!--Dropdown with searchResults-->
-
-						<ul class="custom-dropdown" ng-show="searchResults&&input" ng-click="searchResults=!searchResults">
-							<li class="form-group"><input type="checkbox" ng-click="selectFilter()">Date</li>
-							<li class="form-group"><input type="checkbox" ng-click="selectFilter()">Theme</li>
-							<li class="form-group"><input type="checkbox" ng-click="selectFilter()">Tag</li>
-							<li role="separator" class="divider"></li>
-							<li><b>Title1</b></li>
-							<li><b>Title2</b></li>
-							<li><a href="/?#!/newsfeed">Go to news page</a></li>
-							<li role="separator" class="divider"></li>
-							<li><b>Title1</b></li>
-							<li><a href="/?#!/newsfeed">Go to my news page</a></li>
-						</ul>
-
 
 						<!--Hidden button if unregistered-->
 <span class="dropdown">
@@ -75,16 +63,16 @@
 								href="#">Profile</a></li>
 							<li ng-click="signOut()"><a href="#">Sign out</a></li>
 						</ul>
-						</span>
 
+						<div id="exclamation-sign-icon" ng-show="alerts"
+						     class="glyphicon glyphicon-exclamation-sign"
+						     aria-hidden="true"></div>
+						<div id="king-icon"
+						     ng-show="role=='admin'"
+						     class="glyphicon glyphicon-king"
+						     aria-hidden="true"></div>
 					</div>
-					<span id="exclamation-sign-icon" ng-show="alerts"
-					      class="glyphicon glyphicon-exclamation-sign"
-					      aria-hidden="true"></span>
-					<span id="king-icon"
-					      ng-show="role=='admin'"
-					      class="glyphicon glyphicon-king"
-					      aria-hidden="true"></span>
+
 				</form>
 				<ul class="nav navbar-nav  col-md-12">
 					<li class="active col-md-2"><a href="#">Top stories <span class="sr-only">(current)</span></a></li>
@@ -97,6 +85,10 @@
 			</div>
 		</div>
 	</nav>
-
+	<!--Dropdown with searchResults-->
+	<div id="searchDropdown">
+		<searchdropdown></searchdropdown>
+	</div>
+</div>
 
 

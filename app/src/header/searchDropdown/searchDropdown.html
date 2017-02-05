@@ -1,0 +1,25 @@
+<!--<div ng-show="searchInput" tw-click-outside="hideMenu()">-->
+<!--<div ng-show="searchInput" ng-click="searchInput=''">-->
+	<!--<div ng-show="searchInput" ng-click="hideDropdown()">-->
+<div ng-show="searchResults" >
+<ul class="custom-dropdown" >
+	<form class="form-inline">
+<li class="form-group"><input type="checkbox" ng-click="selectFilter()">Date</li>
+<li class="form-group"><input type="checkbox" ng-click="selectFilter()">Theme</li>
+<li class="form-group form-inline"><input type="checkbox" ng-click="selectFilter()">Tag</li>
+
+<li><a href="/#!/newsfeed/fullNews"><b>{{searchInput0}}</b></a></li>
+<li><a href="/#!/newsfeed/fullNews"><b>{{searchInput1}}</b></a></li>
+		<li><a href="/#!/newsfeed/fullNews"><b>{{searchInput2}}</b></a></li>
+		<li><a href="/#!/newsfeed/fullNews"><b>{{searchInput3}}</b></a></li>
+		<li><a href="/#!/newsfeed/fullNews"><b>{{searchInput4}}</b></a></li>
+<li ng-click="searchInput=''"><a href="">Go to news page</a></li>
+
+		<li><a href="/#!/newsfeed/fullNews"><b>{{searchInput0}}</b></a></li>
+		<li><a href="/#!/newsfeed/fullNews"><b>{{searchInput1}}</b></a></li>
+		<li><a href="/#!/newsfeed/fullNews"><b>{{searchInput2}}</b></a></li>
+		<li><a href="/#!/newsfeed/fullNews"><b>{{searchInput3}}</b></a></li>
+		<li><a href="/#!/newsfeed/fullNews"><b>{{searchInput4}}</b></a></li>
+<li ng-click="searchInput=''"><a href="/#!/newsfeed/fullNews">Go to my news page</a></li></form>
+	</ul>
+</div>
