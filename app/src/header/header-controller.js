@@ -2,13 +2,14 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('headerCtrl', ['$scope', '$uibModal', function ($scope, $uibModal) {
+		.controller('headerCtrl', ['newsItemsService', '$scope', '$uibModal', function (newsItemsService, $scope, $uibModal) {
 			//Header view depending on the alerts and role
 
 			$scope.alerts = true;
 			$scope.role = 'admin';
 			$scope.searchInput = "";
 			$scope.searchResults = false;
+			$scope.author = newsItemsService.newsItemsArray[0].author;
 
 			$scope.openProfileModal = function () {
 				$uibModal.open({
@@ -24,28 +25,19 @@
 					controllerAs: 'editProfile'
 				})
 			};
+			$scope.url = "/#!/newsfeed/fullNews";
 
 			$scope.showSearchResults = function (searchInput) {
+				event.stopPropagation();
 				if (searchInput != '') {
 					return $scope.searchResults = true;
 				}
 			};
 
-
-			//Typeahead
-			$scope.news = [
-				{title: "1Title1", author: "John Doe"},
-				{title: "1Title10", author: "John Doe"},
-				{title: "2Title100", author: "John Doe"},
-				{title: "2Title10000", author: "John Doe"},
-				{title: "2Title10001"}
-			];
-
-			var typeaheadArray = [];
+			var titlesdArray = [];
 			var matchesTitleArrayIndex = [];
-
-			for (var i = 0; i < $scope.news.length; i++) {
-				typeaheadArray.push($scope.news[i].title);
+			for (var i = 0; i < newsItemsService.newsItemsArray.length; i++) {
+				titlesdArray.push(newsItemsService.newsItemsArray[i].title);
 			}
 
 			$scope.unique = function (array) {
@@ -57,24 +49,21 @@
 				}
 				for (var k = 0; k < Object.keys(obj).length; k++) {
 					var j = Object.keys(obj)[k];
-					searchResultsArray.push(typeaheadArray[j])
+					searchResultsArray.push(titlesdArray[j])
 				}
-				$scope.searchInput0 = searchResultsArray[0];
-				$scope.searchInput1 = searchResultsArray[1];
-				$scope.searchInput2 = searchResultsArray[2];
+				$scope.records = searchResultsArray;
 				array.length = 0;
-
 			};
 
 			$scope.searchTitle = function () {
-				for (var i = 0; i < typeaheadArray.length; i++) {
-					for (var j = 0; j < typeaheadArray[i].length + 1; j++) {
-						for (var k = 0; k < typeaheadArray[i].length ; k++) {
-						if (this.searchInput == typeaheadArray[i].substr(k, j)) {
-							matchesTitleArrayIndex.push(i);
+				for (var i = 0; i < titlesdArray.length; i++) {
+					for (var j = 0; j < titlesdArray[i].length + 1; j++) {
+						for (var k = 0; k < titlesdArray[i].length; k++) {
+							if (this.searchInput == titlesdArray[i].substr(k, j)) {
+								matchesTitleArrayIndex.push(i);
+							}
 						}
-					 }
-				}
+					}
 				}
 				$scope.unique(matchesTitleArrayIndex);
 				$scope.showSearchResults(this.searchInput);
@@ -82,14 +71,14 @@
 
 
 			$scope.hideDropdown = function () {
-				if (event.target.nodeName != 'INPUT') {
-					$scope.searchResults = false;
-				}
+				// if (event.target.nodeName != 'INPUT') {
+				$scope.searchResults = false;
+				// }
 			};
-
 
 			//TO DO
 			$scope.selectFilter = function () {
+				event.stopPropagation();
 				alert('TODO: selected filter=');
 			};
 
