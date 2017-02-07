@@ -64,7 +64,7 @@ div.page-header{
 }
 /*.jumbotron*/
 .jumbotron{
-	min-height:250px;
+	height:250px;
 	margin-bottom: 0;
 }
 

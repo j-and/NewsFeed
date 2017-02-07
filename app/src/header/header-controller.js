@@ -36,10 +36,7 @@
 
 			var titlesdArray = [];
 			var matchesTitleArrayIndex = [];
-			for (var i = 0; i < newsItemsService.newsItemsArray.length; i++) {
-				titlesdArray.push(newsItemsService.newsItemsArray[i].title);
-			}
-
+			
 			$scope.unique = function (array) {
 				var searchResultsArray = [];
 				var obj = {};
@@ -56,6 +53,9 @@
 			};
 
 			$scope.searchTitle = function () {
+				for (var i = 0; i < newsItemsService.newsItemsArray.length; i++) {
+				titlesdArray.push(newsItemsService.newsItemsArray[i].title);
+			}
 				for (var i = 0; i < titlesdArray.length; i++) {
 					for (var j = 0; j < titlesdArray[i].length + 1; j++) {
 						for (var k = 0; k < titlesdArray[i].length; k++) {

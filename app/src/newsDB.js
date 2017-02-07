@@ -17,24 +17,12 @@
 				{title: "1Title10", author: "John Doe"},
 				{title: "2Title100", author: "Paul Smith"},
 				{title: "2Title10000", author: "John Doe"},
-				{title: "2Title10001"}
+				{title: "2Title10001", author: "Paul Smith"}
 			];
+
+
 			return {
 				newsItemsArray: newsItemsArray,
-
-				getNewsItem: function (newsItem) {
-					this.author = newsItem.author;
-					this.date = new Date(newsItem.date);
-					this.id = newsItem.id;
-					this.img = newsItem.img;
-					this.summary = newsItem.summary;
-					this.tag = newsItem.tag;
-					this.text = newsItem.text;
-					this.theme = newsItem.theme;
-					this.title = newsItem.title;
-					console.log('newsItemsArray[0].tag+' + newsItemsArray[0].tag);
-					console.log('this.tag+' + this.tag);
-				},
 
 				addNewsItem: function (object) {
 					newsItemsArray.push(object);
