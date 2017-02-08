@@ -1,7 +1,7 @@
-<div>
+<div ng-repeat="x in newsItems">
 	<!--for searchResults-->
-	<div ng-show="view == 'searchResults'">In news</div>
-	<div ng-show="view == 'searchResults'">In my news</div>
+	<!--<div ng-show="view == 'searchResults'">In news</div>-->
+	<!--<div ng-show="view == 'searchResults'">In my news</div>-->
 	<!--CSS classes admin,user-pending-news,user-not-approved-news,user-approved-news-->
 	<div>
 		<div class="jumbotron col-md-8 col-md-offset-2"
@@ -10,10 +10,10 @@
 				<img src="src/Screenshots/pic1.jpg" class="col-md-12 news-image">
 			</div>
 			<div class="col-md-8">
-				<h2>{{news.title}}</h2>
-				<p><b>{{news.summary}}</b></p>
+				<h2>{{(x+i).title}}</h2>
+				<p><b>{{(x+i).summary}}</b></p>
 				<span class="col-md-8"><a href="#!/newsfeed/fullNews" ng-click="goToFullNews()">More</a></span>
-				<span class="text-right">By {{news.author}} | {{news.time}}</span>
+				<span class="text-right">By {{(x+i).author}} | {{(x+i).time}}</span>
 			</div>
 
 			<!--CSS classes view-button-->

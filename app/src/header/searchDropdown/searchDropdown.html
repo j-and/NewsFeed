@@ -1,0 +1,19 @@
+<div ng-show="searchResults" ng-click="hideDropdown()">
+	<ul class="custom-dropdown">
+		<form class="form-inline">
+			<li class="form-group col-md-3 col-md-offset-1"><input type="checkbox" ng-click="selectFilter()">Date</li>
+			<li class="form-group col-md-3 col-md-offset-1"><input type="checkbox" ng-click="selectFilter()">Theme</li>
+			<li class="form-group col-md-3 col-md-offset-1"><input type="checkbox" ng-click="selectFilter()">Tag</li>
+			<div ng-if="author != 'Paul Smith' ">
+				<li ng-repeat="x in records track by $index">{{x}}</li>
+			</div>
+			<li class="col-md-offset-6" ng-click="searchInput=''"><a ng-href="/#!/newsfeed/searchResults/news">Go to
+				search results</a></li>
+			<div ng-if="author == 'Paul Smith' ">
+				<li ng-repeat="x in records track by $index">{{x}}</li>
+			</div>
+			<li class="col-md-offset-6" ng-click="searchInput=''"><a ng-href="/#!/newsfeed/searchResults/myNews">Go to
+				search results in my news</a></li>
+		</form>
+	</ul>
+</div>

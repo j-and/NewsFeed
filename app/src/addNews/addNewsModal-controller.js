@@ -1,14 +1,33 @@
 (function () {
 	'use strict';
-	
+
 	angular.module('NewsFeed')
-		.controller('addNewsModalCtrl', ['$uibModalInstance', function ($uibModalInstance) {
+		.controller('addNewsModalCtrl', ['newsItemsService', '$uibModalInstance', function (newsItemsService, $uibModalInstance) {
 			var vm = this;
 
-			//TO DO
 			vm.saveNews = function () {
-				alert('TODO: Save news');
+
+				var newsItemAuthor = document.getElementById('newsItemAuthor');
+				var newsItemSummary = document.getElementById('newsItemSummary');
+				var newsItemTag = document.getElementById('newsItemTag');
+				var newsItemText = document.getElementById('newsItemText');
+				var newsItemTitle = document.getElementById('newsItemTitle');
+
+				var newsItem = {
+					author: newsItemAuthor.value,
+					summary: newsItemSummary.value,
+					tag: newsItemTag.value,
+					text: newsItemText.value,
+					title: newsItemTitle.value
+				};
+
+				vm.createNewsId();
+				newsItemsService.addNewsItem(newsItem);
 				$uibModalInstance.dismiss('cancel');
-			}
-		}]);
+			};
+
+
+
+		}
+		])
 })();

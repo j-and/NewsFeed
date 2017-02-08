@@ -9,7 +9,7 @@
 
 	<!--Vendor Styles-->
 	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	<!--END Vendor Styles-->
+		<!--END Vendor Styles-->
 
 	<!--Vendor Scripts-->
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -18,15 +18,19 @@
 	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
 	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<!--<script type="text/javascript" src="node_modules/angular-click-outside/angular-click-outside.js"></script>-->
 
 	<!--END Vendor Scripts-->
 
 	<!--Scripts-->
 	<script src="src/app.js"></script>
+	<script src="src/newsDB.js"></script>
+	<script src="src/usersDB.js"></script>
+	<script src="src/utils/searchEntriesInString.js"></script>
 	<script src="src/header/header-controller.js"></script>
-	<script src="src/header/header-directive.js"></script>
 	<script src="src/header/profileModal/profileModal-controller.js"></script>
 	<script src="src/header/editProfileModal/editProfileModal-controller.js"></script>
+	<script src="src/header/searchDropdown/searchDropdown-directive.js"></script>
 	<script src="src/mainPage/mainPage/mainPage-controller.js"></script>
 	<script src="src/addNews/addNewsModal-controller.js"></script>
 	<script src="src/mainPage/fullNews/fullNews-controller.js"></script>
@@ -35,13 +39,14 @@
 	<script src="src/alerts/usersList/deleteUserModal/deleteUserModal-controller.js"></script>
 	<script src="src/alerts/pendingNews/deletePendingNewsModal/deletePendingNewsModal-controller.js"></script>
 	<script src="src/alerts/pendingNews/editPendingNewsModal/editPendingNewsModal-controller.js"></script>
+	<script src="src/alerts/usersList/usersList-controller.js"></script>
 	<!--END Scripts-->
 
 </head>
-<body>
+<body >
 
 <div ng-controller="headerCtrl">
-	<header></header>
+	<div ng-include="'/src/header/header.html'"></div>
 </div>
 
 <div ng-view></div>
