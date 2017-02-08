@@ -1,11 +1,13 @@
 /* app css stylesheet */
-div.page-header{
-	margin-top:0;
+div.page-header {
+	margin-top: 0;
 }
+
 /*admin*/
 .admin {
 	border: 2px solid goldenrod;
 }
+
 .view-button {
 	position: absolute;
 	top: 180px;
@@ -26,7 +28,6 @@ div.page-header{
 	border: 5px solid green;
 }
 
-
 /*addButton*/
 .add-button {
 	position: relative;
@@ -36,7 +37,7 @@ div.page-header{
 }
 
 .add-button-size {
-	font-size:50px;
+	font-size: 50px;
 }
 
 /*header icons*/
@@ -51,45 +52,49 @@ div.page-header{
 #exclamation-sign-icon {
 	color: red;
 	position: relative;
-	top:-5px ;
+	top: -5px;
 	left: -65px;
 	z-index: 10;
 }
 
-.input-button{
+.input-button {
 	/*color:yellow;*/
-	position:relative;
-	left:-20px;
-	z-index:10;
+	position: relative;
+	left: -20px;
+	z-index: 10;
 }
+
 /*.jumbotron*/
-.jumbotron{
-	height:250px;
-	margin-bottom: 0;
+.jumbotron {
+	height: 250px;
+}
+
+.jumbotron.full-news {
+	height: auto;
 }
 
 /*texr*/
-.jumbotron p b{
-	font-size:16px;
-	font-family:  "Helvetica Neue",Helvetica, Arial, sans-serif;
+.jumbotron p b {
+	font-size: 16px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 200;
 }
 
-.jumbotron h2{
-	font-size:26px;
-	font-weight:bold;
+.jumbotron h2 {
+	font-size: 26px;
+	font-weight: bold;
 	margin-top: -20px;
-	font-family:  "Helvetica Neue",Helvetica, Arial, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /*newsImage*/
 img.news-image {
 	padding: 0;
-	margin-top:-20px;
+	margin-top: -20px;
 }
 
 .profile-buttons {
-	color:white;
+	color: white;
 	position: relative;
 }
 
@@ -97,7 +102,7 @@ img.news-image {
 	position: absolute;
 	top: 45px;
 	left: 396px;
-	width:500px;
+	width: 500px;
 	z-index: 1000;
 	/*display: none;*/
 	/*float: left;*/
@@ -116,6 +121,6 @@ img.news-image {
 	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
 
-#searchInput{
-	width:500px;
+#searchInput {
+	width: 500px;
 }

@@ -1,15 +1,15 @@
-<div class="jumbotron col-md-8 col-md-offset-2">
+<div class="jumbotron col-md-8 col-md-offset-2 full-news">
 	<div class="col-md-4">
 		<img src="src/Screenshots/pic1.jpg" class="col-md-12">
-		<div>Theme:{{news.theme}}</div>
-		<div>Tag:{{news.tag}}</div>
+		<div>Theme:{{newsItems.theme}}</div>
+		<div>Tag:{{newsItems.tag}}</div>
 	</div>
 	<div class="col-md-8">
-		<h2>{{news.title}}</h2>
-		<p><b>{{news.summary}}</b></p>
-		<p>{{news.text}}</p>
+		<h2>{{newsItems.title}}</h2>
+		<p><b>{{newsItems.summary}}</b></p>
+		<p>{{newsItems.text}}</p>
 		<span class="col-md-8"><a href="?#!/newsfeed">Hide</a></span>
-		<span class="text-right">By {{news.author}} | {{news.time}}</span>
+		<span class="text-right">By {{newsItems.author}} | {{newsItems.time}}</span>
 	</div>
 </div>
 
