@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	angular.module('NewsFeed').controller('profileModalCtrl', ['$uibModal', '$uibModalInstance', function ($uibModal, $uibModalInstance) {
+	angular.module('NewsFeed').controller('profileModalCtrl', ['usersService', '$uibModal', '$uibModalInstance', function (usersService, $uibModal, $uibModalInstance) {
 
 		var vm = this;
 
@@ -12,8 +12,8 @@
 		};
 
 		vm.openLogInModal = function () {
-			$ctrl.openLogIn = true;
-			$ctrl.openSignUp = false;
+			vm.openLogIn = true;
+			vm.openSignUp = false;
 		};
 
 		//TO DO
@@ -30,6 +30,21 @@
 		//TO DO
 		vm.signUp = function () {
 			alert('TO DO: Sign up');
+			var newUserEmail = document.getElementById('newUserEmail');
+			var newUserPassword = document.getElementById('newUserPassword');
+			vm.date = new Date();
+
+			var user = {
+				date: vm.date.toLocaleDateString(),
+				email: newUserEmail.value,
+				id: '',
+				name: newUserEmail.value.split('@')[0],
+				password: newUserPassword.value,
+				role: 'user',
+				status: 'pending'
+			};
+
+			usersService.addUser(user);
 			$uibModalInstance.dismiss('cancel');
 		};
 	}]);

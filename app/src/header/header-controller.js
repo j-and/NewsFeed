@@ -6,7 +6,7 @@
 			//Header view depending on the alerts and role
 
 			$scope.alerts = true;
-			$scope.role = 'admin';
+			$scope.role = '';
 			// $scope.records;
 
 			$scope.searchResults = false;

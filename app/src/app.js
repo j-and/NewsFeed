@@ -26,7 +26,7 @@ angular.module('NewsFeed', [
 			controller: 'usersListCtrl',
 			templateUrl: 'src/alerts/usersList/usersList.html' //with features of admin
 		});
-		
+
 		$routeProvider.when('/newsfeed/searchResults/news', {
 			controller: 'mainPageCtrl',
 			templateUrl: 'src/mainPage/mainPage/mainPage.html'

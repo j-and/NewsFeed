@@ -11,35 +11,30 @@ angular.module('NewsFeed')
 				controllerAs:'deleteUser'
 			})
 		};
-
-		$scope.users =usersService.usersArray;
+		$scope.users = usersService.getUsersArray();
 		$scope.searchResults = false;
 
 		var usersNamesdArray = [];
 		var matchesTitleArrayIndex = [];
-		for (var i = 0; i < usersService.usersArray.length; i++) {
-			usersNamesdArray.push(usersService.usersArray[i].name);
+		for (var i = 0; i < $scope.users.length; i++) {
+			usersNamesdArray.push($scope.users[i].name);
 		}
 
 //TO DO
 		$scope.addPendingUser = function (user) {
 			alert('TODO: add Pending User');
-			// var newsItemAuthor = document.getElementById('newsItemTitle');
-
-			// var newsItem = {
-			// 	author: newsItemAuthor.value,
-			// };
-			usersService.addUser(user);
-			searchService.searchEntriesInString();
+			
 		};
-
-		//TO DO
+		
 		$scope.searchUser = function () {
 			searchService.searchEntriesInString(usersNamesdArray, 'searchUserInput');
 			$scope.searchResults = searchService.showSearchResults('searchUserInput');
 			$scope.records=searchService.getRecords();
+			$scope.users=usersService.getUsersArray();
 		};
 
+		
+		
 		$scope.hideDropdown = function () {
 			// if (event.target.nodeName != 'INPUT') {
 			$scope.searchResults = false;

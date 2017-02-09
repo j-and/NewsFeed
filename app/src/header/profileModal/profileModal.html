@@ -1,4 +1,5 @@
 <div class="modal-demo">
+
 	<div class="modal-header">
            <span class="modal-title" id="modal-title">
 	           <a href="" id="logInTitle" ng-click="profile.openLogInModal()"><h3>Log in</h3></a>
@@ -8,43 +9,49 @@
 	<div id="logInModalBodyId" ng-show="profile.openLogIn">
 		<div class="modal-body">
 
-			<form>
+			<form  ng-submit="profile.logIn()">
 				<div class="form-group">
 					<label>Log in or email</label>
-					<input type="email" class="form-control" placeholder="Email">
+					<input type="email" class="form-control"  placeholder="Email" required/>
 				</div>
 				<div class="form-group">
 					<label>Password</label>
-					<input type="password" class="form-control" placeholder="Password">
+					<input type="password" class="form-control" placeholder="Password" required/>
 				</div>
+				<div class="modal-footer"><a href="" ng-click="profile.forgotPassword()">Forgot password?</a>
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-primary" value="Log in"/>
+				</div>
+
 			</form>
 
-			<div class="modal-footer"><a href="" ng-click="profile.forgotPassword()">Forgot password?</a>
-				<button class="btn btn-primary" type="button" ng-click="profile.logIn()">Log in</button>
-			</div>
+
+
 		</div>
 	</div>
 
 	<div id="signUpModalBodyId" ng-show="profile.openSignUp">
 		<div class="modal-body">
 
-			<form>
+			<form ng-submit="profile.signUp()">
 				<div class="form-group">
-					<label>Email</label>
-					<input type="email" class="form-control" placeholder="Email">
+					<label for="newUserEmail">Email</label>
+					<input id="newUserEmail" type="email" class="form-control" placeholder="Email" required/>
 				</div>
 				<div class="form-group">
-					<label>Password</label>
-					<input type="password" class="form-control" placeholder="Password">
+					<label for="newUserPassword">Password</label>
+					<input id="newUserPassword" type="password" class="form-control" placeholder="Password" required/>
 				</div>
-			</form>
 
-			<div class="modal-footer">
-				<button class="btn btn-primary" type="button" ng-click="profile.signUp()">Sign up</button>
+
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" value="Sign up"/>
 			</div>
+			</form>
 		</div>
-	</div>
 
+	</div>
 
 </div>
 
