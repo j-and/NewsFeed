@@ -2,8 +2,8 @@
 	'use strict';
 	angular.module('NewsFeed')
 		.factory('newsItemsService', [function () {
-			var newsItemsArray = [
-				{
+			 var newsItemsArrayDefault = [
+				{newsStatus:'pending',
 					title: "20 travel destinations the experts say not to miss",
 					author: "Danae Mercer",
 					date: '',
@@ -48,14 +48,48 @@
 				{title: "2Title10001", author: "Paul Smith"}
 			];
 
+			var addNewsItem = function (object) {
+				// 1. localStorage get arrayUsers
+				// 2. parse string to array
+				// 3. array.push new user
+				// 4. set to local storage
+
+				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
+				if (!newsItemsArrayString) {
+					newsItemsArrayString = JSON.stringify(newsItemsArrayDefault);
+					localStorage.setItem("newsItemsArray", newsItemsArrayString);
+				}
+				var newsItemsArray = JSON.parse(newsItemsArrayString);
+				//object.id=newsItemsArray.length;
+				//console.log(('object.id+'+object.id));
+				newsItemsArray.push(object);
+
+				newsItemsArrayString = JSON.stringify(newsItemsArray);
+				localStorage.setItem("newsItemsArray", newsItemsArrayString);
+				setNewsItemsArray(newsItemsArrayString)
+
+			};
+
+			var setNewsItemsArray = function (array) {
+				localStorage.setItem("newsItemsArray", array);
+			};
+
+			var getNewsItemsArray = function () {
+				return JSON.parse(localStorage.getItem("newsItemsArray"));
+			};
+
+			var deleteNewsItem = function (object) {
+				console.log(('object.id+'+object.id));
+			};
+
+
+
 
 			return {
-				newsItemsArray: newsItemsArray,
+				addNewsItem: addNewsItem,
+				getNewsItemsArray: getNewsItemsArray
+				//deleteNewsItem:deleteNewsItem
+			};
 
-				addNewsItem: function (object) {
-					newsItemsArray.push(object);
-					console.log('newsItemsArray.length+' + newsItemsArray.length);
-				}
-			}
 		}]);
 })();

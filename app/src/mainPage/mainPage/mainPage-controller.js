@@ -5,9 +5,9 @@
 		.controller('mainPageCtrl', ['newsItemsService','$scope', '$uibModal', function (newsItemsService,$scope, $uibModal) {
 
 			$scope.role = 'user';
-			$scope.newsStatus = 'notApproved';
-			$scope.newsItems =newsItemsService.newsItemsArray;
-
+			$scope.newsStatus = 'pending';
+			 $scope.newsItems=newsItemsService.getNewsItemsArray();
+			
 			$scope.openAddNewsModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/addNews/addNewsModal.html',
@@ -30,8 +30,11 @@
 				alert("TODO: Send news");
 			};
 			//TO DO
+			
+
 			$scope.deleteNews = function () {
 				alert("TODO: Delete news");
+				//newsItemsService.deleteNewsItem();
 			};
 
 

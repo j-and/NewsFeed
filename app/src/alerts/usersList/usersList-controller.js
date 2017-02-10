@@ -15,7 +15,6 @@ angular.module('NewsFeed')
 		$scope.searchResults = false;
 
 		var usersNamesdArray = [];
-		var matchesTitleArrayIndex = [];
 		for (var i = 0; i < $scope.users.length; i++) {
 			usersNamesdArray.push($scope.users[i].name);
 		}
@@ -23,7 +22,6 @@ angular.module('NewsFeed')
 //TO DO
 		$scope.addPendingUser = function (user) {
 			alert('TODO: add Pending User');
-			
 		};
 		
 		$scope.searchUser = function () {
@@ -32,8 +30,6 @@ angular.module('NewsFeed')
 			$scope.records=searchService.getRecords();
 			$scope.users=usersService.getUsersArray();
 		};
-
-		
 		
 		$scope.hideDropdown = function () {
 			// if (event.target.nodeName != 'INPUT') {

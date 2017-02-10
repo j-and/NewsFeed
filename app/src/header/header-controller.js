@@ -4,13 +4,6 @@
 	angular.module('NewsFeed')
 		.controller('headerCtrl', ['searchService', 'newsItemsService', '$scope', '$uibModal', function (searchService, newsItemsService, $scope, $uibModal) {
 			//Header view depending on the alerts and role
-
-			$scope.alerts = true;
-			$scope.role = '';
-			// $scope.records;
-
-			$scope.searchResults = false;
-
 			$scope.openProfileModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/header/profileModal/profileModal.html',
@@ -26,16 +19,21 @@
 				})
 			};
 
+			$scope.alerts = true;
+			$scope.role = 'user';
+			$scope.newsItems=newsItemsService.getNewsItemsArray();
+			$scope.searchResults = false;
+
 			var titlesdArray = [];
-			var matchesTitleArrayIndex = [];
-			for (var i = 0; i < newsItemsService.newsItemsArray.length; i++) {
-				titlesdArray.push(newsItemsService.newsItemsArray[i].title);
+			for (var i = 0; i < $scope.newsItems.length; i++) {
+				titlesdArray.push($scope.newsItems[i].title);
 			}
 
 			$scope.searchTitle = function () {
 				searchService.searchEntriesInString(titlesdArray, 'searchInput');
 				$scope.searchResults = searchService.showSearchResults('searchInput');
 				$scope.records = searchService.getRecords();
+				$scope.newsItems=newsItemsService.getNewsItemsArray();
 			};
 
 			$scope.hideDropdown = function () {

@@ -12,15 +12,16 @@
 				var newsItemTag = document.getElementById('newsItemTag');
 				var newsItemText = document.getElementById('newsItemText');
 				var newsItemTitle = document.getElementById('newsItemTitle');
+				vm.date = new Date();
 
 				var newsItem = {
 					author: newsItemAuthor.value,
+					date: vm.date.toLocaleDateString(),
 					summary: newsItemSummary.value,
 					tag: newsItemTag.value,
 					text: newsItemText.value,
 					title: newsItemTitle.value
 				};
-
 				vm.createNewsId();
 				newsItemsService.addNewsItem(newsItem);
 				$uibModalInstance.dismiss('cancel');
@@ -28,6 +29,11 @@
 
 
 
-		}
-		])
+			vm.createNewsId = function () {
+			};
+
+
+
+
+		}])
 })();

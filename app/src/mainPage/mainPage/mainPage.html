@@ -1,8 +1,5 @@
-<div ng-repeat="x in newsItems">
-	<!--for searchResults-->
-	<!--<div ng-show="view == 'searchResults'">In news</div>-->
-	<!--<div ng-show="view == 'searchResults'">In my news</div>-->
-	<!--CSS classes admin,user-pending-news,user-not-approved-news,user-approved-news-->
+<div ng-repeat="x in newsItems track by $index">
+		<!--CSS classes admin,user-pending-news,user-not-approved-news,user-approved-news-->
 	<div>
 		<div class="jumbotron col-md-8 col-md-offset-2"
 		     ng-class="(role=='admin') ? 'admin' : (role=='user'&&newsStatus=='pending')?'user-pending-news': (role=='user'&&newsStatus=='notApproved')?'user-not-approved-news':(role=='user'&&newsStatus=='approved')?'user-approved-news':'unregistered'">

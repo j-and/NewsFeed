@@ -4,8 +4,7 @@
 	angular.module('NewsFeed')
 		.controller('fullNewsCtrl', ['newsItemsService', '$scope', function (newsItemsService, $scope) {
 
-			$scope.newsItems = newsItemsService.newsItemsArray[0];
-
+			$scope.newsItems = newsItemsService.getNewsItemsArray()[0];
 		}]);
 })();
 
