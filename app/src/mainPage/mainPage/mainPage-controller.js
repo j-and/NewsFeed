@@ -2,12 +2,13 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('mainPageCtrl', ['newsItemsService','$scope', '$uibModal', function (newsItemsService,$scope, $uibModal) {
+		.controller('mainPageCtrl', ['newsItemsService', '$scope', '$uibModal', function (newsItemsService, $scope, $uibModal) {
 
 			$scope.role = 'user';
-			$scope.newsStatus = 'pending';
-			 $scope.newsItems=newsItemsService.getNewsItemsArray();
-			
+			$scope.newsStatus = 'notApproved';
+			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
+			$scope.newsItems = newsItemsService.getNewsItemsArray();
+
 			$scope.openAddNewsModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/addNews/addNewsModal.html',
@@ -28,13 +29,6 @@
 			//TO DO
 			$scope.sendNews = function () {
 				alert("TODO: Send news");
-			};
-			//TO DO
-			
-
-			$scope.deleteNews = function () {
-				alert("TODO: Delete news");
-				//newsItemsService.deleteNewsItem();
 			};
 
 
@@ -57,6 +51,11 @@
 			//TO DO
 			$scope.savePendingNews = function () {
 				alert("TODO: save Pending News");
+			};
+
+			$scope.deleteNewsItem = function (event) {
+				$scope.index = $(event.target).attr("id");
+				newsItemsService.deleteNewsItem($scope.newsItems, $scope.index)
 			};
 
 		}]);

@@ -1,9 +1,11 @@
 (function () {
 	'use strict';
 
-	angular.module('NewsFeed').controller('profileModalCtrl', ['usersService', '$uibModal', '$uibModalInstance', function (usersService, $uibModal, $uibModalInstance) {
+	angular.module('NewsFeed').controller('profileModalCtrl', ['addIdService', 'usersService', '$uibModal', '$uibModalInstance', function (addIdService,usersService, $uibModal, $uibModalInstance) {
 
 		var vm = this;
+		//vm.users=usersService.usersArrayDefault;
+		vm.users=usersService.getUsersArray();
 
 		vm.openLogIn = true;
 		vm.openSignUpModal = function () {
@@ -29,7 +31,9 @@
 
 		//TO DO
 		vm.signUp = function () {
-			alert('TO DO: Sign up');
+			vm.id=addIdService.createId(vm.users);
+			console.log('vm.users+'+vm.users);
+			console.log('vm.id+'+vm.id);
 			var newUserEmail = document.getElementById('newUserEmail');
 			var newUserPassword = document.getElementById('newUserPassword');
 			vm.date = new Date();
@@ -37,7 +41,7 @@
 			var user = {
 				date: vm.date.toLocaleDateString(),
 				email: newUserEmail.value,
-				id: '',
+				id: vm.id,
 				name: newUserEmail.value.split('@')[0],
 				password: newUserPassword.value,
 				role: 'user',

@@ -7,7 +7,7 @@
 				{
 					date: '10.10.2016',
 					email: "johndoe@gmail.com",
-					id: '',
+					id: '0',
 					name: "John Doe",
 					password: '',
 					role: 'user',
@@ -16,7 +16,7 @@
 				{
 					date: '11.10.2016',
 					email: "paulsmith@gmail.com",
-					id: '',
+					id: '1',
 					name: "Paul Smith",
 					password: '',
 					role: 'admin',
@@ -25,7 +25,7 @@
 				{
 					date: '12.10.2016',
 					email: "edgarpo@gmail.com",
-					id: '',
+					id: '2',
 					name: "Edgar Po",
 					password: '',
 					role: 'user',
@@ -34,7 +34,7 @@
 				{
 					date: '13.10.2016',
 					email: "jlo@gmail.com",
-					id: '',
+					id: '3',
 					name: "J Lo",
 					password: '',
 					role: 'user',
@@ -56,7 +56,7 @@
 				var usersArray = JSON.parse(usersArrayString);
 				usersArray.push(object);
 				usersArrayString = JSON.stringify(usersArray);
-				localStorage.setItem("usersArray", usersArrayString);
+				//localStorage.setItem("usersArray", usersArrayString);
 				setUsersArray(usersArrayString)
 
 			};
@@ -69,9 +69,24 @@
 				return JSON.parse(localStorage.getItem("usersArray"));
 			};
 
+			var deleteUser = function (array, index) {
+				console.log('deleteUser');
+				var idArray = [];
+				for (var i = 0; i < array.length; i++) {
+					idArray.push(array[i].id);
+				}
+				var itemIndex = idArray.indexOf(document.getElementById(index).id);
+				console.log('itemIndex+' + itemIndex);
+				array.splice(itemIndex, 1);
+				var usersArrayString = JSON.stringify(array);
+				setUsersArray(usersArrayString);
+			};
+
 			return {
 				addUser: addUser,
-				getUsersArray: getUsersArray
+				getUsersArray: getUsersArray,
+				deleteUser:deleteUser,
+				usersArrayDefault:usersArrayDefault
 			}
 
 		}]);

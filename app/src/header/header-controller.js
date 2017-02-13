@@ -20,7 +20,8 @@
 			};
 
 			$scope.alerts = true;
-			$scope.role = 'user';
+			$scope.role = '';
+			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			$scope.newsItems=newsItemsService.getNewsItemsArray();
 			$scope.searchResults = false;
 

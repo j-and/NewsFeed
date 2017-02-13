@@ -1,4 +1,4 @@
-<div ng-repeat="x in newsItems track by $index">
+<div ng-repeat="x in newsItems as newsItemsArray track by x.id">
 		<!--CSS classes admin,user-pending-news,user-not-approved-news,user-approved-news-->
 	<div>
 		<div class="jumbotron col-md-8 col-md-offset-2"
@@ -7,6 +7,7 @@
 				<img src="src/Screenshots/pic1.jpg" class="col-md-12 news-image">
 			</div>
 			<div class="col-md-8">
+				<h2>{{(x+i).id}}</h2>
 				<h2>{{(x+i).title}}</h2>
 				<p><b>{{(x+i).summary}}</b></p>
 				<span class="col-md-8"><a href="#!/newsfeed/fullNews" ng-click="goToFullNews()">More</a></span>
@@ -25,7 +26,8 @@
 			<div class="col-md-offset-9 view-button" ng-show="role == 'user'&&newsStatus == 'notApproved'">
 				<h3 class="glyphicon glyphicon-question-sign" aria-hidden="true" ng-click="openReferenceModal()"></h3>
 				<h3 class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true" ng-click="sendNews()"></h3>
-				<h3 class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="deleteNews()"></h3>
+				<!--<h3 class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="newsItemsArray.splice($index,1)"></h3>-->
+				<h3 class="glyphicon glyphicon-remove" aria-hidden="true"  id="{{(x+i).id}}"  ng-click="deleteNewsItem($event)"></h3>
 			</div>
 
 		</div>

@@ -2,17 +2,22 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('deleteUserModalCtrl',['$uibModalInstance', function ($uibModalInstance) {
+		.controller('deleteUserModalCtrl',['usersService','$uibModalInstance', function (usersService,$uibModalInstance) {
 			var vm = this;
-			
-//TO DO
-			vm.deleteUser = function () {
-				alert('TODO: Delete User');
-				$uibModalInstance.dismiss('cancel');
-			};
+			//vm.usersArray=usersService.usersArrayDefault;
+			vm.usersArray=usersService.getUsersArray();
+
+			// vm.deleteUser = function (event) {
+			// 	vm.index = $(event.target).attr("id");
+			// 	//if(event){
+			// 		usersService.deleteUser(vm.usersArray, vm.index);
+			// 	//}
+			// 	$uibModalInstance.dismiss('cancel');
+			//
+			// };
 			vm.closeModal = function () {
-				alert('TODO: Close Modal');
 				$uibModalInstance.dismiss('cancel');
 			};
 		}]);
 })();
+

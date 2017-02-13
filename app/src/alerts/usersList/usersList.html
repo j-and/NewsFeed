@@ -21,7 +21,7 @@
 
 <br>
 
-<div ng-repeat="x in users track by $index">
+<div ng-repeat="x in users  track by x.id">
 <div class="col-md-8 col-md-offset-2">
 	<ul>
 		<li class="form-control">
@@ -31,7 +31,7 @@
 			<span class="col-md-1">{{(x+i).role}}</span>
 			<span class="col-md-2">{{(x+i).status}}</span>
 			<span class="glyphicon glyphicon-ok-sign" aria-hidden="true" ng-click="addPendingUser()"></span>
-			<span class="glyphicon glyphicon-remove" aria-hidden="true"  ng-click="openProfileModal()"></span>
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"  id="{{(x+i).id}}" ng-click="deleteUser($event)"></span>
 		</li>
 	</ul>
 </div>
