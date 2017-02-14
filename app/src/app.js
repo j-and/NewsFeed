@@ -11,10 +11,10 @@ angular.module('NewsFeed', [
 			templateUrl: 'src/mainPage/mainPage/mainPage.html'
 		});
 
-		$routeProvider.when("/newsfeed/myNews", {
-			controller: 'mainPageCtrl',
-			templateUrl: 'src/mainPage/mainPage/mainPage.html'
-		});
+		// $routeProvider.when("/newsfeed/myNews", {
+		// 	controller: 'mainPageCtrl',
+		// 	templateUrl: 'src/mainPage/mainPage/mainPage.html'
+		// });
 		
 		$routeProvider.when('/newsfeed/fullNews', {
 			controller: 'fullNewsCtrl',
@@ -29,11 +29,11 @@ angular.module('NewsFeed', [
 		$routeProvider.when('/newsfeed/searchResults/news', {
 			controller: 'mainPageCtrl',
 			templateUrl: 'src/mainPage/mainPage/mainPage.html'
-		});
-
-		$routeProvider.when('/newsfeed/searchResults/myNews', {
-			controller: 'mainPageCtrl',
-			templateUrl: 'src/mainPage/mainPage/mainPage.html'
 		})
+
+		// $routeProvider.when('/newsfeed/searchResults/myNews', {
+		// 	controller: 'mainPageCtrl',
+		// 	templateUrl: 'src/mainPage/mainPage/mainPage.html'
+		// })
 			.otherwise({redirectTo: '/newsfeed'});
 	}]);

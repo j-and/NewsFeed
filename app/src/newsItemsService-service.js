@@ -6,7 +6,7 @@
 				{
 					title: "20 travel destinations the experts say not to miss",
 					author: "Danae Mercer",
-					date: '',
+					date: '10/10/2016',
 					id: '0',
 					img: '',
 					newsStatus: 'pending',
@@ -21,7 +21,7 @@
 				{
 					title: "Bernie Ecclestone: Former F1 chief swaps pit lane for ski slope",
 					author: "John Doe",
-					date: '',
+					date: '11/10/2016',
 					id: '1',
 					img: '',
 					newsStatus: 'pending',
@@ -37,7 +37,7 @@
 				{
 					title: "Lady Gaga announces world tour",
 					author: "Paul Smith",
-					date: '',
+					date: '12/10/2016',
 					id: '2',
 					img: '',
 					newsStatus: 'pending',
@@ -83,10 +83,28 @@
 				var idArray = [];
 				for (var i = 0; i < array.length; i++) {
 					idArray.push(array[i].id);
+					// console.log('array[i].id+'+array[i].id)
 				}
+				var element=document.getElementById(index);
+				console.log('index+'+index)
+				//var itemElement=document.getElementsByClassName('newsItem')[index];
+
+				//itemElement.setAttribute('class','deleted-news');
 				var itemIndex = idArray.indexOf(document.getElementById(index).id);
-				console.log('itemIndex+' + itemIndex);
-				array.splice(itemIndex, 1);
+				//console.log('itemIndex+'+itemIndex);
+				array[itemIndex].property='deleted';
+				for (var i = 0; i < array.length; i++) {
+					//console.log('array[i].property+'+'i='+i+array[i].property);
+					if(array[i].property=='deleted'){
+						document.getElementsByClassName('newsItem')[i].setAttribute('class','deleted-news');
+
+					}
+				}
+				//console.log('array[itemIndex].property'+array[itemIndex].property)
+				//array[itemIndex].setAttribute('class','deleted-news');
+				//array.splice(itemIndex, 1);
+				// console.log('document.getElementById(index).id+' + document.getElementById(index).id);
+				
 				var newsItemsArrayString = JSON.stringify(array);
 				setNewsItemsArray(newsItemsArrayString);
 

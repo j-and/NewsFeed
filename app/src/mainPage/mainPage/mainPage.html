@@ -1,17 +1,18 @@
-<div ng-repeat="x in newsItems as newsItemsArray track by x.id">
+<div ng-repeat="x in newsItems as newsItemsArray track by x.id" ng-if!="undefined")>
 		<!--CSS classes admin,user-pending-news,user-not-approved-news,user-approved-news-->
-	<div>
+	<div class="newsItem">
 		<div class="jumbotron col-md-8 col-md-offset-2"
 		     ng-class="(role=='admin') ? 'admin' : (role=='user'&&newsStatus=='pending')?'user-pending-news': (role=='user'&&newsStatus=='notApproved')?'user-not-approved-news':(role=='user'&&newsStatus=='approved')?'user-approved-news':'unregistered'">
 			<div class="col-md-4">
 				<img src="src/Screenshots/pic1.jpg" class="col-md-12 news-image">
 			</div>
 			<div class="col-md-8">
-				<h2>{{(x+i).id}}</h2>
+				<!--<h2>{{(x+i).id}}</h2>-->
 				<h2>{{(x+i).title}}</h2>
 				<p><b>{{(x+i).summary}}</b></p>
-				<span class="col-md-8"><a href="#!/newsfeed/fullNews" ng-click="goToFullNews()">More</a></span>
-				<span class="text-right">By {{(x+i).author}} | {{(x+i).time}}</span>
+				<!--<span class="col-md-8"><a href="#!/newsfeed/fullNews" ng-click="goToFullNews()">More</a></span>-->
+				<span class="col-md-8" ng-init="hash'"><a ng-href="{{hash}}" id="location{{(x+i).id}}" ng-click="goToFullNews($event)">More</a></span>
+				<span class="text-right">By {{(x+i).author}} | {{(x+i).date}}</span>
 			</div>
 
 			<!--CSS classes view-button-->
@@ -33,8 +34,8 @@
 		</div>
 	</div>
 </div>
-<div class="add-button"><h1 class="glyphicon glyphicon-plus-sign add-button-size"
-                            aria-hidden="true"
-                            ng-show="role == 'admin'||role == 'user'"
-                            ng-click="openAddNewsModal()"></h1></div>
+<!--<div class="add-button"><h1 class="glyphicon glyphicon-plus-sign add-button-size"-->
+                            <!--aria-hidden="true"-->
+                            <!--ng-show="role == 'admin'||role == 'user'"-->
+                            <!--ng-click="openAddNewsModal()"></h1></div>-->
 

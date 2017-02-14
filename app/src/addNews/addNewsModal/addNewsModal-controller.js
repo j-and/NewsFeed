@@ -9,8 +9,6 @@
 			
 			vm.saveNews = function () {
 				vm.id=addIdService.createId(vm.newsItems);
-				console.log('vm.users+'+vm.newsItems);
-				console.log('vm.id+'+vm.id);
 				var newsItemAuthor = document.getElementById('newsItemAuthor');
 				var newsItemSummary = document.getElementById('newsItemSummary');
 				var newsItemTag = document.getElementById('newsItemTag');

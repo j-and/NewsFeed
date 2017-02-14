@@ -11,25 +11,25 @@
 
 			$scope.openAddNewsModal = function () {
 				$uibModal.open({
-					templateUrl: '/src/addNews/addNewsModal.html',
+					templateUrl: '/src/addNews/addNewsModal/addNewsModal.html',
 					controller: 'addNewsModalCtrl',
 					controllerAs: 'addNews'
 				})
 			};
 
-			//user
-			$scope.openReferenceModal = function () {
-				$uibModal.open({
-					templateUrl: '/src/alerts/myNews/referenceModal/referenceModal.html',
-					controller: 'referenceModalCtrl',
-					controllerAs: 'reference'
-				})
-			};
+			// //user
+			// $scope.openReferenceModal = function () {
+			// 	$uibModal.open({
+			// 		templateUrl: '/src/alerts/myNews/referenceModal/referenceModal.html',
+			// 		controller: 'referenceModalCtrl',
+			// 		controllerAs: 'reference'
+			// 	})
+			// };
 
-			//TO DO
-			$scope.sendNews = function () {
-				alert("TODO: Send news");
-			};
+			// //TO DO
+			// $scope.sendNews = function () {
+			// 	alert("TODO: Send news");
+			// };
 
 
 			//admin
@@ -55,8 +55,17 @@
 
 			$scope.deleteNewsItem = function (event) {
 				$scope.index = $(event.target).attr("id");
+				console.log('$(event.target).attr("id")+'+$(event.target).attr("id"))
 				newsItemsService.deleteNewsItem($scope.newsItems, $scope.index)
 			};
+
+			$scope.goToFullNews= function (event) {
+				$scope.id = $(event.target).attr("id");
+				$scope.hash=$scope.id;
+				alert("TODO: goToFullNews"+$scope.hash);
+				//location = location+'/'+$scope.id;
+			};
+
 
 		}]);
 })();
