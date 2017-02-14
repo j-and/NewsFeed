@@ -26,9 +26,9 @@ angular.module('NewsFeed')
 			alert('TODO: add Pending User');
 		};
 		
-		$scope.searchUser = function () {
-			searchService.searchEntriesInString(usersNamesdArray, 'searchUserInput');
-			$scope.searchResults = searchService.showSearchResults('searchUserInput');
+		$scope.searchUser = function () {console.log('aa')
+			searchService.searchEntriesInString(usersNamesdArray, 'searchInput');
+			$scope.searchResults = searchService.showSearchResults('searchInput');
 			$scope.records=searchService.getRecords();
 			$scope.users=usersService.getUsersArray();
 		};

@@ -6,7 +6,6 @@ angular.module('NewsFeed', [
 	'ui.bootstrap'
 ])
 	.config(['$routeProvider', function ($routeProvider) {
-
 		$routeProvider.when("/newsfeed", {
 			controller: 'mainPageCtrl',
 			templateUrl: 'src/mainPage/mainPage/mainPage.html'
