@@ -5,7 +5,7 @@
 		.controller('mainPageCtrl', ['newsItemsService', '$scope', '$uibModal', function (newsItemsService, $scope, $uibModal) {
 
 			$scope.role = 'user';
-			$scope.newsStatus = 'notApproved';
+			// $scope.newsStatus = 'notApproved';
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			$scope.newsItems = newsItemsService.getNewsItemsArray();
 
@@ -33,16 +33,30 @@
 
 
 			//admin
-			$scope.openDeletePendingNewsModal = function () {
-				$uibModal.open({
-					templateUrl: '/src/alerts/pendingNews/deletePendingNewsModal/deletePendingNewsModal.html',
-					controller: 'deletePendingNewsModalCtrl',
-					controllerAs: 'deletePendingNews'
-				})
+
+
+			$scope.openDeleteNewsModal = function (index) {
+
+				var modalInstance = $uibModal.open({
+
+					templateUrl: '/src/alerts/deleteNews/deleteNewsModal/deleteNewsModal.html',
+					controller: 'deleteNewsModalCtrl',
+					controllerAs: 'deleteNews'
+				});
+
+				modalInstance.result.then(function (param) {
+					if(param){
+						$scope.newsItems[index].deleted=true;
+						//document.getElementById(index).setAttribute('class','deleted-news');
+						newsItemsService.setNewsItemsArray(JSON.stringify($scope.newsItems));
+						//$scope.a=document.getElementById(index).className;
+					}
+				});
 			};
+
 			$scope.openEditPendingNewsModal = function () {
 				$uibModal.open({
-					templateUrl: '/src/alerts/pendingNews/editPendingNewsModal/editPendingNewsModal.html',
+					templateUrl: '/src/alerts/deleteNews/editPendingNewsModal/editPendingNewsModal.html',
 					controller: 'editPendingNewsModalCtrl',
 					controllerAs: 'editPendingNews'
 				})
@@ -53,21 +67,15 @@
 				alert("TODO: save Pending News");
 			};
 
-			$scope.deleteNewsItem = function (event) {
-				$scope.index = $(event.target).attr("id");
-				console.log('$(event.target).attr("id")+'+$(event.target).attr("id"))
-				newsItemsService.deleteNewsItem($scope.newsItems, $scope.index)
-			};
+			//  $scope.deleteNewsItem = function (index) {
+			// // 	$scope.index = $(event.target).attr("id");
+			// // 	console.log('$(event.target).attr("id")+'+$(event.target).attr("id"))
+			// // 	newsItemsService.deleteNewsItem($scope.newsItems, $scope.index)
+			// 	 console.log('index+'+index);
+			//  };
+			//
+		}])
 
-			$scope.goToFullNews= function (event) {
-				$scope.id = $(event.target).attr("id");
-				$scope.hash=$scope.id;
-				alert("TODO: goToFullNews"+$scope.hash);
-				//location = location+'/'+$scope.id;
-			};
-
-
-		}]);
 })();
 
 

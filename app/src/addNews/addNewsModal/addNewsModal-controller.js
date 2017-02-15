@@ -19,6 +19,7 @@
 				var newsItem = {
 					author: newsItemAuthor.value,
 					date: vm.date.toLocaleDateString(),
+					deleted:'false',
 					id: vm.id,
 					newsStatus:'pending',
 					summary: newsItemSummary.value,

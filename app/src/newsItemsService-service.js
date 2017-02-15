@@ -7,6 +7,7 @@
 					title: "20 travel destinations the experts say not to miss",
 					author: "Danae Mercer",
 					date: '10/10/2016',
+					deleted:'false',
 					id: '0',
 					img: '',
 					newsStatus: 'pending',
@@ -22,6 +23,7 @@
 					title: "Bernie Ecclestone: Former F1 chief swaps pit lane for ski slope",
 					author: "John Doe",
 					date: '11/10/2016',
+					deleted:'false',
 					id: '1',
 					img: '',
 					newsStatus: 'pending',
@@ -38,6 +40,7 @@
 					title: "Lady Gaga announces world tour",
 					author: "Paul Smith",
 					date: '12/10/2016',
+					deleted:'false',
 					id: '2',
 					img: '',
 					newsStatus: 'pending',
@@ -49,8 +52,8 @@
 					'"When I first started, everyone thought we were so different and so weird,\" she said. "We never changed who we were, and we stuck to our guns in terms of what we believe in, and now we got to perform on the biggest stage in the world with our beliefs and our diversity, and it made me really proud."',
 					theme: 'Entertaiment'
 				},
-				{title: "2Title10000", author: "John Doe", newsStatus: 'pending', id: '3'},
-				{title: "2Title10001", author: "Paul Smith", newsStatus: 'pending', id: '4'}
+				{title: "2Title10000", author: "John Doe", newsStatus: 'pending', id: '3',deleted:'false'},
+				{title: "2Title10001", author: "Paul Smith", newsStatus: 'pending', id: '4',deleted:'false'}
 			];
 
 			var addNewsItem = function (object) {
@@ -83,38 +86,32 @@
 				var idArray = [];
 				for (var i = 0; i < array.length; i++) {
 					idArray.push(array[i].id);
-					// console.log('array[i].id+'+array[i].id)
 				}
 				var element=document.getElementById(index);
-				console.log('index+'+index)
-				//var itemElement=document.getElementsByClassName('newsItem')[index];
-
-				//itemElement.setAttribute('class','deleted-news');
 				var itemIndex = idArray.indexOf(document.getElementById(index).id);
-				//console.log('itemIndex+'+itemIndex);
 				array[itemIndex].property='deleted';
 				for (var i = 0; i < array.length; i++) {
-					//console.log('array[i].property+'+'i='+i+array[i].property);
+
 					if(array[i].property=='deleted'){
 						document.getElementsByClassName('newsItem')[i].setAttribute('class','deleted-news');
-
 					}
 				}
-				//console.log('array[itemIndex].property'+array[itemIndex].property)
-				//array[itemIndex].setAttribute('class','deleted-news');
-				//array.splice(itemIndex, 1);
-				// console.log('document.getElementById(index).id+' + document.getElementById(index).id);
-				
 				var newsItemsArrayString = JSON.stringify(array);
 				setNewsItemsArray(newsItemsArrayString);
+				getId(itemIndex);
+			};
 
+			var getId=function(id){
+				console.log('id+'+id);
 			};
 
 			return {
 				addNewsItem: addNewsItem,
 				getNewsItemsArray: getNewsItemsArray,
 				newsItemsArrayDefault: newsItemsArrayDefault,
-				deleteNewsItem: deleteNewsItem
+				deleteNewsItem: deleteNewsItem,
+				getId:getId,
+				setNewsItemsArray:setNewsItemsArray
 			};
 
 		}]);
