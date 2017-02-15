@@ -19,25 +19,34 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
 				<form class="navbar-form navbar-right">
-					<div class="input-group">
-						<form class="form-inline">
-							<div class="form-group">
-								<span class="glyphicon glyphicon-search input-button"
-								      ng-show="!searchInput"></span>
-								<span class="glyphicon glyphicon-remove input-button"
-								      ng-show="searchInput"></span>
-								<input id="searchInput"
-								       class="form-control"
-								       type="text"
-								       autocomplete="off"
-								       ng-model="searchInput"
-								       placeholder="Start typing a title"
-								       ng-keyup="searchTitle()"
-								>
-								<!--&lt;!&ndash;Dropdown with searchResults&ndash;&gt;-->
-								<!--<searchdropdown></searchdropdown>-->
-							</div>
-						</form>
+					<!--<div class="input-group">-->
+						<!--<form class="form-inline">-->
+							<!--<div class="form-group">-->
+								<!--<span class="glyphicon glyphicon-search input-button"-->
+								      <!--ng-show="!searchInput"></span>-->
+								<!--<span class="glyphicon glyphicon-remove input-button"-->
+								      <!--ng-show="searchInput"></span>-->
+								<!--<input id="searchInput"-->
+								       <!--class="form-control"-->
+								       <!--type="text"-->
+								       <!--autocomplete="off"-->
+								       <!--ng-model="searchInput"-->
+								       <!--placeholder="Start typing a title"-->
+								       <!--ng-keyup="searchTitle()"-->
+								<!--&gt;-->
+								<!--&lt;!&ndash;&lt;!&ndash;Dropdown with searchResults&ndash;&gt;&ndash;&gt;-->
+								<!--&lt;!&ndash;<searchdropdown></searchdropdown>&ndash;&gt;-->
+							<!--</div>-->
+						<!--</form>-->
+					<!--</div>-->
+
+
+					<!--Dropdown with searchResults-->
+					<span id="searchDropdown" class="form-inline">
+					<searchdropdown></searchdropdown>
+					</span>
+
+
 
 						<!--Hidden buttons if unregistered-->
 					<span class="dropdown">
@@ -49,7 +58,7 @@
 						<ul class="dropdown-menu">
 							<li><a ng-href="/#!/newsfeed">Go to news page</a></li>
 							<li><a ng-href="/#!/newsfeed/usersList">Go to users page</a></li>
-							<li><a ng-href="/#!/newsfeed/myNews">Go to myNews page</a></li>
+							<!--<li><a ng-href="/#!/newsfeed/myNews">Go to myNews page</a></li>-->
 						</ul>
 					</span>
 
@@ -82,7 +91,7 @@
 						     ng-show="role=='admin'"
 						     class="glyphicon glyphicon-king"
 						     aria-hidden="true"></div>
-					</div>
+
 
 				</form>
 				<ul class="nav navbar-nav  col-md-12">
@@ -97,9 +106,7 @@
 		</div>
 	</nav>
 	<!--Dropdown with searchResults-->
-	<div id="searchDropdown">
-		<searchdropdown></searchdropdown>
-	</div>
+	<!--<div id="searchDropdown">-->
+		<!--<searchdropdown></searchdropdown>-->
+	<!--</div>-->
 </div>
-
-

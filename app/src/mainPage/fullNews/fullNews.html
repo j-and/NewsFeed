@@ -11,5 +11,12 @@
 		<span class="col-md-8"><a href="?#!/newsfeed">Hide</a></span>
 		<span class="text-right">By {{newsItems.author}} | {{newsItems.time}}</span>
 	</div>
+
+	<div class=" col-md-offset-9 view-button" ng-show="role == 'user'">
+		<!--<h3 class="glyphicon glyphicon-ok-sign" aria-hidden="true" ng-click="savePendingNews()"></h3>-->
+		<h3 class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="openEditPendingNewsModal()"></h3>
+		<h3 class="glyphicon glyphicon-remove" aria-hidden="true" id="{{(x+i).id}}" ng-click="deleteNewsItem($event)"></h3>
+	</div>
+
 </div>
 

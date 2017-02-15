@@ -28,16 +28,28 @@ div.page-header {
 	border: 5px solid green;
 }
 
+/*usersList*/
+.pending-user{
+	border: 5px solid yellow;
+}
+
+span.remove-button{
+	position:absolute;
+	right:2%;
+	top:25%;
+}
+
 /*addButton*/
 .add-button {
-	position: relative;
-	top: 180px;
-	left: 50px;
+	position: fixed;
+	bottom: 120px;
+	right: 50px;
 
 }
 
 .add-button-size {
 	font-size: 50px;
+
 }
 
 /*header icons*/
@@ -99,9 +111,9 @@ img.news-image {
 }
 
 .custom-dropdown {
-	position: absolute;
-	top: 45px;
-	left: 396px;
+	position: relative;
+	/*top: 45px;*/
+	/*left: 396px;*/
 	width: 500px;
 	z-index: 1000;
 	/*display: none;*/
@@ -123,4 +135,12 @@ img.news-image {
 
 #searchInput {
 	width: 500px;
+}
+
+.footer{
+	color:#9d9d9d;
+}
+
+.deleted-news{
+	display: none;
 }

@@ -4,47 +4,48 @@
 angular.module('NewsFeed')
 	.controller('usersListCtrl', ['searchService','usersService','$scope', '$uibModal', function (searchService,usersService,$scope, $uibModal) {
 
-		$scope.openProfileModal = function () {
-			$uibModal.open({
-				templateUrl: '/src/alerts/usersList/deleteUserModal/deleteUserModal.html',
-				controller: 'deleteUserModalCtrl',
-				controllerAs:'deleteUser'
-			})
-		};
-
-		$scope.users =usersService.usersArray;
+		// $scope.openDeleteUserModal = function () {
+		// var modalInstance=	$uibModal.open({
+		// 		templateUrl: '/src/alerts/usersList/deleteUserModal/deleteUserModal.html',
+		// 		controller: 'deleteUserModalCtrl',
+		// 		controllerAs: 'deleteUser'
+		// 	}).result.finally($scope.deleteUser());
+		// };
+		
+		//$scope.users=usersService.usersArrayDefault;
+		$scope.users = usersService.getUsersArray();
 		$scope.searchResults = false;
 
 		var usersNamesdArray = [];
-		var matchesTitleArrayIndex = [];
-		for (var i = 0; i < usersService.usersArray.length; i++) {
-			usersNamesdArray.push(usersService.usersArray[i].name);
+		for (var i = 0; i < $scope.users.length; i++) {
+			usersNamesdArray.push($scope.users[i].name);
 		}
 
 //TO DO
 		$scope.addPendingUser = function (user) {
 			alert('TODO: add Pending User');
-			// var newsItemAuthor = document.getElementById('newsItemTitle');
-
-			// var newsItem = {
-			// 	author: newsItemAuthor.value,
-			// };
-			usersService.addUser(user);
-			searchService.searchEntriesInString();
 		};
-
-		//TO DO
-		$scope.searchUser = function () {
-			searchService.searchEntriesInString(usersNamesdArray, 'searchUserInput');
-			$scope.searchResults = searchService.showSearchResults('searchUserInput');
+		
+		$scope.searchUser = function () {console.log('aa')
+			searchService.searchEntriesInString(usersNamesdArray, 'searchInput');
+			$scope.searchResults = searchService.showSearchResults('searchInput');
 			$scope.records=searchService.getRecords();
+			$scope.users=usersService.getUsersArray();
 		};
-
+		
 		$scope.hideDropdown = function () {
 			// if (event.target.nodeName != 'INPUT') {
 			$scope.searchResults = false;
 			// }
 		};
+
+		$scope.deleteUser = function (event) {
+			$scope.index = $(event.target).attr("id");
+			console.log('$scope.index+'+$scope.index);
+			console.log('$scope.usersArray+'+$scope.users);
+			usersService.deleteUser($scope.users, $scope.index);
+		};
+
 
 	}]);
 })();
