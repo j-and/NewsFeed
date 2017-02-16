@@ -2,13 +2,12 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('addNewsModalCtrl', ['addIdService', 'newsItemsService', '$uibModalInstance', 'newsItem', function (addIdService, newsItemsService, $uibModalInstance, newsItem) {
+		.controller('addNewsModalCtrl', ['addIdService', 'newsItemsService', '$uibModalInstance',  function (addIdService, newsItemsService, $uibModalInstance) {
 			var vm = this;
 
 			//vm.newsItems=newsItemsService.newsItemsArrayDefault;
 			vm.newsItems = newsItemsService.getNewsItemsArray();
 
-			vm.newsItem = newsItem;
 
 			vm.saveNews = function () {
 				vm.id = addIdService.createId(vm.newsItems);
@@ -19,7 +18,7 @@
 				var newsItemTitle = document.getElementById('newsItemTitle');
 				vm.date = new Date();
 
-				newsItem = {
+				var newsItem = {
 					author: newsItemAuthor.value,
 					date: vm.date.toLocaleDateString(),
 					deleted: 'false',
