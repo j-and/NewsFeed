@@ -22,19 +22,26 @@
 			$scope.alerts = true;
 			$scope.role = 'user';
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
-			$scope.newsItems=newsItemsService.getNewsItemsArray();
+			$scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.searchResults = false;
 
-			var titlesdArray = [];
+			var authorsArray = [];
+			var datesArray = [];
+			var tagsArray = [];
+			var titlesArray = [];
 			for (var i = 0; i < $scope.newsItems.length; i++) {
-				titlesdArray.push($scope.newsItems[i].title);
+				authorsArray.push($scope.newsItems[i].author);
+				datesArray.push($scope.newsItems[i].date);
+				tagsArray.push($scope.newsItems[i].tag);
+				titlesArray.push($scope.newsItems[i].title);
 			}
 
-			$scope.searchTitle = function () {
-				searchService.searchEntriesInString(titlesdArray, 'searchInput');
+			$scope.searchQuery = function (array) {
+
+				$scope.array = array || authorsArray;
+				$scope.query = document.getElementById('searchInput').value;
+				$scope.records = $scope.array;
 				$scope.searchResults = searchService.showSearchResults('searchInput');
-				$scope.records = searchService.getRecords();
-				$scope.newsItems=newsItemsService.getNewsItemsArray();
 			};
 
 			$scope.hideDropdown = function () {
@@ -43,27 +50,24 @@
 				// }
 			};
 
-			//TO DO
-			$scope.selectFilter = function () {
+			$scope.selectFilter = function (event) {
 				event.stopPropagation();
-				alert('TODO: selected filter=');
+				$scope.filter = event.target.value;
+				if ($scope.filter == 'Author') {
+					$scope.searchQuery(authorsArray);
+				}
+				else if ($scope.filter == 'Date') {
+					$scope.searchQuery(datesArray);
+				}
+				else if ($scope.filter == 'Tag') {
+					$scope.searchQuery(tagsArray);
+				}
 			};
 
-			//TO DO
-			$scope.search = function () {
-				alert('TODO: Search');
-			};
 			//TO DO
 			$scope.signOut = function () {
 				alert('TODO: signOut');
 			};
-			//TO DO
-			$scope.goToNewsPage = function () {
-				alert('TODO: go To News Page');
-			};
-			//TO DO
-			$scope.goToMyNewsPage = function () {
-				alert('TODO: go To My News Page');
-			};
+
 		}]);
 })();
