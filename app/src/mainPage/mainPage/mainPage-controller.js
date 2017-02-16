@@ -10,7 +10,7 @@
 
 			$scope.openEditNewsModal = function (index) {
 				$scope.newsItem = {
-						author: $scope.newsItems[index].author || '',
+						author: $scope.newsItems[index].author ,
 						summary: $scope.newsItems[index].summary,
 						tag: $scope.newsItems[index].tag,
 						text: $scope.newsItems[index].text,
@@ -20,9 +20,13 @@
 				$uibModal.open({
 					templateUrl: '/src/alerts/deleteNews/editNewsModal/editNewsModal.html',
 					controller: 'editNewsModalCtrl',
-					controllerAs: 'editNews', resolve: {
+					controllerAs: 'editNews',
+					resolve: {
 						newsItem: function () {
 							return $scope.newsItem;
+						},
+						index: function () {
+							return index;
 						}
 					}
 				})
