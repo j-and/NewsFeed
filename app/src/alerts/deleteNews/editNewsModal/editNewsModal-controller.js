@@ -10,8 +10,11 @@
 
 			$scope.newsItem = newsItem;
 
-			vm.saveNews = function (newsItem) {
-				vm.id = addIdService.createId(vm.newsItems);
+
+			vm.saveNews = function () {
+
+				//console.log('vm.id+'+vm.newsItems[index].id);
+				// vm.id = addIdService.createId(vm.newsItems);
 				var newsItemAuthor = document.getElementById('newsItemAuthor');
 				var newsItemSummary = document.getElementById('newsItemSummary');
 				var newsItemTag = document.getElementById('newsItemTag');
@@ -23,7 +26,7 @@
 					author: newsItemAuthor.value,
 					date: vm.date.toLocaleDateString(),
 					deleted: 'false',
-					id: vm.id,
+					id: vm.newsItems[index].id,
 					newsStatus: 'pending',
 					summary: newsItemSummary.value,
 					tag: newsItemTag.value,
@@ -31,7 +34,7 @@
 					title: newsItemTitle.value
 				};
 
-				newsItemsService.addNewsItem(newsItem);
+				newsItemsService.addEditNewsItem(newsItem);
 				$uibModalInstance.dismiss('cancel');
 			};
 

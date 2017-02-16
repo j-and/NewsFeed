@@ -77,36 +77,29 @@
 				return JSON.parse(localStorage.getItem("newsItemsArray"));
 			};
 
-			var deleteNewsItem = function (array, index) {
-				// var idArray = [];
-				// for (var i = 0; i < array.length; i++) {
-				// 	idArray.push(array[i].id);
-				// }
-				// var element=document.getElementById(index);
-				// var itemIndex = idArray.indexOf(document.getElementById(index).id);
-				// array[itemIndex].property='deleted';
-				// for (var i = 0; i < array.length; i++) {
-				//
-				// 	if(array[i].property=='deleted'){
-				// 		document.getElementsByClassName('newsItem')[i].setAttribute('class','deleted-news');
-				// 	}
-				// }
-				// var newsItemsArrayString = JSON.stringify(array);
-				// setNewsItemsArray(newsItemsArrayString);
-				// getId(itemIndex);
+			var addEditNewsItem = function (object) {
+				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
+				if (!newsItemsArrayString) {
+					newsItemsArrayString = JSON.stringify(newsItemsArrayDefault);
+					localStorage.setItem("newsItemsArray", newsItemsArrayString);
+				}
+				var newsItemsArray = JSON.parse(newsItemsArrayString);
+				for(var  i=0;i<newsItemsArray.length;i++){
+					if(object.id==newsItemsArray[i].id){
+						newsItemsArray[i]=object;
+					}
+				}
+				newsItemsArrayString = JSON.stringify(newsItemsArray);
+				localStorage.setItem("newsItemsArray", newsItemsArrayString);
+				setNewsItemsArray(newsItemsArrayString);
 			};
-
-			var getId=function(id){
-				// console.log('id+'+id);
-			};
-
+			
 			return {
 				addNewsItem: addNewsItem,
 				getNewsItemsArray: getNewsItemsArray,
 				newsItemsArrayDefault: newsItemsArrayDefault,
-				deleteNewsItem: deleteNewsItem,
-				getId:getId,
-				setNewsItemsArray:setNewsItemsArray
+				setNewsItemsArray:setNewsItemsArray,
+				addEditNewsItem:addEditNewsItem
 			};
 
 		}]);

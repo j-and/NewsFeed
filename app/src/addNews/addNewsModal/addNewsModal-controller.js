@@ -17,7 +17,7 @@
 				var newsItemText = document.getElementById('newsItemText');
 				var newsItemTitle = document.getElementById('newsItemTitle');
 				vm.date = new Date();
-
+				
 				var newsItem = {
 					author: newsItemAuthor.value,
 					date: vm.date.toLocaleDateString(),
@@ -29,7 +29,7 @@
 					text: newsItemText.value,
 					title: newsItemTitle.value
 				};
-
+				
 				newsItemsService.addNewsItem(newsItem);
 				$uibModalInstance.dismiss('cancel');
 			};
