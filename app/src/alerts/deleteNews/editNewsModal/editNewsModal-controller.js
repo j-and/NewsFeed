@@ -2,16 +2,24 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('addNewsModalCtrl', ['addIdService', 'newsItemsService', '$uibModalInstance', 'newsItem', function (addIdService, newsItemsService, $uibModalInstance, newsItem) {
+		.controller('editNewsModalCtrl', ['addIdService','newsItemsService', '$uibModalInstance','newsItem', function (addIdService,newsItemsService, $uibModalInstance,newsItem) {
 			var vm = this;
 
 			//vm.newsItems=newsItemsService.newsItemsArrayDefault;
-			vm.newsItems = newsItemsService.getNewsItemsArray();
+			vm.newsItems=newsItemsService.getNewsItemsArray();
+
 
 			vm.newsItem = newsItem;
 
+
+
+			console.log('vm.newsItem+'+vm.newsItem.author);
+
+
 			vm.saveNews = function () {
-				vm.id = addIdService.createId(vm.newsItems);
+				console.log('index+'+newsItem.author);
+
+				vm.id=addIdService.createId(vm.newsItems);
 				var newsItemAuthor = document.getElementById('newsItemAuthor');
 				var newsItemSummary = document.getElementById('newsItemSummary');
 				var newsItemTag = document.getElementById('newsItemTag');
@@ -19,12 +27,14 @@
 				var newsItemTitle = document.getElementById('newsItemTitle');
 				vm.date = new Date();
 
+
+
 				newsItem = {
 					author: newsItemAuthor.value,
 					date: vm.date.toLocaleDateString(),
-					deleted: 'false',
+					deleted:'false',
 					id: vm.id,
-					newsStatus: 'pending',
+					newsStatus:'pending',
 					summary: newsItemSummary.value,
 					tag: newsItemTag.value,
 					text: newsItemText.value,
@@ -34,5 +44,7 @@
 				newsItemsService.addNewsItem(newsItem);
 				$uibModalInstance.dismiss('cancel');
 			};
+
+
 		}])
 })();

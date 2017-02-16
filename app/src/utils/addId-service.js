@@ -5,7 +5,7 @@
 		.factory('addIdService', [function () {
 
 			var createId = function (array) {
-				console.log('vm.newsItems.length+'+array.length);
+				
 				var id=array.length;
 				console.log('id+'+id);
 				return id;

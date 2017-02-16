@@ -11,16 +11,11 @@ angular.module('NewsFeed', [
 			templateUrl: 'src/mainPage/mainPage/mainPage.html'
 		});
 
-		// $routeProvider.when("/newsfeed/myNews", {
-		// 	controller: 'mainPageCtrl',
-		// 	templateUrl: 'src/mainPage/mainPage/mainPage.html'
-		// });
-		
 		$routeProvider.when('/newsfeed/fullNews', {
 			controller: 'fullNewsCtrl',
-			templateUrl:'src/mainPage/fullNews/fullNews.html'
+			templateUrl: 'src/mainPage/fullNews/fullNews.html'
 		});
-		
+
 		$routeProvider.when('/newsfeed/usersList', {
 			controller: 'usersListCtrl',
 			templateUrl: 'src/alerts/usersList/usersList.html' //with features of admin
@@ -31,9 +26,5 @@ angular.module('NewsFeed', [
 			templateUrl: 'src/mainPage/mainPage/mainPage.html'
 		})
 
-		// $routeProvider.when('/newsfeed/searchResults/myNews', {
-		// 	controller: 'mainPageCtrl',
-		// 	templateUrl: 'src/mainPage/mainPage/mainPage.html'
-		// })
 			.otherwise({redirectTo: '/newsfeed'});
 	}]);

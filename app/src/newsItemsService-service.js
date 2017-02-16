@@ -57,11 +57,6 @@
 			];
 
 			var addNewsItem = function (object) {
-				// 1. localStorage get arrayUsers
-				// 2. parse string to array
-				// 3. array.push new user
-				// 4. set to local storage
-
 				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
 				if (!newsItemsArrayString) {
 					newsItemsArrayString = JSON.stringify(newsItemsArrayDefault);
@@ -83,26 +78,26 @@
 			};
 
 			var deleteNewsItem = function (array, index) {
-				var idArray = [];
-				for (var i = 0; i < array.length; i++) {
-					idArray.push(array[i].id);
-				}
-				var element=document.getElementById(index);
-				var itemIndex = idArray.indexOf(document.getElementById(index).id);
-				array[itemIndex].property='deleted';
-				for (var i = 0; i < array.length; i++) {
-
-					if(array[i].property=='deleted'){
-						document.getElementsByClassName('newsItem')[i].setAttribute('class','deleted-news');
-					}
-				}
-				var newsItemsArrayString = JSON.stringify(array);
-				setNewsItemsArray(newsItemsArrayString);
-				getId(itemIndex);
+				// var idArray = [];
+				// for (var i = 0; i < array.length; i++) {
+				// 	idArray.push(array[i].id);
+				// }
+				// var element=document.getElementById(index);
+				// var itemIndex = idArray.indexOf(document.getElementById(index).id);
+				// array[itemIndex].property='deleted';
+				// for (var i = 0; i < array.length; i++) {
+				//
+				// 	if(array[i].property=='deleted'){
+				// 		document.getElementsByClassName('newsItem')[i].setAttribute('class','deleted-news');
+				// 	}
+				// }
+				// var newsItemsArrayString = JSON.stringify(array);
+				// setNewsItemsArray(newsItemsArrayString);
+				// getId(itemIndex);
 			};
 
 			var getId=function(id){
-				console.log('id+'+id);
+				// console.log('id+'+id);
 			};
 
 			return {
