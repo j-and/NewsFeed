@@ -36,38 +36,81 @@
 				titlesArray.push($scope.newsItems[i].title);
 			}
 
-			$scope.searchQuery = function (array) {
 
-				$scope.array = array || authorsArray;
+			$scope.searchQuery = function (authorIsChecked, dateIsChecked, tagIsChecked) {
 				$scope.query = document.getElementById('searchInput').value;
-				$scope.records = $scope.array;
+				$scope.records = authorsArray.concat(datesArray).concat(tagsArray);
+				if (authorIsChecked == dateIsChecked == tagIsChecked) {
+					$scope.records = authorsArray.concat(datesArray).concat(tagsArray);
+				}
+				if (authorIsChecked == true) {
+					$scope.records = authorsArray;
+				}
+				if (dateIsChecked == true) {
+					$scope.records = datesArray;
+				}
+				if (tagIsChecked == true) {
+					$scope.records = tagsArray;
+				}
+				if (authorIsChecked == true && dateIsChecked == true) {
+					$scope.records = authorsArray.concat(datesArray);
+				}
+				if (authorIsChecked == true && tagIsChecked == true) {
+					$scope.records = authorsArray.concat(tagsArray);
+				}
+				if (dateIsChecked == true && tagIsChecked == true) {
+					$scope.records = datesArray.concat(tagsArray);
+				}
 				$scope.searchResults = searchService.showSearchResults('searchInput');
 			};
+
 
 			$scope.hideDropdown = function () {
 				// if (event.target.nodeName != 'INPUT') {
 				$scope.searchResults = false;
 				// }
 			};
+			var authorIsChecked = false;
+			var dateIsChecked = false;
+			var tagIsChecked = false;
+
 
 			$scope.selectFilter = function (event) {
 				event.stopPropagation();
 				$scope.filter = event.target.value;
-				if ($scope.filter == 'Author') {
-					$scope.searchQuery(authorsArray);
+				if (event.target.checked == true) {
+					if ($scope.filter == 'Author') {
+						authorIsChecked = true;
+					}
+					if ($scope.filter == 'Date') {
+						dateIsChecked = true;
+					}
+					if ($scope.filter == 'Tag') {
+						tagIsChecked = true;
+					}
+					event.target.setAttribute('checked', 'false');
 				}
-				else if ($scope.filter == 'Date') {
-					$scope.searchQuery(datesArray);
+				else {
+					event.target.setAttribute('checked', 'true');
+					if ($scope.filter == 'Author') {
+						authorIsChecked = false;
+					}
+					if ($scope.filter == 'Date') {
+						dateIsChecked = false;
+					}
+					if ($scope.filter == 'Tag') {
+						tagIsChecked = false;
+					}
 				}
-				else if ($scope.filter == 'Tag') {
-					$scope.searchQuery(tagsArray);
-				}
+				$scope.searchQuery(authorIsChecked, dateIsChecked, tagIsChecked);
 			};
 
-			//TO DO
+//TO DO
 			$scope.signOut = function () {
 				alert('TODO: signOut');
 			};
 
-		}]);
-})();
+		}])
+	;
+})
+();

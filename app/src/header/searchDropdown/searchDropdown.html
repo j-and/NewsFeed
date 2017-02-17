@@ -1,25 +1,33 @@
 <div class="input-group">
-<form class="form-inline">
-<div class="form-group">
-<span class="glyphicon glyphicon-search input-button" ng-show="!searchInput"></span>
-<span class="glyphicon glyphicon-remove input-button" ng-show="searchInput"></span>
+	<form class="form-inline">
+		<div class="form-group">
+			<span class="glyphicon glyphicon-search input-button" ng-show="!searchInput"></span>
+			<span class="glyphicon glyphicon-remove input-button" ng-show="searchInput"></span>
 
-	<input id="searchInput" class="form-control" type="text" autocomplete="off"
-	       ng-model="searchInput" placeholder="Type query" ng-keyup="searchQuery()">
+			<input id="searchInput" class="form-control" type="text" autocomplete="off"
+			       ng-model="searchInput" placeholder="Type query" ng-keyup="searchQuery()">
 
-
-</div>
-</form>
+		</div>
+	</form>
 </div>
 
 <div ng-show="searchResults" ng-click="hideDropdown()">
 	<ul class="custom-dropdown">
 		<form class="form-inline">
-			<li class="form-group col-md-3 col-md-offset-1"><input type="checkbox" ng-click="selectFilter($event)" value="Date">Date</li>
-			<li class="form-group col-md-3 col-md-offset-1"><input type="checkbox" ng-click="selectFilter($event)" value="Author">Author</li>
-			<li class="form-group col-md-3 col-md-offset-1"><input type="checkbox" ng-click="selectFilter($event)" value="Tag">Tag</li>
-			<div ng-if="author != 'Paul Smith' ">
-				<li ng-repeat="x in records|filter:query track by $index">{{x}}</li>
+			<li class="form-group col-md-3 col-md-offset-1"><input type="checkbox"
+			                                                       ng-click="selectFilter($event)"
+			                                                       value="Author">Author
+			</li>
+			<li class="form-group col-md-3 col-md-offset-1"><input type="checkbox"
+			                                                       ng-click="selectFilter($event)"
+			                                                       value="Date">Date
+			</li>
+			<li class="form-group col-md-3 col-md-offset-1"><input type="checkbox"
+			                                                       ng-click="selectFilter($event)"
+			                                                       value="Tag">Tag
+			</li>
+			<div>
+				<li ng-repeat="x in records|filter: query track by $index">{{x}}</li>
 			</div>
 			<li class="col-md-offset-6" ng-click="searchInput=''"><a ng-href="/#!/newsfeed/searchResults/news">Go to
 				search results</a></li>
