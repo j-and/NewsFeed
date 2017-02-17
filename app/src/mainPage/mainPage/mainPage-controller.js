@@ -3,7 +3,7 @@
 
 	angular.module('NewsFeed')
 		.controller('mainPageCtrl', ['addIdService', 'newsItemsService', '$scope', '$uibModal', function (addIdService, newsItemsService, $scope, $uibModal) {
-
+console.log('$scope.search+'+$scope.search);
 			$scope.role = 'user';
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			$scope.newsItems = newsItemsService.getNewsItemsArray();

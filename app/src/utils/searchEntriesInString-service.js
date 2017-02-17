@@ -55,10 +55,47 @@
 				}
 			};
 
+			var search = function (authorIsChecked, dateIsChecked, tagIsChecked, query, authorsArray, datesArray, tagsArray) {
+				if (!authorIsChecked) {
+					authorIsChecked = false
+				}
+				if (!dateIsChecked) {
+					dateIsChecked = false
+				}
+				if (!tagIsChecked) {
+					tagIsChecked = false
+				}
+				var records = authorsArray.concat(datesArray).concat(tagsArray);
+				if (authorIsChecked == dateIsChecked == tagIsChecked) {
+					records = authorsArray.concat(datesArray).concat(tagsArray);
+				}
+				if (authorIsChecked == true) {
+					records = authorsArray;
+				}
+				if (dateIsChecked == true) {
+					records = datesArray;
+				}
+				if (tagIsChecked == true) {
+					records = tagsArray;
+				}
+				if (authorIsChecked == true && dateIsChecked == true) {
+					records = authorsArray.concat(datesArray);
+				}
+				if (authorIsChecked == true && tagIsChecked == true) {
+					records = authorsArray.concat(tagsArray);
+				}
+				if (dateIsChecked == true && tagIsChecked == true) {
+					records = datesArray.concat(tagsArray);
+				}
+				setRecords(records);
+			};
+
+
 			return {
 				searchEntriesInString: searchEntriesInString,
 				showSearchResults: showSearchResults,
-				getRecords: getRecords
+				getRecords: getRecords,
+				search: search
 			};
 		}]);
 })();

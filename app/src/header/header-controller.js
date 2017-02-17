@@ -35,44 +35,23 @@
 				tagsArray.push($scope.newsItems[i].tag);
 				titlesArray.push($scope.newsItems[i].title);
 			}
-
+			var authorIsChecked = false;
+			var dateIsChecked = false;
+			var tagIsChecked = false;
 
 			$scope.searchQuery = function (authorIsChecked, dateIsChecked, tagIsChecked) {
 				$scope.query = document.getElementById('searchInput').value;
-				$scope.records = authorsArray.concat(datesArray).concat(tagsArray);
-				if (authorIsChecked == dateIsChecked == tagIsChecked) {
-					$scope.records = authorsArray.concat(datesArray).concat(tagsArray);
-				}
-				if (authorIsChecked == true) {
-					$scope.records = authorsArray;
-				}
-				if (dateIsChecked == true) {
-					$scope.records = datesArray;
-				}
-				if (tagIsChecked == true) {
-					$scope.records = tagsArray;
-				}
-				if (authorIsChecked == true && dateIsChecked == true) {
-					$scope.records = authorsArray.concat(datesArray);
-				}
-				if (authorIsChecked == true && tagIsChecked == true) {
-					$scope.records = authorsArray.concat(tagsArray);
-				}
-				if (dateIsChecked == true && tagIsChecked == true) {
-					$scope.records = datesArray.concat(tagsArray);
-				}
-				$scope.searchResults = searchService.showSearchResults('searchInput');
-			};
+				searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, $scope.query, authorsArray, datesArray, tagsArray);
 
+				$scope.searchResults = searchService.showSearchResults('searchInput');
+				$scope.records = searchService.getRecords();
+			}
 
 			$scope.hideDropdown = function () {
 				// if (event.target.nodeName != 'INPUT') {
 				$scope.searchResults = false;
 				// }
 			};
-			var authorIsChecked = false;
-			var dateIsChecked = false;
-			var tagIsChecked = false;
 
 
 			$scope.selectFilter = function (event) {
@@ -103,6 +82,8 @@
 					}
 				}
 				$scope.searchQuery(authorIsChecked, dateIsChecked, tagIsChecked);
+
+
 			};
 
 //TO DO
