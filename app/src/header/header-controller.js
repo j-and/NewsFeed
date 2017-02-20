@@ -42,10 +42,12 @@
 			$scope.searchQuery = function (authorIsChecked, dateIsChecked, tagIsChecked) {
 				$scope.query = document.getElementById('searchInput').value;
 				searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, $scope.query, authorsArray, datesArray, tagsArray);
-
+				
 				$scope.searchResults = searchService.showSearchResults('searchInput');
+
 				$scope.records = searchService.getRecords();
-			}
+				// searchService.setChanged('true');
+			};
 
 			$scope.hideDropdown = function () {
 				// if (event.target.nodeName != 'INPUT') {

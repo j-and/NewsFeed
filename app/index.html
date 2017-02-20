@@ -31,10 +31,11 @@
 	<script src="src/header/header-controller.js"></script>
 	<script src="src/header/profileModal/profileModal-controller.js"></script>
 	<script src="src/header/editProfileModal/editProfileModal-controller.js"></script>
+	<script src="src/header/searchDropdown/searchDropdown-controller.js"></script>
 	<script src="src/header/searchDropdown/searchDropdown-directive.js"></script>
 	<script src="src/mainPage/mainPage/mainPage-controller.js"></script>
 	<script src="src/addNews/addNews-controller.js"></script>
-
+	<script src="src/pagination/pagination-controller.js"></script>
 	<script src="src/addNews/addNewsModal/addNewsModal-controller.js"></script>
 	<script src="src/mainPage/fullNews/fullNews-controller.js"></script>
 	<!--<script src="src/alerts/myNews/referenceModal/referenceModal-controller.js"></script>-->
@@ -53,6 +54,9 @@
 </div>
 <div ng-controller="addNewsButtonCtrl">
 	<div ng-include="'/src/addNews/addNews.html'"></div>
+</div>
+<div ng-controller="mainPageCtrl">
+		<div ng-include="'/src/pagination/pagination.html'"  ></div>
 </div>
 <div ng-controller="footerCtrl">
 	<div ng-include="'/src/footer/footer.html'"></div>

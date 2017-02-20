@@ -1,17 +1,22 @@
-<div class="input-group">
+
+
+
+<span>
+<div class="input-group " ng-controller="searchdropdownCtrl" >
 	<form class="form-inline">
 		<div class="form-group">
-			<span class="glyphicon glyphicon-search input-button" ng-show="!searchInput"></span>
-			<span class="glyphicon glyphicon-remove input-button" ng-show="searchInput"></span>
+			<span class="glyphicon glyphicon-search input-button" ng-show="!Query.query"></span>
+			<span class="glyphicon glyphicon-remove input-button" ng-show="Query.query"></span>
 
-			<input id="searchInput" class="form-control" type="text" autocomplete="off"
-			       ng-model="searchInput" placeholder="Type query" ng-keyup="searchQuery()">
+			<input id="searchInput" class="form-control dropbtn" type="text" autocomplete="off"
+			       ng-model="Query.query" placeholder="Type query" ng-keyup="searchQuery()">
 
 		</div>
 	</form>
 </div>
 
 <div ng-show="searchResults" ng-click="hideDropdown()">
+
 	<ul class="custom-dropdown">
 		<form class="form-inline">
 			<li class="form-group col-md-3 col-md-offset-1"><input type="checkbox"
@@ -34,3 +39,6 @@
 		</form>
 	</ul>
 </div>
+</span>
+
+

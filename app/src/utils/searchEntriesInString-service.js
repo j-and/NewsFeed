@@ -37,15 +37,30 @@
 				setRecords(searchResultsArray);
 				array.length = 0;
 			};
-
+			
 			var setRecords = function (array) {
 				searchRecords = array;
+
 			};
 
 			var getRecords = function () {
+				//setChanged('true');
 				return searchRecords;
 			};
 
+			// var setQuery = function (query) {
+			// 	searchRecords = query;
+			//
+			// };
+			//
+			// var getQuery  = function () {
+			// 	//setChanged('true');
+			// 	return query;
+			// };
+
+
+
+			
 			var showSearchResults = function (id) {
 				var input = document.getElementById(id);
 				var searchResults;
@@ -65,10 +80,14 @@
 				if (!tagIsChecked) {
 					tagIsChecked = false
 				}
-				var records = authorsArray.concat(datesArray).concat(tagsArray);
-				if (authorIsChecked == dateIsChecked == tagIsChecked) {
-					records = authorsArray.concat(datesArray).concat(tagsArray);
-				}
+
+				var records = authorsArray.concat(datesArray.concat(tagsArray));
+
+				// if ((authorIsChecked === dateIsChecked === tagIsChecked)!=undefined) {
+				// 	console.log('all')
+				// 	records = authorsArray.concat(datesArray).concat(tagsArray);
+				// 	records = records.concat(tagsArray);
+				// }
 				if (authorIsChecked == true) {
 					records = authorsArray;
 				}
@@ -90,12 +109,21 @@
 				setRecords(records);
 			};
 
-
 			return {
 				searchEntriesInString: searchEntriesInString,
 				showSearchResults: showSearchResults,
 				getRecords: getRecords,
 				search: search
+
+			};
+		}])
+		.factory('Query',['searchService', function(searchService) {
+			var query;
+			var authorIsChecked='aa';
+
+			return {
+				query: query,
+				authorIsChecked:authorIsChecked
 			};
 		}]);
 })();

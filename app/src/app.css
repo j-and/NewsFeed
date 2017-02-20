@@ -46,6 +46,7 @@ span.remove-button{
 	position: fixed;
 	bottom: 120px;
 	right: 50px;
+	z-index:1000;
 
 }
 
@@ -73,8 +74,8 @@ span.remove-button{
 
 .input-button {
 	/*color:yellow;*/
-	position: relative;
-	left: -20px;
+	position: absolute;
+	left: -80px;
 	z-index: 10;
 }
 
@@ -109,34 +110,32 @@ img.news-image {
 
 .profile-buttons {
 	color: white;
-	position: relative;
+	position: absolute;
 }
 
 .custom-dropdown {
-	position: relative;
-	/*top: 45px;*/
-	/*left: 396px;*/
-	width: 500px;
-	z-index: 1000;
-	/*display: none;*/
-	/*float: left;*/
+	position: absolute;
 	min-width: 160px;
+	z-index: 1;
+	left:350px;
+	width:400px;
 	padding: 5px 0;
 	margin: 2px 0 0;
 	font-size: 14px;
 	text-align: left;
 	list-style: none;
 	background-color: #fff;
-	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
 	border: 1px solid #ccc;
 	border-radius: 4px;
-	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
 
 #searchInput {
-	width: 500px;
+	width: 400px;
+	position:absolute;
+	left:-450px;
+	top: -5px;
 }
 
 .footer{
@@ -145,4 +144,10 @@ img.news-image {
 
 .deleted-news{
 	display: none;
+}
+
+.pagination{
+	position: relative;
+
+	z-index:1;
 }
