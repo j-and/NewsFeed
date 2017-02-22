@@ -6,61 +6,25 @@
 
 			var searchResultsArray;
 			var searchRecords;
-			var searchEntriesInString = function (array, id) {
-				var dataArray = array;
-				var matchesTitleArrayIndex = [];
-
-				var input = document.getElementById(id);
-				for (var i = 0; i < dataArray.length; i++) {
-					for (var j = 0; j < dataArray[i].length + 1; j++) {
-						for (var k = 0; k < dataArray[i].length; k++) {
-							if (input.value.toUpperCase() == dataArray[i].substr(k, j).toUpperCase()) {
-								matchesTitleArrayIndex.push(i);
-							}
-						}
-					}
-				}
-				unique(matchesTitleArrayIndex, dataArray);
-			};
-
-			var unique = function (array, dataArray) {
-				searchResultsArray = [];
-				var obj = {};
-				for (var i = 0; i < array.length; i++) {
-					var str = array[i];
-					obj[str] = true;
-				}
-				for (var k = 0; k < Object.keys(obj).length; k++) {
-					var j = Object.keys(obj)[k];
-					searchResultsArray.push(dataArray[j])
-				}
-				setRecords(searchResultsArray);
-				array.length = 0;
-			};
-			
+			var newArray = [];
 			var setRecords = function (array) {
 				searchRecords = array;
-
 			};
 
 			var getRecords = function () {
-				//setChanged('true');
 				return searchRecords;
 			};
 
-			// var setQuery = function (query) {
-			// 	searchRecords = query;
-			//
-			// };
-			//
-			// var getQuery  = function () {
-			// 	//setChanged('true');
-			// 	return query;
-			// };
+			var setNewArray = function (array) {
+				newArray = array;
+			};
+
+			var getNewArray = function () {
+
+				return newArray;
+			};
 
 
-
-			
 			var showSearchResults = function (id) {
 				var input = document.getElementById(id);
 				var searchResults;
@@ -70,60 +34,147 @@
 				}
 			};
 
-			var search = function (authorIsChecked, dateIsChecked, tagIsChecked, query, authorsArray, datesArray, tagsArray) {
-				if (!authorIsChecked) {
+
+			var search = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray, query) {
+				var matchesTitleArrayIndex = [];
+				var dataArray = [];
+				if (authorIsChecked == undefined) {
 					authorIsChecked = false
 				}
-				if (!dateIsChecked) {
+				if (dateIsChecked == undefined) {
 					dateIsChecked = false
 				}
-				if (!tagIsChecked) {
+				if (tagIsChecked == undefined) {
 					tagIsChecked = false
 				}
 
-				var records = authorsArray.concat(datesArray.concat(tagsArray));
+				if (authorIsChecked == false && dateIsChecked == false && tagIsChecked == false) {
+					for (var i = 0; i < objectsArray.length; i++) {
+						dataArray.push(objectsArray[i].author);
+						dataArray.push(objectsArray[i].date);
+						if (objectsArray[i].tag) {
+							dataArray.push(objectsArray[i].tag);
+						}
+					}
+				}
 
-				// if ((authorIsChecked === dateIsChecked === tagIsChecked)!=undefined) {
-				// 	console.log('all')
-				// 	records = authorsArray.concat(datesArray).concat(tagsArray);
-				// 	records = records.concat(tagsArray);
-				// }
-				if (authorIsChecked == true) {
-					records = authorsArray;
+				if (authorIsChecked == true && dateIsChecked == true && tagIsChecked == true) {
+					for (var i = 0; i < objectsArray.length; i++) {
+						dataArray.push(objectsArray[i].author);
+						dataArray.push(objectsArray[i].date);
+						if (objectsArray[i].tag) {
+							dataArray.push(objectsArray[i].tag);
+						}
+					}
 				}
-				if (dateIsChecked == true) {
-					records = datesArray;
+				if (authorIsChecked == false && dateIsChecked == true && tagIsChecked == true) {
+					for (var i = 0; i < objectsArray.length; i++) {
+						dataArray.push(objectsArray[i].date);
+						if (objectsArray[i].tag) {
+							dataArray.push(objectsArray[i].tag);
+						}
+					}
 				}
-				if (tagIsChecked == true) {
-					records = tagsArray;
+				if (authorIsChecked == false && dateIsChecked == false && tagIsChecked == true) {
+					for (var i = 0; i < objectsArray.length; i++) {
+						if (objectsArray[i].tag) {
+							dataArray.push(objectsArray[i].tag);
+						}
+					}
 				}
-				if (authorIsChecked == true && dateIsChecked == true) {
-					records = authorsArray.concat(datesArray);
+				if (authorIsChecked == true && dateIsChecked == true && tagIsChecked == false) {
+					for (var i = 0; i < objectsArray.length; i++) {
+						dataArray.push(objectsArray[i].author);
+						dataArray.push(objectsArray[i].date);
+					}
 				}
-				if (authorIsChecked == true && tagIsChecked == true) {
-					records = authorsArray.concat(tagsArray);
+				if (authorIsChecked == true && dateIsChecked == false && tagIsChecked == true) {
+					for (var i = 0; i < objectsArray.length; i++) {
+						dataArray.push(objectsArray[i].author);
+						if (objectsArray[i].tag) {
+							dataArray.push(objectsArray[i].tag);
+						}
+					}
 				}
-				if (dateIsChecked == true && tagIsChecked == true) {
-					records = datesArray.concat(tagsArray);
+				if (authorIsChecked == true && dateIsChecked == false && tagIsChecked == false) {
+					for (var i = 0; i < objectsArray.length; i++) {
+						dataArray.push(objectsArray[i].author);
+					}
 				}
-				setRecords(records);
+				if (authorIsChecked == false && dateIsChecked == true && tagIsChecked == false) {
+					for (var i = 0; i < objectsArray.length; i++) {
+						dataArray.push(objectsArray[i].date);
+					}
+				}
+				//if (query) {
+				for (var i = 0; i < dataArray.length; i++) {
+					if (dataArray[i]) {
+						for (var j = 0; j < dataArray[i].length + 1; j++) {
+							for (var k = 0; k < dataArray[i].length; k++) {
+								if (query.toUpperCase() == dataArray[i].substr(k, j).toUpperCase()) {
+									matchesTitleArrayIndex.push(i);
+								}
+							}
+						}
+					}
+				}
+				//}
+				filterNewsRecords(matchesTitleArrayIndex, dataArray);
+				filterNews(dataArray, objectsArray);
 			};
 
+			var uniqueKeys = function (arr) {
+				var obj = {};
+				for (var i = 0; i < arr.length; i++) {
+					var str = arr[i];
+					obj[str] = true;
+				}
+				return Object.keys(obj);
+			}
+
+
+			var filterNewsRecords = function (array, dataArray) {
+				searchResultsArray = [];
+				uniqueKeys(array)
+				for (var k = 0; k < uniqueKeys(array).length; k++) {
+					var j = uniqueKeys(array)[k];
+					searchResultsArray.push(dataArray[j]);
+				}
+				setRecords(searchResultsArray);
+				array.length = 0;
+			};
+
+			var filterNews = function (dataArray, objectsArray) {
+				var array = [];
+				for (var i = 0; i < getRecords().length; i++) {
+					for (var j = 0; j < objectsArray.length; j++) {
+						if (objectsArray[j].author == getRecords()[i] || objectsArray[j].date == getRecords()[i] || objectsArray[j].tag == getRecords()[i]) {
+							array.push(j);
+						}
+					}
+				}
+				var idArray = uniqueKeys(array);
+				for (var i = 0; i < idArray.length; i++) {
+					var id = idArray[i];
+					newArray.push(objectsArray[id])
+				}
+			};
+
+
 			return {
-				searchEntriesInString: searchEntriesInString,
 				showSearchResults: showSearchResults,
 				getRecords: getRecords,
-				search: search
-
+				search: search,
+				newArray: newArray
 			};
-		}])
-		.factory('Query',['searchService', function(searchService) {
+		}
+		])
+		.factory('Query', ['searchService', function (searchService) {
 			var query;
-			var authorIsChecked='aa';
 
 			return {
-				query: query,
-				authorIsChecked:authorIsChecked
+				query: query
 			};
 		}]);
-})();
+})
+();

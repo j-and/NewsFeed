@@ -13,34 +13,24 @@
 			$scope.itemsPerPage = 3;
 			$scope.maxSize = 10;
 			$scope.totalItems = 13;
-			$scope.items=[]
-			for(var i = 0; i < $scope.totalItems; i++){
-				$scope.items[i] = $scope.newsItems[i]
-		}
 
-			var authorsArray = [];
-			var datesArray = [];
-			var tagsArray = [];
-			var titlesArray = [];
-			for (var i = 0; i < $scope.newsItems.length; i++) {
-				authorsArray.push($scope.newsItems[i].author);
-				datesArray.push($scope.newsItems[i].date);
-				tagsArray.push($scope.newsItems[i].tag);
-				titlesArray.push($scope.newsItems[i].title);
-			}
-			var authorIsChecked = false;
-			var dateIsChecked = false;
-			var tagIsChecked = false;
+
+			var authorIsChecked;
+			var dateIsChecked;
+			var tagIsChecked;
 
 			$scope.$watch('Query', function (newValue, oldValue, $scope) {
-
+			
 					if (newValue !== oldValue) {
 
-						 searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, Query.query, authorsArray, datesArray, tagsArray);
+						//searchService.search(authorIsChecked, dateIsChecked, tagIsChecked,$scope.newsItems, $scope.query);
+						$scope.newsItems = searchService.newArray;
+						//$scope.newsItems = searchService.getNewArray();
+						//console.log('authorIsChecked+'+authorIsChecked)
+						searchService.newArray.length = 0;
 
-						$scope.records = searchService.getRecords();
-//console.log('authorIsChecked+'+Query.authorIsChecked)
 					}
+
 				},true);
 
 

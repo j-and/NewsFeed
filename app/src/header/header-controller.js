@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('headerCtrl', ['searchService', 'newsItemsService', '$scope', '$uibModal', function (searchService, newsItemsService, $scope, $uibModal) {
+		.controller('headerCtrl', ['searchService', 'newsItemsService', '$scope', '$uibModal', 'Query', function (searchService, newsItemsService, $scope, $uibModal, Query) {
 			//Header view depending on the alerts and role
 			$scope.openProfileModal = function () {
 				$uibModal.open({
@@ -25,28 +25,16 @@
 			$scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.searchResults = false;
 
-			var authorsArray = [];
-			var datesArray = [];
-			var tagsArray = [];
-			var titlesArray = [];
-			for (var i = 0; i < $scope.newsItems.length; i++) {
-				authorsArray.push($scope.newsItems[i].author);
-				datesArray.push($scope.newsItems[i].date);
-				tagsArray.push($scope.newsItems[i].tag);
-				titlesArray.push($scope.newsItems[i].title);
-			}
 			var authorIsChecked = false;
 			var dateIsChecked = false;
 			var tagIsChecked = false;
 
 			$scope.searchQuery = function (authorIsChecked, dateIsChecked, tagIsChecked) {
+				searchService.newArray.length = 0;
 				$scope.query = document.getElementById('searchInput').value;
-				searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, $scope.query, authorsArray, datesArray, tagsArray);
-				
+				searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, $scope.newsItems, $scope.query);
 				$scope.searchResults = searchService.showSearchResults('searchInput');
-
 				$scope.records = searchService.getRecords();
-				// searchService.setChanged('true');
 			};
 
 			$scope.hideDropdown = function () {
@@ -84,7 +72,6 @@
 					}
 				}
 				$scope.searchQuery(authorIsChecked, dateIsChecked, tagIsChecked);
-
 
 			};
 
