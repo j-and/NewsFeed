@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.factory('searchService', [function () {
+		.factory('searchService', ['newsItemsService', function (newsItemsService) {
 
 			var searchResultsArray;
 			var searchRecords;
@@ -20,7 +20,6 @@
 			};
 
 			var getNewArray = function () {
-
 				return newArray;
 			};
 
@@ -158,14 +157,41 @@
 					var id = idArray[i];
 					newArray.push(objectsArray[id])
 				}
+				divideToPages(currentPage, objectsArray);
 			};
 
+
+			var itemsPerPage = 3;
+			var perPageArray = [];
+			var totalPages;
+
+			var goToNextPage = function (currentPage) {
+				console.log('currentPage+' + currentPage)
+				divideToPages(currentPage, newsItemsService.getNewsItemsArray())
+				return currentPage;
+			}
+			var currentPage = 1;
+
+			var divideToPages = function (currentPage, array) {
+				perPageArray.length = 0;
+				totalPages = Math.round(array.length / itemsPerPage);
+				var start = (currentPage - 1) * itemsPerPage;
+				for (var i = start; i < start + itemsPerPage; i++) {
+					if (array[i]) {
+						perPageArray.push(array[i])
+					}
+				}
+			}
 
 			return {
 				showSearchResults: showSearchResults,
 				getRecords: getRecords,
 				search: search,
-				newArray: newArray
+				newArray: newArray,
+				divideToPages: divideToPages,
+				perPageArray: perPageArray,
+				goToNextPage: goToNextPage,
+				currentPage: currentPage
 			};
 		}
 		])

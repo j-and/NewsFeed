@@ -1,8 +1,6 @@
-
-<!--<div ng-repeat="x in newsItems  | offset: (currentPage - 1) * itemsPerPage | limitTo:itemsPerPage">-->
-	<!--{{(x+i).title}}-->
-<!--</div>-->
-<!--<div ng-repeat="x in newsItems|filter: Query.query| orderBy: '-' | offset: (currentPage - 1) * itemsPerPage | limitTo:itemsPerPage as newsItemsArray track by x.id" id="{{(x+i).id}}" items-per-page="3">-->
+<div>
+	<pagination></pagination>
+</div>
 <div ng-repeat="x in newsItems track by $index" id="{{(x+i).id}}">
 	<div class="newsItem"  ng-show='"{{(x+i).deleted}}"=="false"'>
 		<div class="jumbotron col-md-8 col-md-offset-2"

@@ -8,31 +8,47 @@
 			$scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.Query = Query;
 
-
-			$scope.currentPage = 1;
-			$scope.itemsPerPage = 3;
-			$scope.maxSize = 10;
-			$scope.totalItems = 13;
-
-
 			var authorIsChecked;
 			var dateIsChecked;
 			var tagIsChecked;
 
-			$scope.$watch('Query', function (newValue, oldValue, $scope) {
+			//go to next page
+			$scope.countUp=function (event) {
+				var currentPage = 1;
+				return function a() {
+					return currentPage++;
+				}
+			};
+
+			$scope.counterUp = $scope.countUp();
+
+			$scope.goNext = function () {
+				searchService.goToNextPage($scope.counterUp());
+				$scope.newsItems = searchService.perPageArray;
+			}
+
+			//go to previous page
+			$scope.countDown=function (event) {
+				var currentPage = 1;
+				return function a() {
+					return currentPage--;
+				}
+			};
+
+			$scope.counterDown = $scope.countDown();
+
+			$scope.goPrevious = function () {
+				searchService.goToNextPage($scope.counterDown());
+				$scope.newsItems = searchService.perPageArray;
+			}
 			
+			
+			$scope.$watch('Query', function (newValue, oldValue, $scope) {
 					if (newValue !== oldValue) {
-
-						//searchService.search(authorIsChecked, dateIsChecked, tagIsChecked,$scope.newsItems, $scope.query);
-						$scope.newsItems = searchService.newArray;
-						//$scope.newsItems = searchService.getNewArray();
-						//console.log('authorIsChecked+'+authorIsChecked)
+						$scope.newsItems = searchService.perPageArray;
 						searchService.newArray.length = 0;
-
 					}
-
 				},true);
-
 
 
 			$scope.openEditNewsModal = function (index) {
@@ -74,12 +90,12 @@
 					}
 				});
 			};
-		}])
-		.filter('offset', function() {
-		return function(input, start) {
-			return input.slice(start);
-		};
-	})
+		}]);
+	// 	.filter('offset', function() {
+	// 	return function(input, start) {
+	// 		return input.slice(start);
+	// 	};
+	// })
 })();
 
 
