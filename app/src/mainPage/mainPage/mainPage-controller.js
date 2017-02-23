@@ -5,32 +5,44 @@
 		.controller('mainPageCtrl', ['searchService','addIdService', 'newsItemsService', '$scope', '$uibModal','Query', function (searchService,addIdService, newsItemsService, $scope, $uibModal,Query) {
 			$scope.role = 'user';
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
-			$scope.newsItems = newsItemsService.getNewsItemsArray();
+			//$scope.newsItems = newsItemsService.getNewsItemsArray();
+			$scope.newsItems = searchService.perPageArray;
 			$scope.Query = Query;
 
-			var authorIsChecked;
-			var dateIsChecked;
-			var tagIsChecked;
+			var authorIsChecked=false;
+			var dateIsChecked=false;
+			var tagIsChecked=false;
+			$scope.currentPage=1;
 
 			//go to next page
 			$scope.countUp=function (event) {
-				var currentPage = 1;
-				return function a() {
-					return currentPage++;
+				return function () {
+					return $scope.currentPage++;
 				}
 			};
 
 			$scope.counterUp = $scope.countUp();
 
+			$scope.counterClean = function () {
+				$scope.currentPage=1;
+					return $scope.currentPage;
+			}
+
 			$scope.goNext = function () {
-				searchService.goToNextPage($scope.counterUp());
-				$scope.newsItems = searchService.perPageArray;
+				console.log('$scope.search+'+$scope.search);
+				if($scope.search!=true){
+					searchService.goToNextPage($scope.counterUp(),newsItemsService.getNewsItemsArray());
+				}
+				else{
+					searchService.goToNextPage($scope.counterUp(),$scope.newsItems);
+					$scope.newsItems=searchService.newArray.splice($scope.counterUp(),3)
+				}
 			}
 
 			//go to previous page
 			$scope.countDown=function (event) {
 				var currentPage = 1;
-				return function a() {
+				return function () {
 					return currentPage--;
 				}
 			};
@@ -41,12 +53,14 @@
 				searchService.goToNextPage($scope.counterDown());
 				$scope.newsItems = searchService.perPageArray;
 			}
-			
-			
+
 			$scope.$watch('Query', function (newValue, oldValue, $scope) {
 					if (newValue !== oldValue) {
-						$scope.newsItems = searchService.perPageArray;
+						$scope.counterClean();
+						searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, newsItemsService.getNewsItemsArray(), Query.query,$scope.currentPage);
+						$scope.newsItems=searchService.newArray.splice($scope.counterUp(),3);
 						searchService.newArray.length = 0;
+						$scope.search=true;
 					}
 				},true);
 

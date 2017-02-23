@@ -34,7 +34,7 @@
 			};
 
 
-			var search = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray, query) {
+			var search = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray, query,currentPage) {
 				var matchesTitleArrayIndex = [];
 				var dataArray = [];
 				if (authorIsChecked == undefined) {
@@ -105,7 +105,6 @@
 						dataArray.push(objectsArray[i].date);
 					}
 				}
-				//if (query) {
 				for (var i = 0; i < dataArray.length; i++) {
 					if (dataArray[i]) {
 						for (var j = 0; j < dataArray[i].length + 1; j++) {
@@ -117,9 +116,9 @@
 						}
 					}
 				}
-				//}
 				filterNewsRecords(matchesTitleArrayIndex, dataArray);
-				filterNews(dataArray, objectsArray);
+				return filterNews(dataArray, objectsArray,currentPage);
+
 			};
 
 			var uniqueKeys = function (arr) {
@@ -143,7 +142,8 @@
 				array.length = 0;
 			};
 
-			var filterNews = function (dataArray, objectsArray) {
+			var filterNews = function (dataArray, objectsArray,currentPage) {
+				console.log('currentPage+' + currentPage)
 				var array = [];
 				for (var i = 0; i < getRecords().length; i++) {
 					for (var j = 0; j < objectsArray.length; j++) {
@@ -157,30 +157,35 @@
 					var id = idArray[i];
 					newArray.push(objectsArray[id])
 				}
-				divideToPages(currentPage, objectsArray);
+				return divideToPages(currentPage, objectsArray);
 			};
 
-
 			var itemsPerPage = 3;
-			var perPageArray = [];
-			var totalPages;
+			//var perPageArray = [];
 
-			var goToNextPage = function (currentPage) {
-				console.log('currentPage+' + currentPage)
-				divideToPages(currentPage, newsItemsService.getNewsItemsArray())
-				return currentPage;
-			}
-			var currentPage = 1;
+			var perPageArray =newsItemsService.getNewsItemsArray().splice(0,itemsPerPage);
+			var totalPages;
+			var currentPage;
+
+			var goToNextPage = function (currentPage,array) {
+				divideToPages(currentPage, array);
+			};
 
 			var divideToPages = function (currentPage, array) {
+				console.log('array++'+array)
 				perPageArray.length = 0;
 				totalPages = Math.round(array.length / itemsPerPage);
-				var start = (currentPage - 1) * itemsPerPage;
+				if(currentPage<=totalPages){
+
+				var start = (currentPage) * itemsPerPage;
 				for (var i = start; i < start + itemsPerPage; i++) {
 					if (array[i]) {
 						perPageArray.push(array[i])
 					}
 				}
+				}
+				return perPageArray;
+
 			}
 
 			return {
@@ -197,7 +202,6 @@
 		])
 		.factory('Query', ['searchService', function (searchService) {
 			var query;
-
 			return {
 				query: query
 			};
