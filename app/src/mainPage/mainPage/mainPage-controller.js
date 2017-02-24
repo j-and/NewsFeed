@@ -6,7 +6,9 @@
 			$scope.role = 'user';
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			//$scope.newsItems = newsItemsService.getNewsItemsArray();
+			$scope.itemsPerPage=3;
 			$scope.newsItems = searchService.perPageArray;
+			//$scope.totalPages= Math.round(newsItemsService.getNewsItemsArray() / $scope.itemsPerPage);
 			$scope.Query = Query;
 
 			var authorIsChecked=false;
@@ -26,18 +28,16 @@
 			$scope.counterClean = function () {
 				$scope.currentPage=1;
 					return $scope.currentPage;
-			}
+			};
 
 			$scope.goNext = function () {
-				console.log('$scope.search+'+$scope.search);
-				if($scope.search!=true){
+				if(!Query.query){
 					searchService.goToNextPage($scope.counterUp(),newsItemsService.getNewsItemsArray());
 				}
 				else{
-					searchService.goToNextPage($scope.counterUp(),$scope.newsItems);
-					$scope.newsItems=searchService.newArray.splice($scope.counterUp(),3)
+					 $scope.newsItems=$scope.newsItems.splice(($scope.counterUp())-1,3);
 				}
-			}
+			};
 
 			//go to previous page
 			$scope.countDown=function (event) {
@@ -52,15 +52,18 @@
 			$scope.goPrevious = function () {
 				searchService.goToNextPage($scope.counterDown());
 				$scope.newsItems = searchService.perPageArray;
-			}
+			};
 
 			$scope.$watch('Query', function (newValue, oldValue, $scope) {
 					if (newValue !== oldValue) {
 						$scope.counterClean();
-						searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, newsItemsService.getNewsItemsArray(), Query.query,$scope.currentPage);
-						$scope.newsItems=searchService.newArray.splice($scope.counterUp(),3);
-						searchService.newArray.length = 0;
-						$scope.search=true;
+						$scope.newsItems.length=0;
+						$scope.searchResults=searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, newsItemsService.getNewsItemsArray(), Query.query,$scope.currentPage);
+						for(var i=0;i<$scope.searchResults.length;i++){
+							$scope.newsItems.push($scope.searchResults[i]);
+						}
+						$scope.newsItems=$scope.newsItems.splice(($scope.counterUp())-1,3)
+						 $scope.searchResults.length=0;
 					}
 				},true);
 

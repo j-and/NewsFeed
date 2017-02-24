@@ -30,10 +30,10 @@
 			var tagIsChecked = false;
 			var currentPage=1;
 
-			$scope.searchQuery = function (authorIsChecked, dateIsChecked, tagIsChecked) {
-				searchService.newArray.length = 0;
+			 $scope.searchQuery = function (authorIsChecked, dateIsChecked, tagIsChecked) {
+				//searchService.newArray.length = 0;
 				$scope.query = document.getElementById('searchInput').value;
-				searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, $scope.newsItems, $scope.query,currentPage);
+				//searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, $scope.newsItems, $scope.query,currentPage);
 				$scope.searchResults = searchService.showSearchResults('searchInput');
 				$scope.records = searchService.getRecords();
 			};
@@ -74,6 +74,12 @@
 				}
 				$scope.searchQuery(authorIsChecked, dateIsChecked, tagIsChecked);
 
+				//searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, newsItemsService.getNewsItemsArray(), $scope.query,1);
+				// searchService.newArray.length = 0;
+				// $scope.query = document.getElementById('searchInput').value;
+				//
+				//  	$scope.searchResults = searchService.showSearchResults('searchInput');
+				//  	$scope.records = searchService.getRecords();
 			};
 
 //TO DO

@@ -117,8 +117,10 @@
 					}
 				}
 				filterNewsRecords(matchesTitleArrayIndex, dataArray);
-				return filterNews(dataArray, objectsArray,currentPage);
 
+				var a=filterNews(dataArray, objectsArray,currentPage);
+				//console.log('filterNews().length ='+a.length);
+				return a;
 			};
 
 			var uniqueKeys = function (arr) {
@@ -142,8 +144,7 @@
 				array.length = 0;
 			};
 
-			var filterNews = function (dataArray, objectsArray,currentPage) {
-				console.log('currentPage+' + currentPage)
+			var filterNews = function (dataArray, objectsArray) {
 				var array = [];
 				for (var i = 0; i < getRecords().length; i++) {
 					for (var j = 0; j < objectsArray.length; j++) {
@@ -155,27 +156,39 @@
 				var idArray = uniqueKeys(array);
 				for (var i = 0; i < idArray.length; i++) {
 					var id = idArray[i];
-					newArray.push(objectsArray[id])
+					newArray.push(objectsArray[id]);
+
 				}
-				return divideToPages(currentPage, objectsArray);
+					return newArray;
+				// return divideToPages(currentPage, objectsArray);
 			};
 
 			var itemsPerPage = 3;
 			//var perPageArray = [];
-
-			var perPageArray =newsItemsService.getNewsItemsArray().splice(0,itemsPerPage);
-			var totalPages;
 			var currentPage;
+			var perPageArray =newsItemsService.getNewsItemsArray().splice(currentPage,itemsPerPage);
+			var totalPages;
+
 
 			var goToNextPage = function (currentPage,array) {
 				divideToPages(currentPage, array);
 			};
 
+			var splicePerPages = function (currentPage, array) {
+				console.log('array.length.before+'+array.length);
+				if(array.length>itemsPerPage){
+					array=array.splice(currentPage,itemsPerPage);
+				}
+			console.log('splicePerPages.lengh+'+array.length);
+			}
+
+
+
 			var divideToPages = function (currentPage, array) {
-				console.log('array++'+array)
 				perPageArray.length = 0;
 				totalPages = Math.round(array.length / itemsPerPage);
-				if(currentPage<=totalPages){
+				//console.log(totalPages+'+'+totalPages);
+			//	if(currentPage<=totalPages){
 
 				var start = (currentPage) * itemsPerPage;
 				for (var i = start; i < start + itemsPerPage; i++) {
@@ -183,10 +196,14 @@
 						perPageArray.push(array[i])
 					}
 				}
-				}
+			//	}
+				// else{
+				// 	console.log('aa')
+				// }
+
 				return perPageArray;
 
-			}
+			};
 
 			return {
 				showSearchResults: showSearchResults,
@@ -196,7 +213,8 @@
 				divideToPages: divideToPages,
 				perPageArray: perPageArray,
 				goToNextPage: goToNextPage,
-				currentPage: currentPage
+				currentPage: currentPage,
+				splicePerPages:splicePerPages
 			};
 		}
 		])
