@@ -34,7 +34,7 @@
 			};
 
 
-			var search = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray, query,currentPage) {
+			var search = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray, query) {
 				var matchesTitleArrayIndex = [];
 				var dataArray = [];
 				if (authorIsChecked == undefined) {
@@ -117,9 +117,7 @@
 					}
 				}
 				filterNewsRecords(matchesTitleArrayIndex, dataArray);
-
-				var a=filterNews(dataArray, objectsArray,currentPage);
-				//console.log('filterNews().length ='+a.length);
+				var a = filterNews(dataArray, objectsArray);
 				return a;
 			};
 
@@ -130,12 +128,11 @@
 					obj[str] = true;
 				}
 				return Object.keys(obj);
-			}
-
+			};
 
 			var filterNewsRecords = function (array, dataArray) {
 				searchResultsArray = [];
-				uniqueKeys(array)
+				uniqueKeys(array);
 				for (var k = 0; k < uniqueKeys(array).length; k++) {
 					var j = uniqueKeys(array)[k];
 					searchResultsArray.push(dataArray[j]);
@@ -159,48 +156,23 @@
 					newArray.push(objectsArray[id]);
 
 				}
-					return newArray;
-				// return divideToPages(currentPage, objectsArray);
+				return newArray;
 			};
 
 			var itemsPerPage = 3;
-			//var perPageArray = [];
 			var currentPage;
-			var perPageArray =newsItemsService.getNewsItemsArray().splice(currentPage,itemsPerPage);
+			var perPageArray = newsItemsService.getNewsItemsArray().splice(currentPage, itemsPerPage);
 			var totalPages;
-
-
-			var goToNextPage = function (currentPage,array) {
-				divideToPages(currentPage, array);
-			};
-
-			var splicePerPages = function (currentPage, array) {
-				console.log('array.length.before+'+array.length);
-				if(array.length>itemsPerPage){
-					array=array.splice(currentPage,itemsPerPage);
-				}
-			console.log('splicePerPages.lengh+'+array.length);
-			}
-
-
 
 			var divideToPages = function (currentPage, array) {
 				perPageArray.length = 0;
 				totalPages = Math.round(array.length / itemsPerPage);
-				//console.log(totalPages+'+'+totalPages);
-			//	if(currentPage<=totalPages){
-
 				var start = (currentPage) * itemsPerPage;
 				for (var i = start; i < start + itemsPerPage; i++) {
 					if (array[i]) {
 						perPageArray.push(array[i])
 					}
 				}
-			//	}
-				// else{
-				// 	console.log('aa')
-				// }
-
 				return perPageArray;
 
 			};
@@ -212,9 +184,7 @@
 				newArray: newArray,
 				divideToPages: divideToPages,
 				perPageArray: perPageArray,
-				goToNextPage: goToNextPage,
-				currentPage: currentPage,
-				splicePerPages:splicePerPages
+				currentPage: currentPage
 			};
 		}
 		])
