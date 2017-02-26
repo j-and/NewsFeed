@@ -2,15 +2,26 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('mainPageCtrl', ['searchService', 'addIdService', 'newsItemsService', '$scope', '$uibModal', 'Query', function (searchService, addIdService, newsItemsService, $scope, $uibModal, Query) {
+		.controller('mainPageCtrl', ['errorService', 'searchService', 'addIdService', 'newsItemsService', '$scope', '$uibModal', 'Query', function (errorService, searchService, addIdService, newsItemsService, $scope, $uibModal, Query) {
 			$scope.role = 'user';
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			//$scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.itemsPerPage = 3;
 			$scope.newsItems = searchService.perPageArray;
-			//$scope.totalPages= Math.round(newsItemsService.getNewsItemsArray() / $scope.itemsPerPage);
 			$scope.Query = Query;
 			$scope.currentPage = 1;
+
+			$scope.countTotalPages = function (array, itemsPerPage) {
+				$scope.totalPages = Math.round(array.length / itemsPerPage);
+			};
+
+			$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
+
+			$scope.goToErrorPage = function (message) {
+				errorService.setErrorMessage(message);
+				Query.query = '';
+				window.location = 'http://localhost:8000/#!/newsfeed/error';
+			};
 
 			//go to next page
 			$scope.countUp = function (event) {
@@ -38,6 +49,10 @@
 							$scope.newsItems.push($scope.array[i]);
 						}
 					}
+				}
+
+				if ($scope.currentPage > $scope.totalPages) {
+					$scope.goToErrorPage('No more news');
 				}
 			};
 
@@ -72,12 +87,10 @@
 						}
 					}
 				}
+				if ($scope.currentPage == 0) {
+					$scope.goToErrorPage('No more news');
+				}
 			};
-
-			$scope.countTotalPages = function (array, itemsPerPage) {
-				$scope.totalPages = Math.round(array.length / itemsPerPage);
-			};
-			$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
 
 			searchService.setSelectedFilters(false, false, false);
 
@@ -88,17 +101,20 @@
 					$scope.tagIsChecked = searchService.getSelectedFilters().tagIsChecked;
 					$scope.array = [];
 					$scope.counterClean();
-					
+
 					$scope.searchResults = searchService.search($scope.authorIsChecked, $scope.dateIsChecked, $scope.tagIsChecked, newsItemsService.getNewsItemsArray(), Query.query);
+					$scope.countTotalPages($scope.searchResults, $scope.itemsPerPage);
+					if ($scope.searchResults.length == 0) {
+						$scope.goToErrorPage('No matches is found');
+					}
+					;
 					for (var i = 0; i < $scope.searchResults.length; i++) {
 						$scope.array.push($scope.searchResults[i]);
 					}
 					$scope.newsItems = $scope.searchResults.splice(0, 3);
 					$scope.searchResults.length = 0;
-					//console.log($scope.authorIsChecked+'//'+$scope.dateIsChecked+'//'+$scope.tagIsChecked);
 				}
 			}, true);
-
 
 			$scope.openEditNewsModal = function (index) {
 				$scope.newsItem = {
@@ -140,11 +156,6 @@
 				});
 			};
 		}]);
-	// 	.filter('offset', function() {
-	// 	return function(input, start) {
-	// 		return input.slice(start);
-	// 	};
-	// })
 })();
 
 

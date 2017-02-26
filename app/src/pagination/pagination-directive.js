@@ -5,5 +5,8 @@
 			return {
 				templateUrl: '/src/pagination/pagination.html'
 			};
-		});
+		})
+		.controller('paginationCtrl',['$scope',function ($scope) {
+			$scope.currentPage=2;
+		}])
 })();

@@ -24,6 +24,11 @@ angular.module('NewsFeed', [
 		$routeProvider.when('/newsfeed/searchResults/news', {
 			controller: 'mainPageCtrl',
 			templateUrl: 'src/mainPage/mainPage/mainPage.html'
+		});
+
+		$routeProvider.when('/newsfeed/error', {
+			controller: 'errorCtrl',
+			templateUrl: 'src/error/error.html'
 		})
 
 			.otherwise({redirectTo: '/newsfeed'});
