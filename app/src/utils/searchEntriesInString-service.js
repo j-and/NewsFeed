@@ -7,6 +7,21 @@
 			var searchResultsArray;
 			var searchRecords;
 			var newArray = [];
+			var selectedFilters = {};
+
+			var setSelectedFilters = function (a, b, c) {
+				selectedFilters = {
+					authorIsChecked: a || false,
+					dateIsChecked: b || false,
+					tagIsChecked: c || false
+				}
+			};
+
+			var getSelectedFilters = function () {
+				return selectedFilters;
+			};
+
+
 			var setRecords = function (array) {
 				searchRecords = array;
 			};
@@ -33,20 +48,9 @@
 				}
 			};
 
-
 			var search = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray, query) {
 				var matchesTitleArrayIndex = [];
 				var dataArray = [];
-				if (authorIsChecked == undefined) {
-					authorIsChecked = false
-				}
-				if (dateIsChecked == undefined) {
-					dateIsChecked = false
-				}
-				if (tagIsChecked == undefined) {
-					tagIsChecked = false
-				}
-
 				if (authorIsChecked == false && dateIsChecked == false && tagIsChecked == false) {
 					for (var i = 0; i < objectsArray.length; i++) {
 						dataArray.push(objectsArray[i].author);
@@ -184,7 +188,10 @@
 				newArray: newArray,
 				divideToPages: divideToPages,
 				perPageArray: perPageArray,
-				currentPage: currentPage
+				currentPage: currentPage,
+				selectedFilters: selectedFilters,
+				getSelectedFilters: getSelectedFilters,
+				setSelectedFilters: setSelectedFilters
 			};
 		}
 		])

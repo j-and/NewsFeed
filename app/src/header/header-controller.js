@@ -24,16 +24,10 @@
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			$scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.searchResults = false;
+			var currentPage = 1;
 
-			var authorIsChecked = false;
-			var dateIsChecked = false;
-			var tagIsChecked = false;
-			var currentPage=1;
-
-			 $scope.searchQuery = function (authorIsChecked, dateIsChecked, tagIsChecked) {
-				//searchService.newArray.length = 0;
+			$scope.searchQuery = function (authorIsChecked, dateIsChecked, tagIsChecked) {
 				$scope.query = document.getElementById('searchInput').value;
-				//searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, $scope.newsItems, $scope.query,currentPage);
 				$scope.searchResults = searchService.showSearchResults('searchInput');
 				$scope.records = searchService.getRecords();
 			};
@@ -44,42 +38,38 @@
 				// }
 			};
 
-
 			$scope.selectFilter = function (event) {
 				event.stopPropagation();
 				$scope.filter = event.target.value;
 				if (event.target.checked == true) {
 					if ($scope.filter == 'Author') {
-						authorIsChecked = true;
+						$scope.authorIsChecked = true;
 					}
 					if ($scope.filter == 'Date') {
-						dateIsChecked = true;
+						$scope.dateIsChecked = true;
 					}
 					if ($scope.filter == 'Tag') {
-						tagIsChecked = true;
+						$scope.tagIsChecked = true;
 					}
 					event.target.setAttribute('checked', 'false');
 				}
 				else {
 					event.target.setAttribute('checked', 'true');
 					if ($scope.filter == 'Author') {
-						authorIsChecked = false;
+						$scope.authorIsChecked = false;
 					}
 					if ($scope.filter == 'Date') {
-						dateIsChecked = false;
+						$scope.dateIsChecked = false;
 					}
 					if ($scope.filter == 'Tag') {
-						tagIsChecked = false;
+						$scope.tagIsChecked = false;
 					}
 				}
-				$scope.searchQuery(authorIsChecked, dateIsChecked, tagIsChecked);
-
-				//searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, newsItemsService.getNewsItemsArray(), $scope.query,1);
-				// searchService.newArray.length = 0;
-				// $scope.query = document.getElementById('searchInput').value;
-				//
-				//  	$scope.searchResults = searchService.showSearchResults('searchInput');
-				//  	$scope.records = searchService.getRecords();
+				searchService.setSelectedFilters($scope.authorIsChecked, $scope.dateIsChecked, $scope.tagIsChecked);
+				$scope.authorIsChecked = searchService.getSelectedFilters().authorIsChecked;
+				$scope.dateIsChecked = searchService.getSelectedFilters().dateIsChecked;
+				$scope.tagIsChecked = searchService.getSelectedFilters().tagIsChecked;
+				$scope.searchQuery($scope.authorIsChecked, $scope.dateIsChecked, $scope.tagIsChecked);
 			};
 
 //TO DO

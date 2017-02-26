@@ -10,10 +10,6 @@
 			$scope.newsItems = searchService.perPageArray;
 			//$scope.totalPages= Math.round(newsItemsService.getNewsItemsArray() / $scope.itemsPerPage);
 			$scope.Query = Query;
-
-			var authorIsChecked = false;
-			var dateIsChecked = false;
-			var tagIsChecked = false;
 			$scope.currentPage = 1;
 
 			//go to next page
@@ -81,19 +77,25 @@
 			$scope.countTotalPages = function (array, itemsPerPage) {
 				$scope.totalPages = Math.round(array.length / itemsPerPage);
 			};
-			$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage)
+			$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
 
+			searchService.setSelectedFilters(false, false, false);
 
 			$scope.$watch('Query', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
+					$scope.authorIsChecked = searchService.getSelectedFilters().authorIsChecked;
+					$scope.dateIsChecked = searchService.getSelectedFilters().dateIsChecked;
+					$scope.tagIsChecked = searchService.getSelectedFilters().tagIsChecked;
 					$scope.array = [];
 					$scope.counterClean();
-					$scope.searchResults = searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, newsItemsService.getNewsItemsArray(), Query.query);
+					
+					$scope.searchResults = searchService.search($scope.authorIsChecked, $scope.dateIsChecked, $scope.tagIsChecked, newsItemsService.getNewsItemsArray(), Query.query);
 					for (var i = 0; i < $scope.searchResults.length; i++) {
 						$scope.array.push($scope.searchResults[i]);
 					}
 					$scope.newsItems = $scope.searchResults.splice(0, 3);
 					$scope.searchResults.length = 0;
+					//console.log($scope.authorIsChecked+'//'+$scope.dateIsChecked+'//'+$scope.tagIsChecked);
 				}
 			}, true);
 
