@@ -38,7 +38,6 @@
 				return newArray;
 			};
 
-
 			var showSearchResults = function (id) {
 				var input = document.getElementById(id);
 				var searchResults;
@@ -48,10 +47,9 @@
 				}
 			};
 
-			var search = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray, query) {
-				var matchesTitleArrayIndex = [];
+			var setDataArray=function(authorIsChecked, dateIsChecked, tagIsChecked, objectsArray){
 				var dataArray = [];
-				if (authorIsChecked == false && dateIsChecked == false && tagIsChecked == false) {
+				if ((authorIsChecked == false && dateIsChecked == false && tagIsChecked == false)||(authorIsChecked == true && dateIsChecked == true && tagIsChecked == true)) {
 					for (var i = 0; i < objectsArray.length; i++) {
 						dataArray.push(objectsArray[i].author);
 						dataArray.push(objectsArray[i].date);
@@ -61,15 +59,6 @@
 					}
 				}
 
-				if (authorIsChecked == true && dateIsChecked == true && tagIsChecked == true) {
-					for (var i = 0; i < objectsArray.length; i++) {
-						dataArray.push(objectsArray[i].author);
-						dataArray.push(objectsArray[i].date);
-						if (objectsArray[i].tag) {
-							dataArray.push(objectsArray[i].tag);
-						}
-					}
-				}
 				if (authorIsChecked == false && dateIsChecked == true && tagIsChecked == true) {
 					for (var i = 0; i < objectsArray.length; i++) {
 						dataArray.push(objectsArray[i].date);
@@ -109,6 +98,12 @@
 						dataArray.push(objectsArray[i].date);
 					}
 				}
+				return dataArray;
+			};
+			
+			var search = function (dataArray, objectsArray, query) {
+				var matchesTitleArrayIndex = [];
+				//console.log('dataArray='+dataArray);
 				for (var i = 0; i < dataArray.length; i++) {
 					if (dataArray[i]) {
 						for (var j = 0; j < dataArray[i].length + 1; j++) {
@@ -120,9 +115,13 @@
 						}
 					}
 				}
-				filterNewsRecords(matchesTitleArrayIndex, dataArray);
-				var a = filterNews(dataArray, objectsArray);
-				return a;
+				//filterNewsRecords(matchesTitleArrayIndex, dataArray);
+				//var a = filterNews(dataArray, objectsArray);
+				var object={
+					a:filterNewsRecords(matchesTitleArrayIndex, dataArray),
+					b:filterNews(dataArray, objectsArray)
+				}
+				return object;
 			};
 
 			var uniqueKeys = function (arr) {
@@ -141,8 +140,10 @@
 					var j = uniqueKeys(array)[k];
 					searchResultsArray.push(dataArray[j]);
 				}
+
 				setRecords(searchResultsArray);
 				array.length = 0;
+				return searchResultsArray;
 			};
 
 			var filterNews = function (dataArray, objectsArray) {
@@ -184,6 +185,7 @@
 			};
 
 			return {
+				
 				showSearchResults: showSearchResults,
 				getRecords: getRecords,
 				search: search,
@@ -193,7 +195,8 @@
 				currentPage: currentPage,
 				selectedFilters: selectedFilters,
 				getSelectedFilters: getSelectedFilters,
-				setSelectedFilters: setSelectedFilters
+				setSelectedFilters: setSelectedFilters,
+			setDataArray:setDataArray
 			};
 		}
 		])

@@ -25,6 +25,8 @@
 			$scope.goToErrorPage = function (message) {
 				errorService.setErrorMessage(message);
 				Query.query = '';
+				//searchService.setSelectedFilters(false,false,false);
+			//	$scope.authorIsChecked.removeAttribute('checked')
 				window.location = 'http://localhost:8000/#!/newsfeed/error';
 			};
 
@@ -49,7 +51,8 @@
 
 				}
 				else {
-					$scope.newsItems.length = 0;
+					$scope.newsItems=searchService.divideToPages(0, $scope.array);
+					//$scope.newsItems.length =0;
 					for (var i = ($scope.currentPage - 1) * 3; i < $scope.currentPage * 3; i++) {
 						if (i < $scope.array.length) {
 							$scope.newsItems.push($scope.array[i]);
@@ -84,6 +87,7 @@
 						}
 					}
 					else {
+						$scope.newsItems=searchService.divideToPages(0, $scope.array);
 						for (var i = ($scope.currentPage) * 3 - 1; i > ($scope.currentPage - 1) * 3 - 1; i--) {
 							if (i >= 0) {
 								$scope.newsItems.push($scope.array[i]);
@@ -105,22 +109,23 @@
 					$scope.dateIsChecked = searchService.getSelectedFilters().dateIsChecked;
 					$scope.tagIsChecked = searchService.getSelectedFilters().tagIsChecked;
 					$scope.array = [];
+
+					console.log('//'+$scope.dateIsChecked)
+
 					$scope.counterClean();
-
-					$scope.searchResults = searchService.search($scope.authorIsChecked, $scope.dateIsChecked, $scope.tagIsChecked, newsItemsService.getNewsItemsArray(), Query.query);
-
-					console.log('newsItemsService.getNewsItemsArray()=' + newsItemsService.getNewsItemsArray().length);
+					$scope.dataArray=searchService.setDataArray($scope.authorIsChecked, $scope.dateIsChecked, $scope.tagIsChecked,newsItemsService.getNewsItemsArray());
+					console.log('$scope.dataArray='+$scope.dataArray)
+					$scope.searchResults = searchService.search($scope.dataArray, newsItemsService.getNewsItemsArray(), Query.query).b;
 					$scope.countTotalPages($scope.searchResults, $scope.itemsPerPage);
 					if ($scope.searchResults.length == 0) {
 						$scope.goToErrorPage('No matches is found');
 					}
-					;
 					for (var i = 0; i < $scope.searchResults.length; i++) {
 						$scope.array.push($scope.searchResults[i]);
 					}
-					$scope.newsItems = $scope.searchResults.splice(0, 3);
+					$scope.newsItems = $scope.searchResults.splice(0, 4);
 					$scope.searchResults.length = 0;
-				}
+					}
 			}, true);
 
 			$scope.openEditNewsModal = function (index) {

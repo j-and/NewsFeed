@@ -26,20 +26,21 @@
 			$scope.searchResults = false;
 			var currentPage = 1;
 
-			$scope.searchQuery = function (authorIsChecked, dateIsChecked, tagIsChecked) {
+		//	searchService.setDataArray(true,true,true, newsItemsService.getNewsItemsArray());
+
+			$scope.searchQuery = function () {
 				$scope.query = document.getElementById('searchInput').value;
 				$scope.searchResults = searchService.showSearchResults('searchInput');
-				$scope.records = searchService.getRecords();
-			};
+			// 	//searchService.search(authorIsChecked, dateIsChecked, tagIsChecked, newsItemsService.getNewsItemsArray(), $scope.query)
+			// 	//$scope.records =searchService.search(, newsItemsService.getNewsItemsArray(), $scope.query).a;
+			// 	//$scope.records = searchService.getRecords();
+			 };
 
-			$scope.hideDropdown = function () {
-				// if (event.target.nodeName != 'INPUT') {
-				$scope.searchResults = false;
-				// }
-			};
+
 
 			$scope.selectFilter = function (event) {
 				event.stopPropagation();
+
 				$scope.filter = event.target.value;
 				if (event.target.checked == true) {
 					if ($scope.filter == 'Author') {
@@ -65,13 +66,25 @@
 						$scope.tagIsChecked = false;
 					}
 				}
+				$scope.searchQuery();
 				searchService.setSelectedFilters($scope.authorIsChecked, $scope.dateIsChecked, $scope.tagIsChecked);
 				$scope.authorIsChecked = searchService.getSelectedFilters().authorIsChecked;
 				$scope.dateIsChecked = searchService.getSelectedFilters().dateIsChecked;
 				$scope.tagIsChecked = searchService.getSelectedFilters().tagIsChecked;
-				$scope.searchQuery($scope.authorIsChecked, $scope.dateIsChecked, $scope.tagIsChecked);
-			};
 
+				$scope.dataArray=searchService.setDataArray($scope.authorIsChecked, $scope.dateIsChecked, $scope.tagIsChecked, newsItemsService.getNewsItemsArray());
+
+				searchService.search($scope.dataArray,newsItemsService.getNewsItemsArray(),$scope.query);
+
+				//$scope.records =searchService.search($scope.dataArray, newsItemsService.getNewsItemsArray(), $scope.query).a;
+				$scope.records =searchService.getRecords();
+
+			};
+			$scope.hideDropdown = function () {
+				// if (event.target.nodeName != 'INPUT') {
+				$scope.searchResults = false;
+				// }
+			};
 //TO DO
 			$scope.signOut = function () {
 				alert('TODO: signOut');
