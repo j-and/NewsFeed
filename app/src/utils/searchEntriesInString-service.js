@@ -8,19 +8,7 @@
 			var searchRecords;
 			var newArray = [];
 			var selectedFilters = {};
-
-			var setSelectedFilters = function (a, b, c) {
-				selectedFilters = {
-					authorIsChecked: a || false,
-					dateIsChecked: b || false,
-					tagIsChecked: c || false
-				}
-			};
-
-			var getSelectedFilters = function () {
-				return selectedFilters;
-			};
-
+			var Query;
 
 			var setRecords = function (array) {
 				searchRecords = array;
@@ -34,9 +22,26 @@
 				newArray = array;
 			};
 
+			var setSearchResultsArray = function (array) {
+				searchResultsArray = array;
+			};
+
+			var getSearchResultsArray = function () {
+				return searchResultsArray;
+			};
+
 			var getNewArray = function () {
 				return newArray;
 			};
+
+			var setQuery = function (query) {
+				Query = query;
+			};
+
+			var getQuery = function () {
+				console.log('ss')
+				return Query;
+			}
 
 			var showSearchResults = function (id) {
 				var input = document.getElementById(id);
@@ -47,9 +52,10 @@
 				}
 			};
 
-			var setDataArray=function(authorIsChecked, dateIsChecked, tagIsChecked, objectsArray){
+			var setDataArray = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray) {
 				var dataArray = [];
-				if ((authorIsChecked == false && dateIsChecked == false && tagIsChecked == false)||(authorIsChecked == true && dateIsChecked == true && tagIsChecked == true)) {
+				dataArray.length = 0;
+				if ((authorIsChecked == false && dateIsChecked == false && tagIsChecked == false) || (authorIsChecked == true && dateIsChecked == true && tagIsChecked == true)) {
 					for (var i = 0; i < objectsArray.length; i++) {
 						dataArray.push(objectsArray[i].author);
 						dataArray.push(objectsArray[i].date);
@@ -98,9 +104,10 @@
 						dataArray.push(objectsArray[i].date);
 					}
 				}
-				return dataArray;
+				setNewArray(dataArray)
 			};
-			
+
+			var object = {};
 			var search = function (dataArray, objectsArray, query) {
 				var matchesTitleArrayIndex = [];
 				//console.log('dataArray='+dataArray);
@@ -115,12 +122,10 @@
 						}
 					}
 				}
-				//filterNewsRecords(matchesTitleArrayIndex, dataArray);
-				//var a = filterNews(dataArray, objectsArray);
-				var object={
-					a:filterNewsRecords(matchesTitleArrayIndex, dataArray),
-					b:filterNews(dataArray, objectsArray)
-				}
+				object = {
+					a: filterNewsRecords(matchesTitleArrayIndex, dataArray),
+					b: filterNews(dataArray, objectsArray)
+				};
 				return object;
 			};
 
@@ -140,7 +145,6 @@
 					var j = uniqueKeys(array)[k];
 					searchResultsArray.push(dataArray[j]);
 				}
-
 				setRecords(searchResultsArray);
 				array.length = 0;
 				return searchResultsArray;
@@ -148,6 +152,7 @@
 
 			var filterNews = function (dataArray, objectsArray) {
 				var array = [];
+				var newObjectsArray = [];
 				for (var i = 0; i < getRecords().length; i++) {
 					for (var j = 0; j < objectsArray.length; j++) {
 						if (objectsArray[j].author == getRecords()[i] || objectsArray[j].date == getRecords()[i] || objectsArray[j].tag == getRecords()[i]) {
@@ -158,34 +163,31 @@
 				var idArray = uniqueKeys(array);
 				for (var i = 0; i < idArray.length; i++) {
 					var id = idArray[i];
-					newArray.push(objectsArray[id]);
+					newObjectsArray.push(objectsArray[id]);
 
 				}
-				return newArray;
+				setSearchResultsArray(newObjectsArray);
+				return newObjectsArray;
+
 			};
 
 			var itemsPerPage = 3;
 			var currentPage;
-			//var perPageArray = newsItemsService.getNewsItemsArray().splice(currentPage, itemsPerPage+1);
-	
 
-
-			var perPageArray=[];
+			var perPageArray = [];
 			var divideToPages = function (currentPage, array) {
-				perPageArray.length=0;
-				var start = (currentPage-1) * itemsPerPage;
-				console.log('start='+start)
-				for (var i = start; i <= start + itemsPerPage; i++) {
+				perPageArray.length = 0;
+				var start = (currentPage - 1) * itemsPerPage;
+				for (var i = start; i < start + itemsPerPage; i++) {
 					if (array[i]) {
 						perPageArray.push(array[i])
 					}
 				}
 				return perPageArray;
-
 			};
 
 			return {
-				
+
 				showSearchResults: showSearchResults,
 				getRecords: getRecords,
 				search: search,
@@ -193,18 +195,14 @@
 				divideToPages: divideToPages,
 				perPageArray: perPageArray,
 				currentPage: currentPage,
-				selectedFilters: selectedFilters,
-				getSelectedFilters: getSelectedFilters,
-				setSelectedFilters: setSelectedFilters,
-			setDataArray:setDataArray
+				setDataArray: setDataArray,
+				getNewArray: getNewArray,
+				setSearchResultsArray: setSearchResultsArray,
+				getSearchResultsArray: getSearchResultsArray,
+				setQuery: setQuery,
+				getQuery: getQuery
 			};
 		}
-		])
-		.factory('Query', ['searchService', function (searchService) {
-			var query;
-			return {
-				query: query
-			};
-		}]);
+		]);
 })
 ();

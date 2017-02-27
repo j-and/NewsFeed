@@ -2,18 +2,16 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('mainPageCtrl', ['errorService', 'searchService', 'addIdService', 'newsItemsService', '$scope', '$uibModal', 'Query', function (errorService, searchService, addIdService, newsItemsService, $scope, $uibModal, Query) {
+		.controller('mainPageCtrl', ['errorService', 'searchService', 'addIdService', 'newsItemsService', '$scope', '$uibModal', function (errorService, searchService, addIdService, newsItemsService, $scope, $uibModal) {
 			$scope.role = 'user';
+
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			// $scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.currentPage = 1;
 			$scope.itemsPerPage = 3;
 			$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
-			// $scope.newsItems = searchService.perPageArray;
-			// console.log('$scope.newsItems.length='+$scope.newsItems.length);
 
-			$scope.Query = Query;
-
+			$scope.searchService = searchService;
 
 			$scope.countTotalPages = function (array, itemsPerPage) {
 				$scope.totalPages = Math.round(array.length / itemsPerPage);
@@ -24,13 +22,9 @@
 
 			$scope.goToErrorPage = function (message) {
 				errorService.setErrorMessage(message);
-				Query.query = '';
-				//searchService.setSelectedFilters(false,false,false);
-			//	$scope.authorIsChecked.removeAttribute('checked')
 				window.location = 'http://localhost:8000/#!/newsfeed/error';
 			};
 
-			//go to next page
 			$scope.countUp = function (event) {
 				return function () {
 					return $scope.currentPage++;
@@ -46,26 +40,17 @@
 
 			$scope.goNext = function () {
 				$scope.counterUp();
-				if (!Query.query) {
-					searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
-
+				if (searchService.getSearchResultsArray()) {
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, searchService.getSearchResultsArray());
 				}
 				else {
-					$scope.newsItems=searchService.divideToPages(0, $scope.array);
-					//$scope.newsItems.length =0;
-					for (var i = ($scope.currentPage - 1) * 3; i < $scope.currentPage * 3; i++) {
-						if (i < $scope.array.length) {
-							$scope.newsItems.push($scope.array[i]);
-						}
-					}
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 				}
-
 				if ($scope.currentPage > $scope.totalPages) {
 					$scope.goToErrorPage('No more news');
 				}
 			};
 
-			//go to previous page
 			$scope.countDown = function (event) {
 				return function () {
 					return $scope.currentPage--;
@@ -76,57 +61,28 @@
 
 			$scope.goPrevious = function () {
 				$scope.counterDown();
-				if (!Query.query) {
-					searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+				if (searchService.getSearchResultsArray()) {
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, searchService.getSearchResultsArray());
 				}
 				else {
-					$scope.newsItems.length = 0;
-					if ($scope.currentPage == $scope.totalPages) {
-						for (var i = $scope.array.length; i > ($scope.array.length - $scope.currentPage * 3); i--) {
-							$scope.newsItems.push($scope.array.reverse()[i]);
-						}
-					}
-					else {
-						$scope.newsItems=searchService.divideToPages(0, $scope.array);
-						for (var i = ($scope.currentPage) * 3 - 1; i > ($scope.currentPage - 1) * 3 - 1; i--) {
-							if (i >= 0) {
-								$scope.newsItems.push($scope.array[i]);
-								$scope.newsItems.reverse()
-							}
-						}
-					}
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 				}
 				if ($scope.currentPage == 0) {
 					$scope.goToErrorPage('No more news');
 				}
 			};
 
-			searchService.setSelectedFilters(false, false, false);
-
-			$scope.$watch('Query', function (newValue, oldValue, $scope) {
+			$scope.$watch('searchService.getSearchResultsArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
-					$scope.authorIsChecked = searchService.getSelectedFilters().authorIsChecked;
-					$scope.dateIsChecked = searchService.getSelectedFilters().dateIsChecked;
-					$scope.tagIsChecked = searchService.getSelectedFilters().tagIsChecked;
+					$scope.newsItems = searchService.getSearchResultsArray();//.splice(0, 3);
 					$scope.array = [];
-
-					console.log('//'+$scope.dateIsChecked)
-
-					$scope.counterClean();
-					$scope.dataArray=searchService.setDataArray($scope.authorIsChecked, $scope.dateIsChecked, $scope.tagIsChecked,newsItemsService.getNewsItemsArray());
-					console.log('$scope.dataArray='+$scope.dataArray)
-					$scope.searchResults = searchService.search($scope.dataArray, newsItemsService.getNewsItemsArray(), Query.query).b;
-					$scope.countTotalPages($scope.searchResults, $scope.itemsPerPage);
-					if ($scope.searchResults.length == 0) {
-						$scope.goToErrorPage('No matches is found');
+					for (var i = 0; i < searchService.getSearchResultsArray().length; i++) {
+						$scope.array.push(searchService.getSearchResultsArray()[i]);
 					}
-					for (var i = 0; i < $scope.searchResults.length; i++) {
-						$scope.array.push($scope.searchResults[i]);
-					}
-					$scope.newsItems = $scope.searchResults.splice(0, 4);
-					$scope.searchResults.length = 0;
-					}
+					$scope.newsItems = $scope.array.splice($scope.currentPage - 1, $scope.itemsPerPage);
+				}
 			}, true);
+
 
 			$scope.openEditNewsModal = function (index) {
 				$scope.newsItem = {
@@ -151,8 +107,7 @@
 					}
 				})
 			};
-
-
+			
 			$scope.openDeleteNewsModal = function (index) {
 				var modalInstance = $uibModal.open({
 					templateUrl: '/src/alerts/deleteNews/deleteNewsModal/deleteNewsModal.html',
@@ -163,7 +118,6 @@
 				modalInstance.result.then(function (param) {
 					if (param) {
 						$scope.newsItems[index].deleted = true;
-						//console.log()
 						newsItemsService.setNewsItemsArray(JSON.stringify($scope.newsItems));
 					}
 				});

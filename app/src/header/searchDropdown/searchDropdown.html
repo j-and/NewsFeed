@@ -1,9 +1,9 @@
 <span>
-<div class="input-group " ng-controller="searchdropdownCtrl">
+<div class="input-group ">
 	<form class="form-inline">
 		<div class="form-group">
-			<span class="glyphicon glyphicon-search input-button" ng-show="!Query.query"></span>
-			<span class="glyphicon glyphicon-remove input-button" ng-show="Query.query"></span>
+			<span class="glyphicon glyphicon-search input-button" ng-show="!query"></span>
+			<span class="glyphicon glyphicon-remove input-button" ng-show="query"></span>
 
 			<input id="searchInput" class="form-control dropbtn" type="text" autocomplete="off"
 			       ng-model="Query.query" placeholder="Type query" ng-keyup="searchQuery()">
@@ -11,22 +11,16 @@
 		</div>
 	</form>
 </div>
-
+<div>
 <div ng-show="searchResults" ng-click="hideDropdown()">
 
 	<ul class="custom-dropdown">
 		<form class="form-inline">
-			<li class="form-group col-md-3 col-md-offset-1"><input ng-model="Query.authorIsChecked" type="checkbox"
-			                                                       ng-click="selectFilter($event)"
-			                                                       value="Author">Author
+			<li class="form-group col-md-3 col-md-offset-1"><input ng-model="Query.authorIsChecked" type="checkbox">Author
 			</li>
-			<li class="form-group col-md-3 col-md-offset-1"><input ng-model="Query.dateIsChecked" type="checkbox"
-			                                                       ng-click="selectFilter($event)"
-			                                                       value="Date">Date
+			<li class="form-group col-md-3 col-md-offset-1"><input ng-model="Query.dateIsChecked" type="checkbox">Date
 			</li>
-			<li class="form-group col-md-3 col-md-offset-1"><input ng-model="Query.tagIsChecked" type="checkbox"
-			                                                       ng-click="selectFilter($event)"
-			                                                       value="Tag">Tag
+			<li class="form-group col-md-3 col-md-offset-1"><input ng-model="Query.tagIsChecked" type="checkbox">Tag
 			</li>
 			<div>
 				<li ng-repeat="x in records track by $index">{{x}}</li>
