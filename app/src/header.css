@@ -1,0 +1,79 @@
+/* app css stylesheet */
+div.page-header {
+	margin-top: 0;
+}
+
+/*!*admin*!*/
+/*.admin {*/
+	/*border: 2px solid goldenrod;*/
+/*}*/
+
+
+
+/*!*user*!*/
+/*.user-pending-news {*/
+	/*border: 2px solid yellow;*/
+/*}*/
+
+/*.user-not-approved-news {*/
+	/*border: 5px solid red;*/
+/*}*/
+
+/*.user-approved-news {*/
+	/*border: 5px solid green;*/
+/*}*/
+
+/*!*usersList*!*/
+/*.pending-user{*/
+	/*border: 5px solid yellow;*/
+/*}*/
+
+/*header icons*/
+#king-icon {
+	color: yellow;
+	position: relative;
+	top: -5px;
+	left: -35px;
+	z-index: 10;
+}
+
+#exclamation-sign-icon {
+	color: red;
+	position: relative;
+	top: -5px;
+	left: -65px;
+	z-index: 10;
+}
+
+.input-button {
+	/*color:yellow;*/
+	position: absolute;
+	left: -80px;
+	z-index: 10;
+}
+
+.custom-dropdown {
+	position: absolute;
+	min-width: 160px;
+	z-index: 1;
+	left:350px;
+	width:400px;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	font-size: 14px;
+	text-align: left;
+	list-style: none;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+		box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+#searchInput {
+	width: 400px;
+	position:absolute;
+	left:-450px;
+	top: -5px;
+}
+

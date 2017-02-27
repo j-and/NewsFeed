@@ -1,22 +1,22 @@
-<div>
-	<pagination></pagination>
-</div>
-
 <div ng-repeat="x in newsItems track by $index" id="{{(x+i).id}}">
-	<div class="newsItem"  ng-show='"{{(x+i).deleted}}"=="false"'>
-		<div class="jumbotron col-md-8 col-md-offset-2"
+	<div ng-show='"{{(x+i).deleted}}"=="false"'>
+		<div class="jumbotron card col-md-8 col-md-offset-2"
 		     ng-class="(role=='admin') ? 'admin' : (role=='user'&&newsStatus=='pending')?'user-pending-news': (role=='user'&&newsStatus=='notApproved')?'user-not-approved-news':(role=='user'&&newsStatus=='approved')?'user-approved-news':'unregistered'">
 			<div class="col-md-10 col-md-offset-1">
-				<h3>{{(x+i).title}}</h3>
-				<p><b>{{(x+i).summary}}</b></p>
+				<h1 id="title">{{(x+i).title}}</h1>
+				<p id="summary">{{(x+i).summary}}</p>
 				<span class="col-md-7" ><a ng-href="/#!newsfeed/fullNews/#{{(x+i).id}}">More</a></span>
-				<span class="text-right">By {{(x+i).author}} | {{(x+i).date}}</span>
+				<span id=author' class="text-right" id="author">By {{(x+i).author}} | {{(x+i).date}}</span>
 			</div>
 
-			<div class=" col-md-offset-10 view-button" ng-show="role == 'user'">
-				<h3 class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="openEditNewsModal($index)"></h3>
-				<h3 class="glyphicon glyphicon-remove" aria-hidden="true"  ng-click="openDeleteNewsModal($index)"></h3>
+			<div class="col-md-offset-10 view-button" ng-show="role == 'user'">
+				<h4 class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="openEditNewsModal($index)"></h4>
+				<h4 class="glyphicon glyphicon-remove" aria-hidden="true"  ng-click="openDeleteNewsModal($index)"></h4>
 			</div>
 		</div>
 	</div>
+</div>
+
+<div>
+	<pagination></pagination>
 </div>

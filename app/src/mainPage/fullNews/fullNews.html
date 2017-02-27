@@ -1,18 +1,18 @@
-<div class="jumbotron col-md-8 col-md-offset-2 full-news">
-	<div class="col-md-4">
-		<img src="src/Screenshots/pic1.jpg" class="col-md-12">
+<div id='jumbotron' class="jumbotron col-md-8 col-md-offset-2 full-news">
+
+	<div class="col-md-8 col-md-offset-1">
+		<h1 id="title">{{newsItem.title}}</h1>
+		<p id="summary">{{newsItem.summary}}</p>
+		<p id="text">{{newsItem.text}}</p>
+		<div class="col-md-6"><a href="?#!/newsfeed">Hide</a></div>
+		<div id="author" class="col-md-6">By {{newsItem.author}} | {{newsItem.date}}</div>
+	</div>
+	<div class="col-md-3">
+		<!--<img src="src/Screenshots/pic1.jpg" class="col-md-12">-->
 		<div>Theme:{{newsItem.theme}}</div>
 		<div>Tag:{{newsItem.tag}}</div>
 	</div>
-	<div class="col-md-8">
-		<h2>{{newsItem.title}}</h2>
-		<p><b>{{newsItem.summary}}</b></p>
-		<p>{{newsItem.text}}</p>
-		<span class="col-md-8"><a href="?#!/newsfeed">Hide</a></span>
-		<span class="text-right">By {{newsItem.author}} | {{newsItems.time}}</span>
-	</div>
-
-	<div class=" col-md-offset-9 view-button" ng-show="role == 'user'">
+	<div class="col-md-3 col-md-offset-10 view-button fullnews" ng-show="role == 'user'">
 		<!--<h3 class="glyphicon glyphicon-ok-sign" aria-hidden="true" ng-click="savePendingNews()"></h3>-->
 		<h3 class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="openAddNewsModal()"></h3>
 		<h3 class="glyphicon glyphicon-remove" aria-hidden="true" id="{{(x+i).id}}" ng-click="openDeleteNewsModal($index)"></h3>

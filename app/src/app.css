@@ -1,39 +1,27 @@
-/* app css stylesheet */
-div.page-header {
-	margin-top: 0;
-}
+/*!*admin*!*/
+/*.admin {*/
+	/*border: 2px solid goldenrod;*/
+/*}*/
 
-/*admin*/
-.admin {
-	border: 2px solid goldenrod;
-}
 
-.view-button {
-	/*position: absolute;*/
-	/*top: 180px;*/
-	/*z-index: 10;*/
-	/*left: 100px;*/
-	margin-top:20%;
-	margin-right:-2%;
-}
 
-/*user*/
-.user-pending-news {
-	border: 2px solid yellow;
-}
+/*!*user*!*/
+/*.user-pending-news {*/
+	/*border: 2px solid yellow;*/
+/*}*/
 
-.user-not-approved-news {
-	border: 5px solid red;
-}
+/*.user-not-approved-news {*/
+	/*border: 5px solid red;*/
+/*}*/
 
-.user-approved-news {
-	border: 5px solid green;
-}
+/*.user-approved-news {*/
+	/*border: 5px solid green;*/
+/*}*/
 
-/*usersList*/
-.pending-user{
-	border: 5px solid yellow;
-}
+/*!*usersList*!*/
+/*.pending-user{*/
+	/*border: 5px solid yellow;*/
+/*}*/
 
 span.remove-button{
 	position:absolute;
@@ -52,102 +40,43 @@ span.remove-button{
 
 .add-button-size {
 	font-size: 50px;
-
 }
 
-/*header icons*/
-#king-icon {
-	color: yellow;
-	position: relative;
-	top: -5px;
-	left: -35px;
-	z-index: 10;
-}
-
-#exclamation-sign-icon {
-	color: red;
-	position: relative;
-	top: -5px;
-	left: -65px;
-	z-index: 10;
-}
-
-.input-button {
-	/*color:yellow;*/
-	position: absolute;
-	left: -80px;
-	z-index: 10;
-}
 
 /*.jumbotron*/
-.jumbotron {
-	height: 250px;
+.jumbotron.card {
+	max-height: 150px;
 }
 
-.jumbotron.full-news {
-	height: auto;
-}
+/*.jumbotron.full-news {*/
+	/*height: auto;*/
+/*}*/
 
 /*texr*/
-.jumbotron p b {
-	font-size: 16px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight: 200;
-}
+/*.jumbotron p b {*/
+	/*font-size: 16px;*/
+	/*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+	/*font-weight: 200;*/
+/*}*/
 
-.jumbotron h2 {
-	font-size: 26px;
-	font-weight: bold;
-	margin-top: -20px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
 
-/*newsImage*/
-img.news-image {
-	padding: 0;
-	margin-top: -20px;
-}
+/*!*newsImage*!*/
+/*img.news-image {*/
+	/*padding: 0;*/
+	/*margin-top: -20px;*/
+/*}*/
 
 .profile-buttons {
 	color: white;
 	position: absolute;
 }
 
-.custom-dropdown {
-	position: absolute;
-	min-width: 160px;
-	z-index: 1;
-	left:350px;
-	width:400px;
-	padding: 5px 0;
-	margin: 2px 0 0;
-	font-size: 14px;
-	text-align: left;
-	list-style: none;
-	background-color: #fff;
-	background-clip: padding-box;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-		box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-}
-
-#searchInput {
-	width: 400px;
-	position:absolute;
-	left:-450px;
-	top: -5px;
-}
-
 .footer{
 	color:#9d9d9d;
 }
 
-.deleted-news{
-	display: none;
-}
-
 .pagination{
-	position: relative;
-
-	z-index:1;
+	position: fixed;
+bottom:100px;
+	z-index:1000;
 }

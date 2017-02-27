@@ -7,6 +7,6 @@
 			};
 		})
 		.controller('paginationCtrl',['$scope',function ($scope) {
-			$scope.currentPage=2;
+		//	$scope.currentPage=5;
 		}])
 })();

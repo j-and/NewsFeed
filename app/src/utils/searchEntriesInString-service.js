@@ -165,14 +165,16 @@
 
 			var itemsPerPage = 3;
 			var currentPage;
-			var perPageArray = newsItemsService.getNewsItemsArray().splice(currentPage, itemsPerPage);
-			var totalPages;
+			//var perPageArray = newsItemsService.getNewsItemsArray().splice(currentPage, itemsPerPage+1);
+	
 
+
+			var perPageArray=[];
 			var divideToPages = function (currentPage, array) {
-				perPageArray.length = 0;
-				totalPages = Math.round(array.length / itemsPerPage);
-				var start = (currentPage) * itemsPerPage;
-				for (var i = start; i < start + itemsPerPage; i++) {
+				perPageArray.length=0;
+				var start = (currentPage-1) * itemsPerPage;
+				console.log('start='+start)
+				for (var i = start; i <= start + itemsPerPage; i++) {
 					if (array[i]) {
 						perPageArray.push(array[i])
 					}
