@@ -52,8 +52,38 @@
 					'"When I first started, everyone thought we were so different and so weird,\" she said. "We never changed who we were, and we stuck to our guns in terms of what we believe in, and now we got to perform on the biggest stage in the world with our beliefs and our diversity, and it made me really proud."',
 					theme: 'Entertaiment'
 				},
-				{title: "2Title10000", author: "John Doe", newsStatus: 'pending', id: '3', deleted: 'false'},
-				{title: "2Title10001", author: "Paul Smith", newsStatus: 'pending', id: '4', deleted: 'false'}
+				{
+					title: "Title2",
+					author: "Paul Smith",
+					date: '12/10/2016',
+					deleted: 'false',
+					id: '3',
+					img: '',
+					newsStatus: 'pending',
+					summary: 'Find the isolated islands of Wayag, Indonesia',
+					tag: '#LadyGaga',
+					text: 'According to a schedule posted on her official site, the concerts kick off August 1 at Rogers Arena in Vancouver and the tour winds its way across the globe before ending in Salt Lake City, Utah, on December 14.' +
+					'Lady Gaga brings message of inclusion to Super Bowl halftime -- oh, and drones' +
+					'Her fans, known as Gaga\'s "Little Monsters," were naturally thrilled and the singer told "Entertainment Tonight" after her halftime performance that her fans mean everything to her.' +
+					'"When I first started, everyone thought we were so different and so weird,\" she said. "We never changed who we were, and we stuck to our guns in terms of what we believe in, and now we got to perform on the biggest stage in the world with our beliefs and our diversity, and it made me really proud."',
+					theme: 'Entertaiment'
+				},
+				{
+					title: "Title1",
+					author: "Paul Knuth",
+					date: '10/10/2016',
+					deleted: 'false',
+					id: '4',
+					img: '',
+					newsStatus: 'pending',
+					summary: 'Find the isolated islands of Wayag, Indonesia',
+					tag: '#LadyGaga',
+					text: 'According to a schedule posted on her official site, the concerts kick off August 1 at Rogers Arena in Vancouver and the tour winds its way across the globe before ending in Salt Lake City, Utah, on December 14.' +
+					'Lady Gaga brings message of inclusion to Super Bowl halftime -- oh, and drones' +
+					'Her fans, known as Gaga\'s "Little Monsters," were naturally thrilled and the singer told "Entertainment Tonight" after her halftime performance that her fans mean everything to her.' +
+					'"When I first started, everyone thought we were so different and so weird,\" she said. "We never changed who we were, and we stuck to our guns in terms of what we believe in, and now we got to perform on the biggest stage in the world with our beliefs and our diversity, and it made me really proud."',
+					theme: 'Entertaiment'
+				}
 			];
 
 			var addNewsItem = function (object) {
