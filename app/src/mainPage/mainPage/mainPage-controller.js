@@ -8,7 +8,20 @@
 			// $scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.currentPage = 1;
 			$scope.itemsPerPage = 3;
-			$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+			//$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+
+			$scope.newsItems1 = newsItemsService.getNewsItemsArray();
+			$scope.newsItems=[];
+
+			if($scope.newsItems1.length){
+				for(var i=0;i<$scope.newsItems1.length;i++){
+					if($scope.newsItems1[i].deleted!=true){
+						$scope.newsItems.push($scope.newsItems1[i])
+					}
+				}
+				newsItemsService.setNewsItemsArray(JSON.stringify($scope.newsItems))
+			}console.log('$scope.newsItems')
+			$scope.newsItems =searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 
 			$scope.searchService = searchService;
 			$scope.newsItemsService = newsItemsService;

@@ -63,7 +63,7 @@
 					localStorage.setItem("newsItemsArray", newsItemsArrayString);
 				}
 				var newsItemsArray = JSON.parse(newsItemsArrayString);
-				newsItemsArray.push(object);
+				newsItemsArray.unshift(object);
 				newsItemsArrayString = JSON.stringify(newsItemsArray);
 				localStorage.setItem("newsItemsArray", newsItemsArrayString);
 				setNewsItemsArray(newsItemsArrayString);
@@ -75,7 +75,7 @@
 
 			var getNewsItemsArray = function () {
 				if(JSON.parse(localStorage.getItem("newsItemsArray"))){
-					return JSON.parse(localStorage.getItem("newsItemsArray")).reverse()
+					return JSON.parse(localStorage.getItem("newsItemsArray"))//.reverse()
 				}
 				else{
 					return newsItemsArrayDefault
@@ -100,10 +100,10 @@
 			};
 
 			var deleteNewsItem = function (array, index) {
-				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
+				//var newsItemsArrayString = localStorage.getItem("newsItemsArray");
 				array[index].deleted = true;
 				document.getElementById(index).setAttribute('class', 'deleted');
-				newsItemsArrayString = JSON.stringify(newsItemsArray);
+				var newsItemsArrayString = JSON.stringify(array);
 				localStorage.setItem("newsItemsArray", newsItemsArrayString);
 				setNewsItemsArray(newsItemsArrayString);
 			};
