@@ -66,7 +66,12 @@
 			};
 
 			var getUsersArray = function () {
-				return JSON.parse(localStorage.getItem("usersArray"));
+				if (JSON.parse(localStorage.getItem("usersArray"))) {
+					return JSON.parse(localStorage.getItem("usersArray"));
+				}
+				else {
+					return usersArrayDefault
+				}
 			};
 
 			var setRole = function (role) {
@@ -87,7 +92,6 @@
 				addUser: addUser,
 				getUsersArray: getUsersArray,
 				deleteUser: deleteUser,
-				usersArrayDefault: usersArrayDefault,
 				setUsersArray: setUsersArray,
 				setRole: setRole,
 				getRole: getRole

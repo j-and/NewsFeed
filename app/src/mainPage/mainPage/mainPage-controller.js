@@ -5,8 +5,6 @@
 		.controller('mainPageCtrl', ['errorService', 'usersService', 'searchService', 'newsItemsService', '$scope', '$uibModal', function (errorService, usersService, searchService, newsItemsService, $scope, $uibModal) {
 
 			$scope.usersService = usersService;
-
-			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			// $scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.currentPage = 1;
 			$scope.itemsPerPage = 3;

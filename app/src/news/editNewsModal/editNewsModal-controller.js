@@ -4,8 +4,7 @@
 	angular.module('NewsFeed')
 		.controller('editNewsModalCtrl', ['addIdService', 'newsItemsService', '$uibModalInstance', '$scope', 'newsItem', 'index', function (addIdService, newsItemsService, $uibModalInstance, $scope, newsItem, index) {
 			var vm = this;
-
-			//vm.newsItems=newsItemsService.newsItemsArrayDefault;
+			
 			vm.newsItems = newsItemsService.getNewsItemsArray();
 
 			$scope.newsItem = newsItem;

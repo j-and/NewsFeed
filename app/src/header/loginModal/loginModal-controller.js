@@ -7,8 +7,8 @@
 				email: '',
 				password: ''
 			}
+			
 			var vm = this;
-			//vm.users=usersService.usersArrayDefault;
 			vm.users = usersService.getUsersArray();
 
 			vm.openLogIn = true;

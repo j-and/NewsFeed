@@ -5,8 +5,7 @@
 		.controller('usersListCtrl', ['searchService', 'usersService', '$scope', '$uibModal', function (searchService, usersService, $scope, $uibModal) {
 
 			$scope.usersService = usersService;
-
-			//$scope.users=usersService.usersArrayDefault;
+			
 			$scope.users = usersService.getUsersArray();
 
 
@@ -31,10 +30,10 @@
 
 				modalInstance.result.then(function () {
 					$scope.index = index;
-					usersService.deleteUser(usersService.getUsersArray(),$scope.index);
+					usersService.deleteUser(usersService.getUsersArray(), $scope.index);
 				});
 			};
-			
+
 			$scope.$watch('usersService.getUsersArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
 					$scope.users = usersService.getUsersArray();

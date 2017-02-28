@@ -74,7 +74,12 @@
 			};
 
 			var getNewsItemsArray = function () {
-				return JSON.parse(localStorage.getItem("newsItemsArray")).reverse();
+				if(JSON.parse(localStorage.getItem("newsItemsArray"))){
+					return JSON.parse(localStorage.getItem("newsItemsArray")).reverse()
+				}
+				else{
+					return newsItemsArrayDefault
+				}
 			};
 
 			var addEditNewsItem = function (object) {
