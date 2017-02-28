@@ -6,7 +6,18 @@
 
 			$scope.usersService = usersService;
 			
-			$scope.users = usersService.getUsersArray();
+			//$scope.users = usersService.getUsersArray();
+			$scope.users1 = usersService.getUsersArray();
+			$scope.users=[];
+
+			if($scope.users1.length){
+				for(var i=0;i<$scope.users1.length;i++){
+					if($scope.users1[i].deleted!=true){
+						$scope.users.push($scope.users1[i])
+					}
+				}
+				usersService.setUsersArray(JSON.stringify($scope.users))
+			}
 
 
 			$scope.addPendingUser = function (index) {
