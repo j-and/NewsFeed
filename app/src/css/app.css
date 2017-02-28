@@ -1,0 +1,89 @@
+/*!*admin*!*/
+/*.admin {*/
+	/*border: 2px solid goldenrod;*/
+/*}*/
+
+
+
+/*!*user*!*/
+/*.user-pending-news {*/
+	/*border: 2px solid yellow;*/
+/*}*/
+
+/*.user-not-approved-news {*/
+	/*border: 5px solid red;*/
+/*}*/
+
+/*.user-approved-news {*/
+	/*border: 5px solid green;*/
+/*}*/
+
+/*usersList*/
+.pending-user{
+	border: 5px solid yellow;
+	list-style: none;
+}
+
+span.remove-button{
+	position:relative;
+	color:red;
+	bottom:100px;
+	float: right;
+	/*margin-top:2%;*/
+}
+
+/*addButton*/
+.add-button {
+	position: fixed;
+	bottom: 120px;
+	right: 50px;
+	z-index:1000;
+
+}
+
+.add-button-size {
+	font-size: 50px;
+}
+
+
+/*.jumbotron*/
+.jumbotron.card {
+	max-height: 150px;
+}
+
+/*.jumbotron.full-news {*/
+	/*height: auto;*/
+/*}*/
+
+/*texr*/
+/*.jumbotron p b {*/
+	/*font-size: 16px;*/
+	/*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+	/*font-weight: 200;*/
+/*}*/
+
+
+/*!*newsImage*!*/
+/*img.news-image {*/
+	/*padding: 0;*/
+	/*margin-top: -20px;*/
+/*}*/
+
+.profile-buttons {
+	color: white;
+	position: absolute;
+}
+
+.footer{
+	color:#9d9d9d;
+}
+
+.pagination{
+	position: fixed;
+bottom:100px;
+	z-index:1000;
+}
+
+.deleted{
+	display: none;
+}

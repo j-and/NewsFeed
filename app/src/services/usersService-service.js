@@ -6,6 +6,7 @@
 			var usersArrayDefault = [
 				{
 					date: '10.10.2016',
+					deleted: false,
 					email: "johndoe@gmail.com",
 					id: '0',
 					name: "John Doe",
@@ -15,6 +16,7 @@
 				},
 				{
 					date: '11.10.2016',
+					deleted: false,
 					email: "paulsmith@gmail.com",
 					id: '1',
 					name: "Paul Smith",
@@ -24,6 +26,7 @@
 				},
 				{
 					date: '12.10.2016',
+					deleted: false,
 					email: "edgarpo@gmail.com",
 					id: '2',
 					name: "Edgar Po",
@@ -33,6 +36,7 @@
 				},
 				{
 					date: '13.10.2016',
+					deleted: false,
 					email: "jlo@gmail.com",
 					id: '3',
 					name: "J Lo",
@@ -43,11 +47,6 @@
 			];
 
 			var addUser = function (object) {
-				// 1. localStorage get arrayUsers
-				// 2. parse string to array
-				// 3. array.push new user
-				// 4. set to local storage
-
 				var usersArrayString = localStorage.getItem("usersArray");
 				if (!usersArrayString) {
 					usersArrayString = JSON.stringify(usersArrayDefault);
@@ -56,7 +55,6 @@
 				var usersArray = JSON.parse(usersArrayString);
 				usersArray.push(object);
 				usersArrayString = JSON.stringify(usersArray);
-				//localStorage.setItem("usersArray", usersArrayString);
 				setUsersArray(usersArrayString)
 
 			};
@@ -70,23 +68,17 @@
 			};
 
 			var deleteUser = function (array, index) {
-				console.log('deleteUser');
-				var idArray = [];
-				for (var i = 0; i < array.length; i++) {
-					idArray.push(array[i].id);
-				}
-				var itemIndex = idArray.indexOf(document.getElementById(index).id);
-				console.log('itemIndex+' + itemIndex);
-				array.splice(itemIndex, 1);
-				var usersArrayString = JSON.stringify(array);
-				setUsersArray(usersArrayString);
+				array[index].deleted=true;
+				document.getElementById(index).setAttribute('class', 'deleted');
+				setUsersArray(JSON.stringify(array));
 			};
 
 			return {
 				addUser: addUser,
 				getUsersArray: getUsersArray,
-				deleteUser:deleteUser,
-				usersArrayDefault:usersArrayDefault
+				deleteUser: deleteUser,
+				usersArrayDefault: usersArrayDefault,
+				setUsersArray: setUsersArray
 			}
 
 		}]);

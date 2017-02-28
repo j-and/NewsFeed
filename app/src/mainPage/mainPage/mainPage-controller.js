@@ -3,7 +3,7 @@
 
 	angular.module('NewsFeed')
 		.controller('mainPageCtrl', ['errorService', 'searchService', 'newsItemsService', '$scope', '$uibModal', function (errorService, searchService, newsItemsService, $scope, $uibModal) {
-
+			$scope.role = 'user';
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			// $scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.currentPage = 1;
@@ -116,20 +116,30 @@
 				})
 			};
 
-			$scope.openDeleteNewsModal = function (index) {
+			$scope.openDeleteNewsModal = function (index) {console.log('index='+index)
 				var modalInstance = $uibModal.open({
 					templateUrl: '/src/news/deleteNewsModal/deleteNewsModal.html',
 					controller: 'deleteNewsModalCtrl',
-					controllerAs: 'deleteNews'
-				});
-
-				modalInstance.result.then(function (param) {
-					if (param) {
-						$scope.newsItems[index].deleted = true;
-						newsItemsService.setNewsItemsArray(JSON.stringify($scope.newsItems));
+					controllerAs: 'deleteNews',
+					resolve: {
+						index: function () {
+							return $scope.index;
+						}
 					}
 				});
+
+				modalInstance.result.then(function () {
+					$scope.index = index;
+					newsItemsService.deleteNewsItem(newsItemsService.getNewsItemsArray(),$scope.index);
+				});
 			};
+
+			$scope.$watch('newsItemsService.getNewsItemsArray()', function (newValue, oldValue, $scope) {
+				if (newValue !== oldValue) {
+					$scope.newsItems = newsItemsService.getNewsItemsArray();
+				}
+			}, true);
+
 		}]);
 })();
 

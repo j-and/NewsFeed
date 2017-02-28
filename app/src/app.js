@@ -14,7 +14,10 @@ angular.module('NewsFeed', [
 			controller: 'fullNewsCtrl',
 			templateUrl: 'src/mainPage/fullNews/fullNews.html'
 		});
-
+		$routeProvider.when('/newsfeed/usersList', {
+			controller: 'usersListCtrl',
+			templateUrl: 'src/usersList/usersList.html'
+		})
 		$routeProvider.when('/newsfeed/error', {
 			controller: 'errorCtrl',
 			templateUrl: 'src/error/error.html'

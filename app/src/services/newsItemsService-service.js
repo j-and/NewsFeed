@@ -94,12 +94,23 @@
 				setNewsItemsArray(newsItemsArrayString);
 			};
 
+			var deleteNewsItem = function (array, index) {
+				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
+				array[index].deleted=true;
+				document.getElementById(index).setAttribute('class', 'deleted');
+				newsItemsArrayString = JSON.stringify(newsItemsArray);
+				localStorage.setItem("newsItemsArray", newsItemsArrayString);
+				setNewsItemsArray(newsItemsArrayString);
+			};
+
+
 			return {
 				addNewsItem: addNewsItem,
 				getNewsItemsArray: getNewsItemsArray,
 				newsItemsArrayDefault: newsItemsArrayDefault,
 				setNewsItemsArray: setNewsItemsArray,
-				addEditNewsItem: addEditNewsItem
+				addEditNewsItem: addEditNewsItem,
+				deleteNewsItem:deleteNewsItem
 			};
 
 		}]);
