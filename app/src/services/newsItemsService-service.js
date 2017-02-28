@@ -74,10 +74,10 @@
 			};
 
 			var getNewsItemsArray = function () {
-				if(JSON.parse(localStorage.getItem("newsItemsArray"))){
-					return JSON.parse(localStorage.getItem("newsItemsArray"))//.reverse()
+				if (JSON.parse(localStorage.getItem("newsItemsArray"))) {
+					return JSON.parse(localStorage.getItem("newsItemsArray"))
 				}
-				else{
+				else {
 					return newsItemsArrayDefault
 				}
 			};

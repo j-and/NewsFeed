@@ -3,7 +3,7 @@
 
 	angular.module('NewsFeed')
 		.controller('headerCtrl', ['usersService', '$scope', '$uibModal', function (usersService, $scope, $uibModal) {
-
+			
 			$scope.usersService = usersService;
 			
 			$scope.openLoginModal = function () {
