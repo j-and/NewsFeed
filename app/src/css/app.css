@@ -1,0 +1,43 @@
+.pending-user {
+	border: 5px solid yellow;
+	list-style: none;
+}
+
+span.remove-button {
+	top: -10px;
+	float: right;
+}
+
+.add-button {
+	position: fixed;
+	bottom: 120px;
+	right: 50px;
+	z-index: 1000;
+}
+
+.add-button-size {
+	font-size: 50px;
+}
+
+.jumbotron.card {
+	max-height: 150px;
+}
+
+.profile-buttons {
+	color: white;
+	position: absolute;
+}
+
+.footer {
+	color: #9d9d9d;
+}
+
+.pagination {
+	position: fixed;
+	bottom: 100px;
+	z-index: 1000;
+}
+
+.deleted {
+	display: none;
+}

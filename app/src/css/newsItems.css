@@ -1,0 +1,35 @@
+#title {
+	margin-top: -20px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#summary {
+	font-size: 16px;
+}
+
+#text {
+	font-size: 16px;
+	font-weight: 200;
+}
+
+#author {
+	position: relative;
+	margin-top: 20px;
+	bottom: 20px;
+}
+
+.view-button {
+	position: relative;
+	top: 50px;
+	z-index: 10;
+}
+
+#jumbotron {
+	padding-bottom: 0;
+}
+
+.view-button.fullnews {
+	margin-bottom: 50px;
+}
+
