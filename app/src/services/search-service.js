@@ -39,7 +39,6 @@
 			};
 
 			var getQuery = function () {
-				console.log('ss')
 				return Query;
 			}
 
@@ -110,7 +109,6 @@
 			var object = {};
 			var search = function (dataArray, objectsArray, query) {
 				var matchesTitleArrayIndex = [];
-				//console.log('dataArray='+dataArray);
 				for (var i = 0; i < dataArray.length; i++) {
 					if (dataArray[i]) {
 						for (var j = 0; j < dataArray[i].length + 1; j++) {

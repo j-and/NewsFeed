@@ -1,22 +1,18 @@
 <div class="page-header">
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">NewsFeed</a>
 			</div>
 			<form class="navbar-form navbar-right">
-				<!--Dropdown with searchResults-->
 					<span id="searchDropdown" class="form-inline">
 					<searchdropdown></searchdropdown>
 					</span>
-
-							<span class=" btn glyphicon glyphicon-user dropdown-toggle profile-buttons"
-							      data-toggle="dropdown"
-							      aria-haspopup="true"
-							      aria-expanded="true"
-							      aria-hidden="true"></span>
-
+				<span class=" btn glyphicon glyphicon-user dropdown-toggle profile-buttons"
+				      data-toggle="dropdown"
+				      aria-haspopup="true"
+				      aria-expanded="true"
+				      aria-hidden="true"></span>
 				<ul class="dropdown-menu">
 					<li ng-click="(role=='user'||role=='guest')?openEditProfileModal():openLoginModal()"><a
 						href="">Profile</a></li>

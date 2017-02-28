@@ -1,10 +1,8 @@
-/* app css stylesheet */
 div.page-header {
 	margin-top: 0;
 }
 
 .input-button {
-	/*color:yellow;*/
 	position: absolute;
 	left: -80px;
 	z-index: 10;
@@ -14,8 +12,8 @@ div.page-header {
 	position: absolute;
 	min-width: 160px;
 	z-index: 1;
-	left:350px;
-	width:400px;
+	left: 350px;
+	width: 400px;
 	padding: 5px 0;
 	margin: 2px 0 0;
 	font-size: 14px;
@@ -25,13 +23,13 @@ div.page-header {
 	background-clip: padding-box;
 	border: 1px solid #ccc;
 	border-radius: 4px;
-		box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
 
 #searchInput {
 	width: 400px;
-	position:absolute;
-	left:-450px;
+	position: absolute;
+	left: -450px;
 	top: -5px;
 }
 

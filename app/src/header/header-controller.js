@@ -2,9 +2,10 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('headerCtrl', ['newsItemsService', '$scope', '$uibModal', function (newsItemsService, $scope, $uibModal) {
-			$scope.role = 'user';
-			
+		.controller('headerCtrl', ['usersService', '$scope', '$uibModal', function (usersService, $scope, $uibModal) {
+
+			$scope.usersService = usersService;
+
 			$scope.openLoginModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/header/loginModal/loginModal.html',
@@ -19,12 +20,16 @@
 					controllerAs: 'editProfile'
 				})
 			};
-		
-			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
-			$scope.newsItems = newsItemsService.getNewsItemsArray();
-			
+
+			$scope.$watch('usersService.getRole()', function (newValue, oldValue, $scope) {
+				if (newValue !== oldValue) {
+					$scope.role = usersService.getRole();
+				}
+			}, true);
+
 			$scope.signOut = function () {
-				$scope.role = '';
+				usersService.setRole('');
+				$scope.role = usersService.getRole();
 			};
 		}]);
 })

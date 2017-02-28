@@ -2,8 +2,10 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('mainPageCtrl', ['errorService', 'searchService', 'newsItemsService', '$scope', '$uibModal', function (errorService, searchService, newsItemsService, $scope, $uibModal) {
-			$scope.role = 'user';
+		.controller('mainPageCtrl', ['errorService', 'usersService', 'searchService', 'newsItemsService', '$scope', '$uibModal', function (errorService, usersService, searchService, newsItemsService, $scope, $uibModal) {
+
+			$scope.usersService = usersService;
+
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			// $scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.currentPage = 1;
@@ -15,7 +17,6 @@
 
 			$scope.countTotalPages = function (array, itemsPerPage) {
 				$scope.totalPages = Math.round(array.length / itemsPerPage);
-				console.log('$scope.totalPages=' + $scope.totalPages)
 			};
 
 			$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
@@ -116,7 +117,7 @@
 				})
 			};
 
-			$scope.openDeleteNewsModal = function (index) {console.log('index='+index)
+			$scope.openDeleteNewsModal = function (index) {
 				var modalInstance = $uibModal.open({
 					templateUrl: '/src/news/deleteNewsModal/deleteNewsModal.html',
 					controller: 'deleteNewsModalCtrl',
@@ -130,16 +131,15 @@
 
 				modalInstance.result.then(function () {
 					$scope.index = index;
-					newsItemsService.deleteNewsItem(newsItemsService.getNewsItemsArray(),$scope.index);
+					newsItemsService.deleteNewsItem(newsItemsService.getNewsItemsArray(), $scope.index);
 				});
 			};
 
-			$scope.$watch('newsItemsService.getNewsItemsArray()', function (newValue, oldValue, $scope) {
+			$scope.$watch('usersService.getRole()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
-					$scope.newsItems = newsItemsService.getNewsItemsArray();
+					$scope.role = usersService.getRole();
 				}
 			}, true);
-
 		}]);
 })();
 

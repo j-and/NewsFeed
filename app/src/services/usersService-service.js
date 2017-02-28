@@ -46,6 +46,8 @@
 				}
 			];
 
+			var Role = '';
+
 			var addUser = function (object) {
 				var usersArrayString = localStorage.getItem("usersArray");
 				if (!usersArrayString) {
@@ -67,8 +69,16 @@
 				return JSON.parse(localStorage.getItem("usersArray"));
 			};
 
+			var setRole = function (role) {
+				Role = role;
+			};
+
+			var getRole = function () {
+				return Role;
+			};
+
 			var deleteUser = function (array, index) {
-				array[index].deleted=true;
+				array[index].deleted = true;
 				document.getElementById(index).setAttribute('class', 'deleted');
 				setUsersArray(JSON.stringify(array));
 			};
@@ -78,7 +88,9 @@
 				getUsersArray: getUsersArray,
 				deleteUser: deleteUser,
 				usersArrayDefault: usersArrayDefault,
-				setUsersArray: setUsersArray
+				setUsersArray: setUsersArray,
+				setRole: setRole,
+				getRole: getRole
 			}
 
 		}]);

@@ -22,7 +22,6 @@
 					date: vm.date.toLocaleDateString(),
 					deleted: 'false',
 					id: vm.id,
-					//newsStatus: 'pending',
 					summary: newsItemSummary.value,
 					tag: newsItemTag.value,
 					text: newsItemText.value,

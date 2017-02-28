@@ -96,7 +96,7 @@
 
 			var deleteNewsItem = function (array, index) {
 				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
-				array[index].deleted=true;
+				array[index].deleted = true;
 				document.getElementById(index).setAttribute('class', 'deleted');
 				newsItemsArrayString = JSON.stringify(newsItemsArray);
 				localStorage.setItem("newsItemsArray", newsItemsArrayString);
@@ -110,7 +110,7 @@
 				newsItemsArrayDefault: newsItemsArrayDefault,
 				setNewsItemsArray: setNewsItemsArray,
 				addEditNewsItem: addEditNewsItem,
-				deleteNewsItem:deleteNewsItem
+				deleteNewsItem: deleteNewsItem
 			};
 
 		}]);
