@@ -19,5 +19,12 @@
 					$scope.searchResults = searchService.showSearchResults('searchInput');
 				}
 			}, true);
+
+			$scope.searchResults = false;
+
+
+			$scope.hideDropdown = function () {
+				$scope.searchResults = false;
+			};
 		}]);
 })();

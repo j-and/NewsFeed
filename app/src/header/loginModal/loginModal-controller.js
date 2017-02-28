@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	angular.module('NewsFeed').controller('profileModalCtrl', ['addIdService', 'usersService', '$uibModal', '$uibModalInstance', function (addIdService,usersService, $uibModal, $uibModalInstance) {
+	angular.module('NewsFeed').controller('loginModalCtrl', ['addIdService', 'usersService', '$uibModal', '$uibModalInstance', function (addIdService,usersService, $uibModal, $uibModalInstance) {
 
 		var vm = this;
 		//vm.users=usersService.usersArrayDefault;
@@ -28,8 +28,7 @@
 			alert('TO DO: Log in');
 			$uibModalInstance.dismiss('cancel');
 		};
-
-		//TO DO
+		
 		vm.signUp = function () {
 			vm.id=addIdService.createId(vm.users);
 			console.log('vm.users+'+vm.users);

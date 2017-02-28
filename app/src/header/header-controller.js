@@ -2,12 +2,13 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('headerCtrl', ['searchService', 'newsItemsService', '$scope', '$uibModal', function (searchService, newsItemsService, $scope, $uibModal) {
-			//Header view depending on the alerts and role
-			$scope.openProfileModal = function () {
+		.controller('headerCtrl', ['newsItemsService', '$scope', '$uibModal', function (newsItemsService, $scope, $uibModal) {
+			$scope.role = 'user';
+			
+			$scope.openLoginModal = function () {
 				$uibModal.open({
-					templateUrl: '/src/header/profileModal/profileModal.html',
-					controller: 'profileModalCtrl',
+					templateUrl: '/src/header/loginModal/loginModal.html',
+					controller: 'loginModalCtrl',
 					controllerAs: 'profile'
 				});
 			};
@@ -18,23 +19,13 @@
 					controllerAs: 'editProfile'
 				})
 			};
-
-			$scope.alerts = true;
-			$scope.role = 'user';
+		
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			$scope.newsItems = newsItemsService.getNewsItemsArray();
-			$scope.searchResults = false;
-
-
-			$scope.hideDropdown = function () {
-				$scope.searchResults = false;
-			};
-//TO DO
+			
 			$scope.signOut = function () {
-				alert('TODO: signOut');
+				$scope.role = '';
 			};
-
-		}])
-	;
+		}]);
 })
 ();

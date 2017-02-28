@@ -11,7 +11,7 @@
 			$scope.openAddNewsModal = function () {
 
 				$uibModal.open({
-					templateUrl: '/src/addNews/addNewsModal/addNewsModal.html',
+					templateUrl: 'src/news/addNews/addNewsModal/addNewsModal.html',
 					controller: 'addNewsModalCtrl',
 					controllerAs: 'addNews'
 				});

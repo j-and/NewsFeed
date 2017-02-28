@@ -7,7 +7,7 @@
 					title: "20 travel destinations the experts say not to miss",
 					author: "Danae Mercer",
 					date: '10/10/2016',
-					deleted:'false',
+					deleted: 'false',
 					id: '0',
 					img: '',
 					newsStatus: 'pending',
@@ -23,7 +23,7 @@
 					title: "Bernie Ecclestone: Former F1 chief swaps pit lane for ski slope",
 					author: "John Doe",
 					date: '11/10/2016',
-					deleted:'false',
+					deleted: 'false',
 					id: '1',
 					img: '',
 					newsStatus: 'pending',
@@ -40,7 +40,7 @@
 					title: "Lady Gaga announces world tour",
 					author: "Paul Smith",
 					date: '12/10/2016',
-					deleted:'false',
+					deleted: 'false',
 					id: '2',
 					img: '',
 					newsStatus: 'pending',
@@ -52,8 +52,8 @@
 					'"When I first started, everyone thought we were so different and so weird,\" she said. "We never changed who we were, and we stuck to our guns in terms of what we believe in, and now we got to perform on the biggest stage in the world with our beliefs and our diversity, and it made me really proud."',
 					theme: 'Entertaiment'
 				},
-				{title: "2Title10000", author: "John Doe", newsStatus: 'pending', id: '3',deleted:'false'},
-				{title: "2Title10001", author: "Paul Smith", newsStatus: 'pending', id: '4',deleted:'false'}
+				{title: "2Title10000", author: "John Doe", newsStatus: 'pending', id: '3', deleted: 'false'},
+				{title: "2Title10001", author: "Paul Smith", newsStatus: 'pending', id: '4', deleted: 'false'}
 			];
 
 			var addNewsItem = function (object) {
@@ -74,7 +74,7 @@
 			};
 
 			var getNewsItemsArray = function () {
-				return JSON.parse(localStorage.getItem("newsItemsArray"));
+				return JSON.parse(localStorage.getItem("newsItemsArray")).reverse();
 			};
 
 			var addEditNewsItem = function (object) {
@@ -84,22 +84,22 @@
 					localStorage.setItem("newsItemsArray", newsItemsArrayString);
 				}
 				var newsItemsArray = JSON.parse(newsItemsArrayString);
-				for(var  i=0;i<newsItemsArray.length;i++){
-					if(object.id==newsItemsArray[i].id){
-						newsItemsArray[i]=object;
+				for (var i = 0; i < newsItemsArray.length; i++) {
+					if (object.id == newsItemsArray[i].id) {
+						newsItemsArray[i] = object;
 					}
 				}
 				newsItemsArrayString = JSON.stringify(newsItemsArray);
 				localStorage.setItem("newsItemsArray", newsItemsArrayString);
 				setNewsItemsArray(newsItemsArrayString);
 			};
-			
+
 			return {
 				addNewsItem: addNewsItem,
 				getNewsItemsArray: getNewsItemsArray,
 				newsItemsArrayDefault: newsItemsArrayDefault,
-				setNewsItemsArray:setNewsItemsArray,
-				addEditNewsItem:addEditNewsItem
+				setNewsItemsArray: setNewsItemsArray,
+				addEditNewsItem: addEditNewsItem
 			};
 
 		}]);

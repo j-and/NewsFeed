@@ -2,8 +2,7 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('mainPageCtrl', ['errorService', 'searchService', 'addIdService', 'newsItemsService', '$scope', '$uibModal', function (errorService, searchService, addIdService, newsItemsService, $scope, $uibModal) {
-			$scope.role = 'user';
+		.controller('mainPageCtrl', ['errorService', 'searchService', 'newsItemsService', '$scope', '$uibModal', function (errorService, searchService, newsItemsService, $scope, $uibModal) {
 
 			//$scope.newsItems=newsItemsService.newsItemsArrayDefault;
 			// $scope.newsItems = newsItemsService.getNewsItemsArray();
@@ -12,6 +11,7 @@
 			$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 
 			$scope.searchService = searchService;
+			$scope.newsItemsService = newsItemsService;
 
 			$scope.countTotalPages = function (array, itemsPerPage) {
 				$scope.totalPages = Math.round(array.length / itemsPerPage);
@@ -83,18 +83,26 @@
 				}
 			}, true);
 
+			$scope.$watch('newsItemsService.getNewsItemsArray()', function (newValue, oldValue, $scope) {
+				if (newValue !== oldValue) {
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+				}
+			}, true);
+
 
 			$scope.openEditNewsModal = function (index) {
 				$scope.newsItem = {
 						author: $scope.newsItems[index].author,
+						date: $scope.newsItems[index].date,
+						deleted: 'false',
+						id: $scope.newsItems[index].id,
 						summary: $scope.newsItems[index].summary,
 						tag: $scope.newsItems[index].tag,
 						text: $scope.newsItems[index].text,
-						theme: $scope.newsItems[index].theme,
 						title: $scope.newsItems[index].title
 					} || {};
 				$uibModal.open({
-					templateUrl: '/src/alerts/deleteNews/editNewsModal/editNewsModal.html',
+					templateUrl: '/src/news/editNewsModal/editNewsModal.html',
 					controller: 'editNewsModalCtrl',
 					controllerAs: 'editNews',
 					resolve: {
@@ -107,10 +115,10 @@
 					}
 				})
 			};
-			
+
 			$scope.openDeleteNewsModal = function (index) {
 				var modalInstance = $uibModal.open({
-					templateUrl: '/src/alerts/deleteNews/deleteNewsModal/deleteNewsModal.html',
+					templateUrl: '/src/news/deleteNewsModal/deleteNewsModal.html',
 					controller: 'deleteNewsModalCtrl',
 					controllerAs: 'deleteNews'
 				});
