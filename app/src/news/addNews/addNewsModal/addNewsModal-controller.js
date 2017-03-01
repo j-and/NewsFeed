@@ -7,6 +7,14 @@
 
 			vm.newsItems = newsItemsService.getNewsItemsArray();
 
+			vm.addNewsItem={
+				author:'',
+				summary:'',
+				tag:'',
+				text:'',
+				title:''
+			};
+
 			/**
 			 * @ngdoc function
 			 * @name saveNews
@@ -14,24 +22,18 @@
 			 */
 			vm.saveNews = function () {
 				vm.id = addIdService.createId(vm.newsItems);
-				var newsItemAuthor = document.getElementById('newsItemAuthor');
-				var newsItemSummary = document.getElementById('newsItemSummary');
-				var newsItemTag = document.getElementById('newsItemTag');
-				var newsItemText = document.getElementById('newsItemText');
-				var newsItemTitle = document.getElementById('newsItemTitle');
 				vm.date = new Date();
 
 				var newsItem = {
-					author: newsItemAuthor.value,
+					author: vm.addNewsItem.author,
 					date: vm.date.toLocaleDateString(),
 					deleted: 'false',
 					id: vm.id,
-					summary: newsItemSummary.value,
-					tag: newsItemTag.value,
-					text: newsItemText.value,
-					title: newsItemTitle.value
+					summary: vm.addNewsItem.summary,
+					tag: vm.addNewsItem.tag,
+					text: vm.addNewsItem.text,
+					title: vm.addNewsItem.title
 				};
-
 				newsItemsService.addNewsItem(newsItem);
 				$uibModalInstance.dismiss('cancel');
 			};

@@ -3,12 +3,19 @@
 
 	angular.module('NewsFeed')
 		.controller('loginModalCtrl', ['$uibModalInstance', '$scope', 'addIdService', 'usersService', '$uibModal', function ($uibModalInstance, $scope, addIdService, usersService) {
-			$scope.login = {
-				email: '',
-				password: ''
-			}
 
 			var vm = this;
+
+			vm.signUp = {
+				email: '',
+				password: ''
+			};
+
+			vm.login = {
+				email: '',
+				password: ''
+			};
+
 			vm.users = usersService.getUsersArray();
 
 			vm.openLogIn = true;
@@ -35,20 +42,16 @@
 
 			//TO DO
 			vm.forgotPassword = function () {
-				alert('TO DO: forgot password');
-
 			};
 
 			/**
 			 * @ngdoc function
 			 * @name logIn
 			 * @description check if user is in usersList
-			 * @param
-			 * @returns
 			 */
 			vm.logIn = function () {
 				for (var i = 0; i < vm.users.length; i++) {
-					if (vm.users[i].email === $scope.login.email && vm.users[i].password === $scope.login.password) {
+					if (vm.users[i].email === vm.login.email && vm.users[i].password === vm.login.password) {
 						$scope.role = 'user';
 						usersService.setRole($scope.role);
 					}
@@ -59,25 +62,22 @@
 			/**
 			 * @ngdoc function
 			 * @name signUp
-			 * @description create new user
+			 * @description create new pending user
 			 */
 			vm.signUp = function () {
 				vm.id = addIdService.createId(vm.users);
-				var newUserEmail = document.getElementById('newUserEmail');
-				var newUserPassword = document.getElementById('newUserPassword');
 				vm.date = new Date();
 
 				var user = {
 					date: vm.date.toLocaleDateString(),
-					deleted: false,
-					email: newUserEmail.value,
+					deleted: 'false',
+					email: vm.signUp.email,
 					id: vm.id,
-					name: newUserEmail.value.split('@')[0],
-					password: newUserPassword.value,
+					name: vm.signUp.email.split('@')[0],
+					password: vm.signUp.password,
 					role: 'user',
 					status: 'pending'
 				};
-
 				usersService.addUser(user);
 				$uibModalInstance.dismiss('cancel');
 			};

@@ -28,7 +28,8 @@
 			$scope.addPendingUser = function (index) {
 				$scope.user = usersService.getUsersArray()[index];
 				$scope.user.status = 'approved';
-				document.getElementById(index).setAttribute('class', 'deleted');
+				$scope.user.deleted = 'true';
+				//document.getElementById(index).setAttribute('class', 'deleted');
 				usersService.addUser($scope.user);
 			};
 

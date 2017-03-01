@@ -12,7 +12,7 @@
 			/**
 			 * @ngdoc function
 			 * @name $watch
-			 * @description filter records in dropdown and newsitems on page
+			 * @description filters records in dropdown and newsitems on page
 			 * @param 'Query', function (newValue, oldValue, $scope)
 			 */
 			$scope.$watch('Query', function (newValue, oldValue, $scope) {
@@ -22,7 +22,7 @@
 					$scope.searchResults = searchService.search(searchService.getNewArray(), newsItemsService.getNewsItemsArray(), $scope.Query.query).b;
 					searchService.setSearchResultsArray($scope.searchResults);
 					searchService.setQuery($scope.Query);
-					$scope.searchResults = searchService.showSearchResults('searchInput');
+					$scope.searchResults = searchService.showSearchResults();
 				}
 			}, true);
 
@@ -31,8 +31,7 @@
 			/**
 			 * @ngdoc function
 			 * @name hideDropdownh
-			 * @description hide dropdown
-			 * @param 'Query', function (newValue, oldValue, $scope)
+			 * @description hides dropdown
 			 */
 			$scope.hideDropdown = function () {
 				$scope.searchResults = false;

@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('addNewsButtonCtrl', ['addIdService', 'usersService', 'newsItemsService', '$scope', '$uibModal', function (addIdService, usersService, newsItemsService, $scope, $uibModal) {
+		.controller('addNewsButtonCtrl', ['usersService', 'newsItemsService', '$scope', '$uibModal', function (usersService, newsItemsService, $scope, $uibModal) {
 			$scope.usersService = usersService;
 			$scope.newsItems = newsItemsService.getNewsItemsArray();
 

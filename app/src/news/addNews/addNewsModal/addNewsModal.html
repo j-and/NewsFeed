@@ -7,46 +7,40 @@
 		<form class="form-horizontal" ng-submit="addNews.saveNews()">
 
 			<div class="form-group">
-				<label for="newsItemTitle" class="col-sm-2">Title*</label>
-				<div class="col-sm-10"><input id="newsItemTitle"
-				                              type="text"
+				<label class="col-sm-2">Title*</label>
+				<div class="col-sm-10"><input type="text"
 				                              class="form-control"
-				                              required
-				                              value='{{newsItem.title}}'/></div>
+				                              required ng-model="addNews.addNewsItem.title"/></div>
 			</div>
 			<div class="form-group">
-				<label for="newsItemAuthor" class="col-sm-2">Author*</label>
-				<div class="col-sm-10"><input id="newsItemAuthor"
-				                              type="text"
+				<label class="col-sm-2">Author*</label>
+				<div class="col-sm-10"><input type="text"
 				                              class="form-control"
-				                              required
-				                              value='{{newsItem.author}}'/></div>
+				                              required ng-model="addNews.addNewsItem.author"/></div>
 			</div>
 			<div class="form-group">
-				<label for="newsItemSummary" class="col-sm-2">Summary* max 175 characters</label>
-				<div class="col-sm-10"><input id="newsItemSummary"
-				                              class="form-control"
-				                              required
-				                              value='{{newsItem.summary}}'/>
+				<label class="col-sm-2">Summary* max 175 characters</label>
+				<div class="col-sm-10"><input class="form-control"
+				                              required ng-model="addNews.addNewsItem.summary"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="newsItemTag" class="col-sm-2">Tag</label>
-				<div class="col-sm-10"><input id="newsItemTag"
-				                              type="text"
-				                              class="form-control"
-				                              value='{{newsItem.tag}}'/></div>
+				<label class="col-sm-2">Tag</label>
+				<div class="col-sm-10"><input type="text" class="form-control" ng-model="addNews.addNewsItem.tag"/>
+				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="newsItemText" class="col-sm-2">Text{{newsItem.id}}</label>
-				<div class="col-sm-10"><textarea id="newsItemText" rows="15" class="form-control" required>{{newsItem.text}}</textarea>
+				<div class="col-sm-10"><textarea rows="15"
+				                                 class="form-control"
+				                                 required
+				                                 ng-model="addNews.addNewsItem.text">{{newsItem.text}}</textarea>
 				</div>
 			</div>
 			<div class="form-group">
 				<input type="submit" class="btn btn-primary col-sm-offset-10" value="Save"/>
 			</div>
-
 		</form>
 	</div>
 </div>

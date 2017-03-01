@@ -101,7 +101,6 @@
 				var newsItemsArray = JSON.parse(newsItemsArrayString);
 				newsItemsArray.unshift(object);
 				newsItemsArrayString = JSON.stringify(newsItemsArray);
-				localStorage.setItem("newsItemsArray", newsItemsArrayString);
 				setNewsItemsArray(newsItemsArrayString);
 			};
 
@@ -122,8 +121,9 @@
 			 * @returns (array)
 			 */
 			var getNewsItemsArray = function () {
-				if (JSON.parse(localStorage.getItem("newsItemsArray"))) {
-					return JSON.parse(localStorage.getItem("newsItemsArray"))
+				var getItem=localStorage.getItem("newsItemsArray");
+				if (getItem) {
+					return JSON.parse(getItem)
 				}
 				else {
 					return newsItemsArrayDefault
@@ -140,7 +140,7 @@
 				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
 				if (!newsItemsArrayString) {
 					newsItemsArrayString = JSON.stringify(newsItemsArrayDefault);
-					localStorage.setItem("newsItemsArray", newsItemsArrayString);
+					setNewsItemsArray(newsItemsArrayString);
 				}
 				var newsItemsArray = JSON.parse(newsItemsArrayString);
 				for (var i = 0; i < newsItemsArray.length; i++) {
@@ -149,7 +149,6 @@
 					}
 				}
 				newsItemsArrayString = JSON.stringify(newsItemsArray);
-				localStorage.setItem("newsItemsArray", newsItemsArrayString);
 				setNewsItemsArray(newsItemsArrayString);
 			};
 
@@ -164,7 +163,6 @@
 				array[index].deleted = true;
 				document.getElementById(index).setAttribute('class', 'deleted');
 				var newsItemsArrayString = JSON.stringify(array);
-				localStorage.setItem("newsItemsArray", newsItemsArrayString);
 				setNewsItemsArray(newsItemsArrayString);
 			};
 

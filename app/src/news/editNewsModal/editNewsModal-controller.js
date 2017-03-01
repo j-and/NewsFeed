@@ -7,7 +7,15 @@
 
 			vm.newsItems = newsItemsService.getNewsItemsArray();
 
-			$scope.newsItem = newsItem;
+			vm.editNewsItem={
+				author:newsItem.author,
+				summary:newsItem.summary,
+				tag:newsItem.tag,
+				text:newsItem.text,
+				title:newsItem.title
+			};
+
+			//$scope.newsItem = newsItem;
 
 			/**
 			 * @ngdoc function
@@ -15,21 +23,16 @@
 			 * @description open edit news modal
 			 */
 			vm.saveNews = function () {
-				var newsItemAuthor = document.getElementById('newsItemAuthor');
-				var newsItemSummary = document.getElementById('newsItemSummary');
-				var newsItemTag = document.getElementById('newsItemTag');
-				var newsItemText = document.getElementById('newsItemText');
-				var newsItemTitle = document.getElementById('newsItemTitle');
 				vm.date = new Date();
 				newsItem = {
-					author: newsItemAuthor.value,
+					author: vm.editNewsItem.author,
 					date: vm.date.toLocaleDateString(),
 					deleted: 'false',
 					id: vm.newsItems[index].id,
-					summary: newsItemSummary.value,
-					tag: newsItemTag.value,
-					text: newsItemText.value,
-					title: newsItemTitle.value
+					summary: vm.editNewsItem.summary,
+					tag: vm.editNewsItem.tag,
+					text: vm.editNewsItem.text,
+					title: vm.editNewsItem.title
 				};
 				newsItemsService.addEditNewsItem(newsItem);
 				$uibModalInstance.dismiss('cancel');

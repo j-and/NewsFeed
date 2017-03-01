@@ -96,11 +96,10 @@
 			 * @description  shows search results
 			 * @returns( searchResults = true)
 			 */
-			var showSearchResults = function (id) {
-				var input = document.getElementById(id);
+			var showSearchResults = function () {
 				var searchResults;
 				event.stopPropagation();
-				if (input.value != '') {
+				if (Query.query) {
 					return searchResults = true;
 				}
 			};
@@ -113,54 +112,28 @@
 			 */
 			var setDataArray = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray) {
 				var dataArray = [];
-				dataArray.length = 0;
-				if ((authorIsChecked == false && dateIsChecked == false && tagIsChecked == false) || (authorIsChecked == true && dateIsChecked == true && tagIsChecked == true)) {
+				if(authorIsChecked){
+					for (var i = 0; i < objectsArray.length; i++) {
+						dataArray.push(objectsArray[i].author);
+					}
+				}
+				if(dateIsChecked) {
+					for (var i = 0; i < objectsArray.length; i++) {
+						dataArray.push(objectsArray[i].date);
+					}
+				}
+				if(tagIsChecked) {
+					for (var i = 0; i < objectsArray.length; i++) {
+						dataArray.push(objectsArray[i].tag);
+					}
+				}
+				if(!authorIsChecked&&!dateIsChecked&&!tagIsChecked){
 					for (var i = 0; i < objectsArray.length; i++) {
 						dataArray.push(objectsArray[i].author);
 						dataArray.push(objectsArray[i].date);
 						if (objectsArray[i].tag) {
 							dataArray.push(objectsArray[i].tag);
 						}
-					}
-				}
-
-				if (authorIsChecked == false && dateIsChecked == true && tagIsChecked == true) {
-					for (var i = 0; i < objectsArray.length; i++) {
-						dataArray.push(objectsArray[i].date);
-						if (objectsArray[i].tag) {
-							dataArray.push(objectsArray[i].tag);
-						}
-					}
-				}
-				if (authorIsChecked == false && dateIsChecked == false && tagIsChecked == true) {
-					for (var i = 0; i < objectsArray.length; i++) {
-						if (objectsArray[i].tag) {
-							dataArray.push(objectsArray[i].tag);
-						}
-					}
-				}
-				if (authorIsChecked == true && dateIsChecked == true && tagIsChecked == false) {
-					for (var i = 0; i < objectsArray.length; i++) {
-						dataArray.push(objectsArray[i].author);
-						dataArray.push(objectsArray[i].date);
-					}
-				}
-				if (authorIsChecked == true && dateIsChecked == false && tagIsChecked == true) {
-					for (var i = 0; i < objectsArray.length; i++) {
-						dataArray.push(objectsArray[i].author);
-						if (objectsArray[i].tag) {
-							dataArray.push(objectsArray[i].tag);
-						}
-					}
-				}
-				if (authorIsChecked == true && dateIsChecked == false && tagIsChecked == false) {
-					for (var i = 0; i < objectsArray.length; i++) {
-						dataArray.push(objectsArray[i].author);
-					}
-				}
-				if (authorIsChecked == false && dateIsChecked == true && tagIsChecked == false) {
-					for (var i = 0; i < objectsArray.length; i++) {
-						dataArray.push(objectsArray[i].date);
 					}
 				}
 				setNewArray(dataArray)
@@ -261,7 +234,7 @@
 			var itemsPerPage = 3;
 			var currentPage;
 
-			var perPageArray = [];
+
 
 			/**
 			 * @ngdoc function
@@ -271,7 +244,7 @@
 			 * @returns {perPageArray}
 			 */
 			var divideToPages = function (currentPage, array) {
-				perPageArray.length = 0;
+				var perPageArray = [];
 				var start = (currentPage - 1) * itemsPerPage;
 				for (var i = start; i < start + itemsPerPage; i++) {
 					if (array[i]) {
@@ -288,7 +261,6 @@
 				search: search,
 				newArray: newArray,
 				divideToPages: divideToPages,
-				perPageArray: perPageArray,
 				currentPage: currentPage,
 				setDataArray: setDataArray,
 				getNewArray: getNewArray,
