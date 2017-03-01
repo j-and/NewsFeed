@@ -4,12 +4,18 @@
 	angular.module('NewsFeed')
 		.controller('editNewsModalCtrl', ['addIdService', 'newsItemsService', '$uibModalInstance', '$scope', 'newsItem', 'index', function (addIdService, newsItemsService, $uibModalInstance, $scope, newsItem, index) {
 			var vm = this;
-			
+
 			vm.newsItems = newsItemsService.getNewsItemsArray();
 
 			$scope.newsItem = newsItem;
 
-
+			/**
+			 * @ngdoc function
+			 * @name openEditNewsModal
+			 * @description open edit news modal
+			 * @param
+			 * @returns
+			 */
 			vm.saveNews = function () {
 				var newsItemAuthor = document.getElementById('newsItemAuthor');
 				var newsItemSummary = document.getElementById('newsItemSummary');
@@ -27,7 +33,6 @@
 					text: newsItemText.value,
 					title: newsItemTitle.value
 				};
-
 				newsItemsService.addEditNewsItem(newsItem);
 				$uibModalInstance.dismiss('cancel');
 			};

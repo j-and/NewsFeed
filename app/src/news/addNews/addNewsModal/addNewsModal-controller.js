@@ -4,9 +4,16 @@
 	angular.module('NewsFeed')
 		.controller('addNewsModalCtrl', ['addIdService', 'newsItemsService', '$uibModalInstance', function (addIdService, newsItemsService, $uibModalInstance) {
 			var vm = this;
-			
+
 			vm.newsItems = newsItemsService.getNewsItemsArray();
 
+			/**
+			 * @ngdoc function
+			 * @name saveNews
+			 * @description save new newsItem
+			 * @param
+			 * @returns
+			 */
 			vm.saveNews = function () {
 				vm.id = addIdService.createId(vm.newsItems);
 				var newsItemAuthor = document.getElementById('newsItemAuthor');

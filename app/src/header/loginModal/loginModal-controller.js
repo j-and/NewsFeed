@@ -7,16 +7,31 @@
 				email: '',
 				password: ''
 			}
-			
+
 			var vm = this;
 			vm.users = usersService.getUsersArray();
 
 			vm.openLogIn = true;
+
+			/**
+			 * @ngdoc function
+			 * @name openLogInModal
+			 * @description open signup modal
+			 * @param
+			 * @returns
+			 */
 			vm.openSignUpModal = function () {
 				vm.openLogIn = false;
 				vm.openSignUp = true;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name openLogInModal
+			 * @description open login modal
+			 * @param
+			 * @returns
+			 */
 			vm.openLogInModal = function () {
 				vm.openLogIn = true;
 				vm.openSignUp = false;
@@ -27,6 +42,14 @@
 				alert('TO DO: forgot password');
 
 			};
+
+			/**
+			 * @ngdoc function
+			 * @name logIn
+			 * @description check if user is in usersList
+			 * @param
+			 * @returns
+			 */
 			vm.logIn = function () {
 				for (var i = 0; i < vm.users.length; i++) {
 					if (vm.users[i].email === $scope.login.email && vm.users[i].password === $scope.login.password) {
@@ -37,6 +60,13 @@
 				$uibModalInstance.dismiss('cancel');
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name signUp
+			 * @description create new user
+			 * @param
+			 * @returns
+			 */
 			vm.signUp = function () {
 				vm.id = addIdService.createId(vm.users);
 				var newUserEmail = document.getElementById('newUserEmail');

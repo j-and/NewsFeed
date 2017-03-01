@@ -9,6 +9,13 @@
 				tagIsChecked: false
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name $watch
+			 * @description filter records in dropdown and newsitems on page
+			 * @param 'Query', function (newValue, oldValue, $scope
+			 * @returns
+			 */
 			$scope.$watch('Query', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
 					$scope.dataArray = searchService.setDataArray($scope.Query.authorIsChecked, $scope.Query.dateIsChecked, $scope.Query.tagIsChecked, newsItemsService.getNewsItemsArray());
@@ -22,7 +29,13 @@
 
 			$scope.searchResults = false;
 
-
+			/**
+			 * @ngdoc function
+			 * @name hideDropdownh
+			 * @description hide dropdown
+			 * @param 'Query', function (newValue, oldValue, $scope
+			 * @returns
+			 */
 			$scope.hideDropdown = function () {
 				$scope.searchResults = false;
 			};

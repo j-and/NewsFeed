@@ -48,6 +48,13 @@
 
 			var Role = '';
 
+			/**
+			 * @ngdoc function
+			 * @name addUser
+			 * @description  adds user
+			 * @param (object)
+			 * @returns
+			 */
 			var addUser = function (object) {
 				var usersArrayString = localStorage.getItem("usersArray");
 				if (!usersArrayString) {
@@ -61,10 +68,24 @@
 
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name setUsersArray
+			 * @description  set users array
+			 * @param  ( array)
+			 * @returns
+			 */
 			var setUsersArray = function (array) {
 				localStorage.setItem("usersArray", array);
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name getUsersArray
+			 * @description  set new array
+			 * @param
+			 * @returns( array)
+			 */
 			var getUsersArray = function () {
 				if (JSON.parse(localStorage.getItem("usersArray"))) {
 					return JSON.parse(localStorage.getItem("usersArray"));
@@ -74,14 +95,35 @@
 				}
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name setRole
+			 * @description  sets user's role
+			 * @param(role)
+			 * @returns
+			 */
 			var setRole = function (role) {
 				Role = role;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name getRole
+			 * @description  gets user's role
+			 * @param
+			 * @returns(role)
+			 */
 			var getRole = function () {
 				return Role;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name deleteUser
+			 * @description  delete user
+			 * @param (array, index)
+			 * @returns
+			 */
 			var deleteUser = function (array, index) {
 				array[index].deleted = true;
 				document.getElementById(index).setAttribute('class', 'deleted');

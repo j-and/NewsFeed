@@ -9,8 +9,14 @@
 			$scope.newsItem = newsItemsService.getNewsItemsArray()[$scope.id];
 			$scope.newsItems = newsItemsService.getNewsItemsArray();
 
+			/**
+			 * @ngdoc function
+			 * @name openDeleteNewsModal
+			 * @description open delete news modal
+			 * @param (index)
+			 * @returns
+			 */
 			$scope.openDeleteNewsModal = function (index) {
-
 				var modalInstance = $uibModal.open({
 					templateUrl: '/src/news/deleteNewsModal/deleteNewsModal.html',
 					controller: 'deleteNewsModalCtrl',
@@ -25,6 +31,13 @@
 				});
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name openEditNewsModal
+			 * @description open edit news modal
+			 * @param
+			 * @returns {object} newsItem,index
+			 **/
 			$scope.openEditNewsModal = function () {
 				var id = $scope.newsItem.id;
 				$scope.newsItem = {
@@ -52,7 +65,5 @@
 				})
 			};
 		}])
-
-
 })();
 

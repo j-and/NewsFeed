@@ -11,17 +11,18 @@
 			//$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 
 			$scope.newsItems1 = newsItemsService.getNewsItemsArray();
-			$scope.newsItems=[];
+			$scope.newsItems = [];
 
-			if($scope.newsItems1.length){
-				for(var i=0;i<$scope.newsItems1.length;i++){
-					if($scope.newsItems1[i].deleted!=true){
+			if ($scope.newsItems1.length) {
+				for (var i = 0; i < $scope.newsItems1.length; i++) {
+					if ($scope.newsItems1[i].deleted != true) {
 						$scope.newsItems.push($scope.newsItems1[i])
 					}
 				}
 				newsItemsService.setNewsItemsArray(JSON.stringify($scope.newsItems))
-			}console.log('$scope.newsItems')
-			$scope.newsItems =searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+			}
+			console.log('$scope.newsItems')
+			$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 
 			$scope.searchService = searchService;
 			$scope.newsItemsService = newsItemsService;
@@ -101,7 +102,13 @@
 				}
 			}, true);
 
-
+			/**
+			 * @ngdoc function
+			 * @name openEditNewsModal
+			 * @description open edit news modal
+			 * @param (index)
+			 * @returns
+			 */
 			$scope.openEditNewsModal = function (index) {
 				$scope.newsItem = {
 						author: $scope.newsItems[index].author,
@@ -128,6 +135,13 @@
 				})
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name openDeleteNewsModal
+			 * @description open delete news modal
+			 * @param (index)
+			 * @returns {object},index
+			 */
 			$scope.openDeleteNewsModal = function (index) {
 				var modalInstance = $uibModal.open({
 					templateUrl: '/src/news/deleteNewsModal/deleteNewsModal.html',
@@ -139,13 +153,19 @@
 						}
 					}
 				});
-
 				modalInstance.result.then(function () {
 					$scope.index = index;
 					newsItemsService.deleteNewsItem(newsItemsService.getNewsItemsArray(), $scope.index);
 				});
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name $watch
+			 * @description set users role if it'schanged
+			 * @param ('usersService.getRole()', function (newValue, oldValue, $scope)
+			 * @returns
+			 */
 			$scope.$watch('usersService.getRole()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
 					$scope.role = usersService.getRole();

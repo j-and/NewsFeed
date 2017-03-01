@@ -86,6 +86,13 @@
 				}
 			];
 
+			/**
+			 * @ngdoc function
+			 * @name addNewsItem
+			 * @description adds newsItem
+			 * @param  (object)
+			 * @returns
+			 */
 			var addNewsItem = function (object) {
 				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
 				if (!newsItemsArrayString) {
@@ -99,10 +106,24 @@
 				setNewsItemsArray(newsItemsArrayString);
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name setNewsItemsArray
+			 * @description sets array to localStorage
+			 * @param  (array)
+			 * @returns
+			 */
 			var setNewsItemsArray = function (array) {
 				localStorage.setItem("newsItemsArray", array);
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name getNewsItemsArray
+			 * @description gets array from localStorage
+			 * @param
+			 * @returns (array)
+			 */
 			var getNewsItemsArray = function () {
 				if (JSON.parse(localStorage.getItem("newsItemsArray"))) {
 					return JSON.parse(localStorage.getItem("newsItemsArray"))
@@ -112,6 +133,13 @@
 				}
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name addEditNewsItem
+			 * @description adds edit newsItem
+			 * @param  (object)
+			 * @returns
+			 */
 			var addEditNewsItem = function (object) {
 				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
 				if (!newsItemsArrayString) {
@@ -129,6 +157,13 @@
 				setNewsItemsArray(newsItemsArrayString);
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name deleteNewsItem
+			 * @description adds edit newsItem
+			 * @param  (array,index)
+			 * @returns
+			 */
 			var deleteNewsItem = function (array, index) {
 				//var newsItemsArrayString = localStorage.getItem("newsItemsArray");
 				array[index].deleted = true;
@@ -137,7 +172,6 @@
 				localStorage.setItem("newsItemsArray", newsItemsArrayString);
 				setNewsItemsArray(newsItemsArrayString);
 			};
-
 
 			return {
 				addNewsItem: addNewsItem,

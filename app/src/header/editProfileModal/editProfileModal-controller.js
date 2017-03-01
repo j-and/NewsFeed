@@ -5,9 +5,15 @@
 		.controller('editProfileModalCtrl', ['$uibModalInstance', function ($uibModalInstance) {
 			var vm = this;
 
-//TO DO
+			/**
+			 * @ngdoc function
+			 * @name saveEditProfile
+			 * @description save editted profile
+			 * @param
+			 * @returns
+			 */
 			vm.saveEditProfile = function () {
-				alert('TO DO: Save edit profile');
+				//	alert('TO DO: Save edit profile');
 				$uibModalInstance.dismiss('cancel');
 			};
 		}]);

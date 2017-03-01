@@ -10,38 +10,101 @@
 			var selectedFilters = {};
 			var Query;
 
+			/**
+			 * @ngdoc function
+			 * @name setRecords
+			 * @description  set records
+			 * @param  ( array)
+			 * @returns
+			 */
 			var setRecords = function (array) {
 				searchRecords = array;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name getRecords
+			 * @description  get records
+			 * @param  ( searchRecords)
+			 * @returns
+			 */
 			var getRecords = function () {
 				return searchRecords;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name setNewArray
+			 * @description  set new array
+			 * @param  ( array)
+			 * @returns
+			 */
 			var setNewArray = function (array) {
 				newArray = array;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name setSearchResultsArray
+			 * @description  set search results array
+			 * @param  ( array)
+			 * @returns
+			 */
 			var setSearchResultsArray = function (array) {
 				searchResultsArray = array;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name getSearchResultsArray
+			 * @description  gets search results array
+			 * @param
+			 * @returns( searchResultsArray)
+			 */
 			var getSearchResultsArray = function () {
 				return searchResultsArray;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name getNewArray
+			 * @description  gets new array
+			 * @param
+			 * @returns( newArray)
+			 */
 			var getNewArray = function () {
 				return newArray;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name setQuery
+			 * @description  set query
+			 * @param  ( query)
+			 * @returns
+			 */
 			var setQuery = function (query) {
 				Query = query;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name getQuery
+			 * @description  get query
+			 * @param
+			 * @returns( query)
+			 */
 			var getQuery = function () {
 				return Query;
 			}
 
+			/**
+			 * @ngdoc function
+			 * @name showSearchResults
+			 * @description  shows search results
+			 * @param
+			 * @returns( searchResults = true)
+			 */
 			var showSearchResults = function (id) {
 				var input = document.getElementById(id);
 				var searchResults;
@@ -51,6 +114,13 @@
 				}
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name setDataArray
+			 * @description sets  dataArray according to selected filters
+			 * @param  (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray)
+			 * @returns
+			 */
 			var setDataArray = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray) {
 				var dataArray = [];
 				dataArray.length = 0;
@@ -107,6 +177,14 @@
 			};
 
 			var object = {};
+
+			/**
+			 * @ngdoc function
+			 * @name search
+			 * @description filters array according to query
+			 * @param  (dataArray, objectsArray, query)
+			 * @returns {object}
+			 */
 			var search = function (dataArray, objectsArray, query) {
 				var matchesTitleArrayIndex = [];
 				for (var i = 0; i < dataArray.length; i++) {
@@ -127,6 +205,13 @@
 				return object;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name uniqueKeys
+			 * @description  find unique items in filtred array
+			 * @param  (array,)
+			 * @returns {Object.keys(obj)}
+			 */
 			var uniqueKeys = function (arr) {
 				var obj = {};
 				for (var i = 0; i < arr.length; i++) {
@@ -136,6 +221,13 @@
 				return Object.keys(obj);
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name filterNewsRecords
+			 * @description  filter news records
+			 * @param  (array, dataArray)
+			 * @returns {searchResultsArray}
+			 */
 			var filterNewsRecords = function (array, dataArray) {
 				searchResultsArray = [];
 				uniqueKeys(array);
@@ -148,6 +240,13 @@
 				return searchResultsArray;
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name filterNews
+			 * @description  filter news
+			 * @param  (dataArray, objectsArray)
+			 * @returns {newObjectsArray}
+			 */
 			var filterNews = function (dataArray, objectsArray) {
 				var array = [];
 				var newObjectsArray = [];
@@ -173,6 +272,14 @@
 			var currentPage;
 
 			var perPageArray = [];
+
+			/**
+			 * @ngdoc function
+			 * @name divideToPages
+			 * @description  divide array to pages
+			 * @param  (currentPage, array)
+			 * @returns {perPageArray}
+			 */
 			var divideToPages = function (currentPage, array) {
 				perPageArray.length = 0;
 				var start = (currentPage - 1) * itemsPerPage;

@@ -3,9 +3,16 @@
 
 	angular.module('NewsFeed')
 		.controller('headerCtrl', ['usersService', '$scope', '$uibModal', function (usersService, $scope, $uibModal) {
-			
+
 			$scope.usersService = usersService;
-			
+
+			/**
+			 * @ngdoc function
+			 * @name openLoginModal
+			 * @description opens login modal window
+			 * @param
+			 * @returns
+			 */
 			$scope.openLoginModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/header/loginModal/loginModal.html',
@@ -13,6 +20,14 @@
 					controllerAs: 'profile'
 				});
 			};
+
+			/**
+			 * @ngdoc function
+			 * @name openEditProfileModal
+			 * @description opens edit profile modal window
+			 * @param
+			 * @returns
+			 */
 			$scope.openEditProfileModal = function () {
 				$uibModal.open({
 					templateUrl: '/src/header/editProfileModal/editProfileModal.html',
@@ -21,12 +36,26 @@
 				})
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name $watch
+			 * @description set  users role
+			 * @param (newValue, oldValue, $scope)
+			 * @returns
+			 */
 			$scope.$watch('usersService.getRole()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
 					$scope.role = usersService.getRole();
 				}
 			}, true);
 
+			/**
+			 * @ngdoc function
+			 * @name signOut
+			 * @description set users role to ''
+			 * @param
+			 * @returns
+			 */
 			$scope.signOut = function () {
 				usersService.setRole('');
 				$scope.role = usersService.getRole();
