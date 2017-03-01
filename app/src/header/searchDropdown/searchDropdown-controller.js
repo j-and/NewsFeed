@@ -13,8 +13,7 @@
 			 * @ngdoc function
 			 * @name $watch
 			 * @description filter records in dropdown and newsitems on page
-			 * @param 'Query', function (newValue, oldValue, $scope
-			 * @returns
+			 * @param 'Query', function (newValue, oldValue, $scope)
 			 */
 			$scope.$watch('Query', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
@@ -33,8 +32,7 @@
 			 * @ngdoc function
 			 * @name hideDropdownh
 			 * @description hide dropdown
-			 * @param 'Query', function (newValue, oldValue, $scope
-			 * @returns
+			 * @param 'Query', function (newValue, oldValue, $scope)
 			 */
 			$scope.hideDropdown = function () {
 				$scope.searchResults = false;

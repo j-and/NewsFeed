@@ -4,9 +4,9 @@
 	<title>NewsFeed</title>
 
 	<!--Styles-->
-	<link rel="stylesheet" href="src/css/app.css">
-	<link rel="stylesheet" href="src/css/header.css">
-	<link rel="stylesheet" href="src/css/newsItems.css">
+	<link rel="stylesheet" href="src/app.css">
+	<link rel="stylesheet" href="src/header/header.css">
+	<link rel="stylesheet" href="src/news/newsItems.css">
 	<!--END Styles-->
 
 	<!--Vendor Styles-->
@@ -25,10 +25,10 @@
 
 	<!--Scripts-->
 	<script src="src/app.js"></script>
-	<script src="src/services/newsItemsService-service.js"></script>
-	<script src="src/services/usersService-service.js"></script>
-	<script src="src/services/search-service.js"></script>
-	<script src="src/services/addId-service.js"></script>
+	<script src="src/news/newsItemsService-service.js"></script>
+	<script src="src/usersList/usersService-service.js"></script>
+	<script src="src/header/search-service.js"></script>
+	<script src="src/news/addId-service.js"></script>
 	<script src="src/footer/footer-controller.js"></script>
 	<script src="src/header/header-controller.js"></script>
 	<script src="src/header/loginModal/loginModal-controller.js"></script>
@@ -38,16 +38,14 @@
 	<script src="src/mainPage/mainPage/mainPage-controller.js"></script>
 	<script src="src/news/addNews/addNews-controller.js"></script>
 	<script src="src/error/error-controller.js"></script>
-	<script src="src/services/error-service.js"></script>
+	<script src="src/error/error-service.js"></script>
 	<script src="src/pagination/pagination-directive.js"></script>
 	<script src="src/news/addNews/addNewsModal/addNewsModal-controller.js"></script>
 	<script src="src/mainPage/fullNews/fullNews-controller.js"></script>
-	<!--<script src="src/alerts/myNews/referenceModal/referenceModal-controller.js"></script>-->
 	<script src="src/usersList/usersList-controller.js"></script>
 	<script src="src/usersList/deleteUserModal/deleteUserModal-controller.js"></script>
 	<script src="src/news/deleteNewsModal/deleteNewsModal-controller.js"></script>
 	<script src="src/news/editNewsModal/editNewsModal-controller.js"></script>
-
 	<!--END Scripts-->
 
 </head>
@@ -57,7 +55,7 @@
 	<div ng-include="'/src/header/header.html'"></div>
 </div>
 <div ng-controller="addNewsButtonCtrl"
-	<div ng-include="'/src/news/addNews/addNews.html'"></div>
+<div ng-include="'/src/news/addNews/addNews.html'"></div>
 </div>
 <div ng-controller="footerCtrl">
 	<div ng-include="'/src/footer/footer.html'"></div>

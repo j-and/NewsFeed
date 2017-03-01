@@ -107,7 +107,6 @@
 			 * @name openEditNewsModal
 			 * @description open edit news modal
 			 * @param (index)
-			 * @returns
 			 */
 			$scope.openEditNewsModal = function (index) {
 				$scope.newsItem = {
@@ -164,7 +163,6 @@
 			 * @name $watch
 			 * @description set users role if it'schanged
 			 * @param ('usersService.getRole()', function (newValue, oldValue, $scope)
-			 * @returns
 			 */
 			$scope.$watch('usersService.getRole()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {

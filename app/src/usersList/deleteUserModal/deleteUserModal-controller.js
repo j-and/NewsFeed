@@ -8,8 +8,6 @@
 			 * @ngdoc function
 			 * @name closeModal
 			 * @description close modal
-			 * @param
-			 * @returns
 			 */
 			vm.closeModal = function () {
 				$uibModalInstance.close();

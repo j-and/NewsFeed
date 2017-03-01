@@ -14,7 +14,6 @@
 			 * @name openDeleteNewsModal
 			 * @description open delete news modal
 			 * @param (index)
-			 * @returns
 			 */
 			$scope.openDeleteNewsModal = function (index) {
 				var modalInstance = $uibModal.open({
@@ -26,7 +25,7 @@
 				modalInstance.result.then(function (param) {
 					if (param) {
 						$scope.newsItem.deleted = true;
-						window.location = ('http://localhost:8000/?#!/newsfeed');
+						window.location = ('http://localhost:8000/#/newsfeed');
 					}
 				});
 			};
@@ -35,7 +34,6 @@
 			 * @ngdoc function
 			 * @name openEditNewsModal
 			 * @description open edit news modal
-			 * @param
 			 * @returns {object} newsItem,index
 			 **/
 			$scope.openEditNewsModal = function () {

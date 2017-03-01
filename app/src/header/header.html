@@ -14,7 +14,8 @@
 				      aria-expanded="true"
 				      aria-hidden="true"></span>
 				<ul class="dropdown-menu">
-					<li ng-click="(role=='user'||role=='guest')?openEditProfileModal():openLoginModal()"><a
+					<li ng-click="(role=='user'||role=='guest')?openEditProfileModal():openLoginModal()"
+					    ng-hide="role=='user'"><a
 						href="">Profile</a></li>
 					<li ng-click="signOut()"><a href="#">Sign out</a></li>
 				</ul>

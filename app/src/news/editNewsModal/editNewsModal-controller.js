@@ -13,8 +13,6 @@
 			 * @ngdoc function
 			 * @name openEditNewsModal
 			 * @description open edit news modal
-			 * @param
-			 * @returns
 			 */
 			vm.saveNews = function () {
 				var newsItemAuthor = document.getElementById('newsItemAuthor');

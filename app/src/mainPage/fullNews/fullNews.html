@@ -1,11 +1,11 @@
 <div id='jumbotron' class="jumbotron col-sm-8 col-sm-offset-2 full-news">
 
 	<div class="col-sm-8 col-sm-offset-1">
-		<h1 id="title">{{newsItem.title}}</h1>
-		<p id="summary">{{newsItem.summary}}</p>
-		<p id="text">{{newsItem.text}}</p>
+		<h1 id="title" class="title">{{newsItem.title}}</h1>
+		<p id="summary" class="summary">{{newsItem.summary}}</p>
+		<p id="text" class="text">{{newsItem.text}}</p>
 		<div class="col-sm-6"><a href="?#!/newsfeed">Hide</a></div>
-		<div id="author" class="col-sm-6">By {{newsItem.author}} | {{newsItem.date}}</div>
+		<div id="author" class="col-sm-6 author">By {{newsItem.author}} | {{newsItem.date}}</div>
 	</div>
 	<div class="col-sm-3">
 		<div>Theme:{{newsItem.theme}}</div>

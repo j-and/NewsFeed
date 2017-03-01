@@ -11,8 +11,6 @@
 			 * @ngdoc function
 			 * @name saveNews
 			 * @description save new newsItem
-			 * @param
-			 * @returns
 			 */
 			vm.saveNews = function () {
 				vm.id = addIdService.createId(vm.newsItems);

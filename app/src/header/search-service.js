@@ -15,7 +15,6 @@
 			 * @name setRecords
 			 * @description  set records
 			 * @param  ( array)
-			 * @returns
 			 */
 			var setRecords = function (array) {
 				searchRecords = array;
@@ -26,7 +25,6 @@
 			 * @name getRecords
 			 * @description  get records
 			 * @param  ( searchRecords)
-			 * @returns
 			 */
 			var getRecords = function () {
 				return searchRecords;
@@ -37,7 +35,6 @@
 			 * @name setNewArray
 			 * @description  set new array
 			 * @param  ( array)
-			 * @returns
 			 */
 			var setNewArray = function (array) {
 				newArray = array;
@@ -48,7 +45,6 @@
 			 * @name setSearchResultsArray
 			 * @description  set search results array
 			 * @param  ( array)
-			 * @returns
 			 */
 			var setSearchResultsArray = function (array) {
 				searchResultsArray = array;
@@ -58,7 +54,6 @@
 			 * @ngdoc function
 			 * @name getSearchResultsArray
 			 * @description  gets search results array
-			 * @param
 			 * @returns( searchResultsArray)
 			 */
 			var getSearchResultsArray = function () {
@@ -69,7 +64,6 @@
 			 * @ngdoc function
 			 * @name getNewArray
 			 * @description  gets new array
-			 * @param
 			 * @returns( newArray)
 			 */
 			var getNewArray = function () {
@@ -81,7 +75,6 @@
 			 * @name setQuery
 			 * @description  set query
 			 * @param  ( query)
-			 * @returns
 			 */
 			var setQuery = function (query) {
 				Query = query;
@@ -91,7 +84,6 @@
 			 * @ngdoc function
 			 * @name getQuery
 			 * @description  get query
-			 * @param
 			 * @returns( query)
 			 */
 			var getQuery = function () {
@@ -102,7 +94,6 @@
 			 * @ngdoc function
 			 * @name showSearchResults
 			 * @description  shows search results
-			 * @param
 			 * @returns( searchResults = true)
 			 */
 			var showSearchResults = function (id) {
@@ -119,7 +110,6 @@
 			 * @name setDataArray
 			 * @description sets  dataArray according to selected filters
 			 * @param  (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray)
-			 * @returns
 			 */
 			var setDataArray = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray) {
 				var dataArray = [];

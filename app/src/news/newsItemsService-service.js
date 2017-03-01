@@ -91,7 +91,6 @@
 			 * @name addNewsItem
 			 * @description adds newsItem
 			 * @param  (object)
-			 * @returns
 			 */
 			var addNewsItem = function (object) {
 				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
@@ -111,7 +110,6 @@
 			 * @name setNewsItemsArray
 			 * @description sets array to localStorage
 			 * @param  (array)
-			 * @returns
 			 */
 			var setNewsItemsArray = function (array) {
 				localStorage.setItem("newsItemsArray", array);
@@ -121,7 +119,6 @@
 			 * @ngdoc function
 			 * @name getNewsItemsArray
 			 * @description gets array from localStorage
-			 * @param
 			 * @returns (array)
 			 */
 			var getNewsItemsArray = function () {
@@ -138,7 +135,6 @@
 			 * @name addEditNewsItem
 			 * @description adds edit newsItem
 			 * @param  (object)
-			 * @returns
 			 */
 			var addEditNewsItem = function (object) {
 				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
@@ -162,7 +158,6 @@
 			 * @name deleteNewsItem
 			 * @description adds edit newsItem
 			 * @param  (array,index)
-			 * @returns
 			 */
 			var deleteNewsItem = function (array, index) {
 				//var newsItemsArrayString = localStorage.getItem("newsItemsArray");

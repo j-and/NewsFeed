@@ -53,7 +53,6 @@
 			 * @name addUser
 			 * @description  adds user
 			 * @param (object)
-			 * @returns
 			 */
 			var addUser = function (object) {
 				var usersArrayString = localStorage.getItem("usersArray");
@@ -70,10 +69,32 @@
 
 			/**
 			 * @ngdoc function
+			 * @name addEditUser
+			 * @description adds edit user
+			 * @param  (object)
+			 */
+			var addEditUser = function (object) {
+				var usersArrayString = localStorage.getItem("usersArray");
+				if (!usersArrayString) {
+					usersArrayString = JSON.stringify(usersArrayDefault);
+					localStorage.setItem("usersArray", usersArrayString);
+				}
+				var usersArray = JSON.parse(usersArrayString);
+				for (var i = 0; i < usersArray.length; i++) {
+					if (object.id == usersArray[i].id) {
+						usersArray[i] = object;
+					}
+				}
+				usersArrayString = JSON.stringify(usersArray);
+				localStorage.setItem("usersArray", usersArrayString);
+				setUsersArray(usersArrayString);
+			};
+
+			/**
+			 * @ngdoc function
 			 * @name setUsersArray
 			 * @description  set users array
 			 * @param  ( array)
-			 * @returns
 			 */
 			var setUsersArray = function (array) {
 				localStorage.setItem("usersArray", array);
@@ -83,7 +104,6 @@
 			 * @ngdoc function
 			 * @name getUsersArray
 			 * @description  set new array
-			 * @param
 			 * @returns( array)
 			 */
 			var getUsersArray = function () {
@@ -100,7 +120,6 @@
 			 * @name setRole
 			 * @description  sets user's role
 			 * @param(role)
-			 * @returns
 			 */
 			var setRole = function (role) {
 				Role = role;
@@ -110,7 +129,6 @@
 			 * @ngdoc function
 			 * @name getRole
 			 * @description  gets user's role
-			 * @param
 			 * @returns(role)
 			 */
 			var getRole = function () {
@@ -122,7 +140,6 @@
 			 * @name deleteUser
 			 * @description  delete user
 			 * @param (array, index)
-			 * @returns
 			 */
 			var deleteUser = function (array, index) {
 				array[index].deleted = true;
@@ -136,7 +153,8 @@
 				deleteUser: deleteUser,
 				setUsersArray: setUsersArray,
 				setRole: setRole,
-				getRole: getRole
+				getRole: getRole,
+				addEditUser: addEditUser
 			}
 
 		}]);

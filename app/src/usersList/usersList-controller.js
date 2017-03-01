@@ -24,7 +24,6 @@
 			 * @name addPendingUser
 			 * @description set users's status to 'user'
 			 * @param (index)
-			 * @returns
 			 */
 			$scope.addPendingUser = function (index) {
 				$scope.user = usersService.getUsersArray()[index];
@@ -38,7 +37,6 @@
 			 * @name openDeleteUserModal
 			 * @description opens delete user modal
 			 * @param (index)
-			 * @returns
 			 */
 			$scope.openDeleteUserModal = function (index) {
 				var modalInstance = $uibModal.open({
@@ -63,7 +61,6 @@
 			 * @name $watch
 			 * @description set user's role if it's changed
 			 * @param ('usersService.getUsersArray()', function (newValue, oldValue, $scope)
-			 * @returns
 			 */
 			$scope.$watch('usersService.getUsersArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {

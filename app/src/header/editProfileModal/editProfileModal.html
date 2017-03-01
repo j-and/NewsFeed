@@ -6,21 +6,21 @@
 		<form id="logIn">
 			<div class="form-group">
 				<label for="exampleInputEmail1">New login</label>
-				<input type="email" class="form-control" id="exampleInputLogin" placeholder="Login">
+				<input id='newLogin' type="email" class="form-control" id="exampleInputLogin" placeholder="Login"  value='{{user.email}}'>
 			</div>
 			<div class="form-group">
 				<label for="exampleInputEmail1">New e-mail</label>
-				<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+				<input id='newEmail' type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
 			</div>
 			<div class="form-group">
 				<label>Password</label>
-				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+				<input id='newPassword' type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 			</div>
 			<div class="form-group">
 				<label>Confirm password</label>
 				<input type="password"
 				       class="form-control"
-				       id="exampleInputConfirmPassword1"
+				       id="newPasswordConfirmed"
 				       placeholder="Password">
 			</div>
 		</form>

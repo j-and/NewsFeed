@@ -9,8 +9,6 @@
 			 * @ngdoc function
 			 * @name closeModal
 			 * @description close delete news modal
-			 * @param
-			 * @returns
 			 */
 			vm.closeModal = function () {
 				$uibModalInstance.close();

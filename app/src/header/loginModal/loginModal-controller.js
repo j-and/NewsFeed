@@ -17,8 +17,6 @@
 			 * @ngdoc function
 			 * @name openLogInModal
 			 * @description open signup modal
-			 * @param
-			 * @returns
 			 */
 			vm.openSignUpModal = function () {
 				vm.openLogIn = false;
@@ -29,8 +27,6 @@
 			 * @ngdoc function
 			 * @name openLogInModal
 			 * @description open login modal
-			 * @param
-			 * @returns
 			 */
 			vm.openLogInModal = function () {
 				vm.openLogIn = true;
@@ -64,8 +60,6 @@
 			 * @ngdoc function
 			 * @name signUp
 			 * @description create new user
-			 * @param
-			 * @returns
 			 */
 			vm.signUp = function () {
 				vm.id = addIdService.createId(vm.users);
