@@ -6,7 +6,7 @@
 			var usersArrayDefault = [
 				{
 					date: '10.10.2016',
-					deleted: false,
+					deleted: 'false',
 					email: "johndoe@gmail.com",
 					id: '0',
 					name: "John Doe",
@@ -16,7 +16,7 @@
 				},
 				{
 					date: '11.10.2016',
-					deleted: false,
+					deleted: 'false',
 					email: "paulsmith@gmail.com",
 					id: '1',
 					name: "Paul Smith",
@@ -26,7 +26,7 @@
 				},
 				{
 					date: '12.10.2016',
-					deleted: false,
+					deleted: 'false',
 					email: "edgarpo@gmail.com",
 					id: '2',
 					name: "Edgar Po",
@@ -36,7 +36,7 @@
 				},
 				{
 					date: '13.10.2016',
-					deleted: false,
+					deleted: 'false',
 					email: "jlo@gmail.com",
 					id: '3',
 					name: "J Lo",
@@ -61,7 +61,7 @@
 					localStorage.setItem("usersArray", usersArrayString);
 				}
 				var usersArray = JSON.parse(usersArrayString);
-				usersArray.push(object);
+				usersArray[object.id] = object;
 				usersArrayString = JSON.stringify(usersArray);
 				setUsersArray(usersArrayString)
 
@@ -141,10 +141,17 @@
 			 * @description  delete user
 			 * @param (array, index)
 			 */
-			var deleteUser = function (array, index) {
-				array[index].deleted = true;
-				document.getElementById(index).setAttribute('class', 'deleted');
-				setUsersArray(JSON.stringify(array));
+			var deleteUser = function (object, index) {
+				var usersArrayString = localStorage.getItem("usersArray");
+				if (!usersArrayString) {
+					usersArrayString = JSON.stringify(usersArrayDefault);
+					localStorage.setItem("usersArray", usersArrayString);
+				}
+				var usersArray = JSON.parse(usersArrayString);
+				delete usersArray[index];
+				usersArray[index] = object;
+				usersArrayString = JSON.stringify(usersArray);
+				setUsersArray(usersArrayString);
 			};
 
 			return {

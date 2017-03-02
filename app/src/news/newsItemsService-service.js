@@ -121,7 +121,7 @@
 			 * @returns (array)
 			 */
 			var getNewsItemsArray = function () {
-				var getItem=localStorage.getItem("newsItemsArray");
+				var getItem = localStorage.getItem("newsItemsArray");
 				if (getItem) {
 					return JSON.parse(getItem)
 				}
@@ -158,11 +158,17 @@
 			 * @description adds edit newsItem
 			 * @param  (array,index)
 			 */
-			var deleteNewsItem = function (array, index) {
-				//var newsItemsArrayString = localStorage.getItem("newsItemsArray");
-				array[index].deleted = true;
-				document.getElementById(index).setAttribute('class', 'deleted');
-				var newsItemsArrayString = JSON.stringify(array);
+			var deleteNewsItem = function (object, index) {
+				var newsItemsArrayString = localStorage.getItem("newsItemsArray");
+				if (!newsItemsArrayString) {
+					newsItemsArrayString = JSON.stringify(newsItemsArrayDefault);
+					localStorage.setItem("newsItemsArray", newsItemsArrayString);
+				}
+				var newsItemsArray = JSON.parse(newsItemsArrayString);
+				delete newsItemsArray[index];
+				newsItemsArray[index] = object;
+				//console.log('newsItemsArray[index].deleted= '+newsItemsArray[index].deleted)
+				newsItemsArrayString = JSON.stringify(newsItemsArray);
 				setNewsItemsArray(newsItemsArrayString);
 			};
 

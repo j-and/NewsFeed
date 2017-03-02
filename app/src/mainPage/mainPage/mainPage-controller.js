@@ -139,7 +139,6 @@
 			 * @name openDeleteNewsModal
 			 * @description open delete news modal
 			 * @param (index)
-			 * @returns {object},index
 			 */
 			$scope.openDeleteNewsModal = function (index) {
 				var modalInstance = $uibModal.open({
@@ -154,7 +153,9 @@
 				});
 				modalInstance.result.then(function () {
 					$scope.index = index;
-					newsItemsService.deleteNewsItem(newsItemsService.getNewsItemsArray(), $scope.index);
+					$scope.newsItem = newsItemsService.getNewsItemsArray()[index];
+					$scope.newsItem.deleted='true';
+					newsItemsService.deleteNewsItem($scope.newsItem, $scope.index);
 				});
 			};
 

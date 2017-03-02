@@ -28,8 +28,6 @@
 			$scope.addPendingUser = function (index) {
 				$scope.user = usersService.getUsersArray()[index];
 				$scope.user.status = 'approved';
-				$scope.user.deleted = 'true';
-				//document.getElementById(index).setAttribute('class', 'deleted');
 				usersService.addUser($scope.user);
 			};
 
@@ -53,7 +51,9 @@
 
 				modalInstance.result.then(function () {
 					$scope.index = index;
-					usersService.deleteUser(usersService.getUsersArray(), $scope.index);
+					$scope.user = usersService.getUsersArray()[index];
+					$scope.user.deleted='true';
+					usersService.deleteUser($scope.user,$scope.index);
 				});
 			};
 
