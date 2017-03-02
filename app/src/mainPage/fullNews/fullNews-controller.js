@@ -2,12 +2,22 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('fullNewsCtrl', ['newsItemsService', '$uibModal', '$scope', function (newsItemsService, $uibModal, $scope) {
-			$scope.role = 'user';
+		.controller('fullNewsCtrl', ['newsItemsService', 'usersService', '$uibModal', '$scope', '$window', function (newsItemsService, usersService, $uibModal, $scope, $window) {
+			$scope.usersService = usersService;
+
 			$scope.index = location.toString().lastIndexOf('/');
-			$scope.id = location.toString().substr($scope.index + 10);
-			$scope.newsItem = newsItemsService.getNewsItemsArray()[$scope.id];
+			$scope.id = location.toString().substr($scope.index + 2);
 			$scope.newsItems = newsItemsService.getNewsItemsArray();
+			$scope.newsItem = {
+				author: newsItemsService.getStaticNewsItemsArray()[$scope.id].author,
+				date: newsItemsService.getStaticNewsItemsArray()[$scope.id].date,
+				deleted: 'false',
+				id: newsItemsService.getStaticNewsItemsArray()[$scope.id].id,
+				summary: newsItemsService.getStaticNewsItemsArray()[$scope.id].summary,
+				tag: newsItemsService.getStaticNewsItemsArray()[$scope.id].tag,
+				text: newsItemsService.getStaticNewsItemsArray()[$scope.id].text,
+				title: newsItemsService.getStaticNewsItemsArray()[$scope.id].title
+			};
 
 			/**
 			 * @ngdoc function
@@ -25,7 +35,7 @@
 				modalInstance.result.then(function (param) {
 					if (param) {
 						$scope.newsItem.deleted = true;
-						window.location = ('http://localhost:8000/#/newsfeed');
+						$window.location.href = '/#!/newsfeed';
 					}
 				});
 			};
@@ -62,6 +72,18 @@
 					}
 				})
 			};
+
+			/**
+			 * @ngdoc function
+			 * @name $watch
+			 * @description set users role if it'schanged
+			 * @param ('usersService.getRole()', function (newValue, oldValue, $scope)
+			 */
+			$scope.$watch('usersService.getRole()', function (newValue, oldValue, $scope) {
+				if (newValue !== oldValue) {
+					$scope.role = usersService.getRole();
+				}
+			}, true);
 		}])
 })();
 

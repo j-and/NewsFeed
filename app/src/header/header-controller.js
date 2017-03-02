@@ -5,7 +5,7 @@
 		.controller('headerCtrl', ['usersService', '$scope', '$uibModal', function (usersService, $scope, $uibModal) {
 
 			$scope.usersService = usersService;
-
+			$scope.role = usersService.getRole();
 			/**
 			 * @ngdoc function
 			 * @name openLoginModal

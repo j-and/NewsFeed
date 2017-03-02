@@ -2,8 +2,8 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('mainPageCtrl', ['errorService', 'usersService', 'searchService', 'newsItemsService', '$scope', '$uibModal', function (errorService, usersService, searchService, newsItemsService, $scope, $uibModal) {
-
+		.controller('mainPageCtrl', ['errorService', 'usersService', 'searchService', 'newsItemsService', '$scope', '$uibModal', '$window', function (errorService, usersService, searchService, newsItemsService, $scope, $uibModal, $window) {
+			$scope.role = usersService.getRole();
 			$scope.usersService = usersService;
 			$scope.currentPage = 1;
 			$scope.itemsPerPage = 3;
@@ -16,8 +16,8 @@
 			$scope.newsItemsService = newsItemsService;
 
 			$scope.countTotalPages = function (array, itemsPerPage) {
-				var arrayShown=[];
-				for(var i=0;i<array.length;i++){
+				var arrayShown = [];
+				for (var i = 0; i < array.length; i++) {
 					arrayShown.push(array[i])
 				}
 				$scope.totalPages = Math.round(arrayShown.length / itemsPerPage);
@@ -27,7 +27,7 @@
 
 			$scope.goToErrorPage = function (message) {
 				errorService.setErrorMessage(message);
-				window.location = 'http://localhost:8000/#!/newsfeed/error';
+				$window.location.href = '/#!/newsfeed/error';
 			};
 
 			$scope.countUp = function (event) {

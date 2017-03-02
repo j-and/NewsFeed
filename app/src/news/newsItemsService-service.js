@@ -106,6 +106,32 @@
 
 			/**
 			 * @ngdoc function
+			 * @name setStaticNewsItemsArray
+			 * @description sets array (with deleted items) to localStorage (for fullNews)
+			 * @param  (array)
+			 */
+			var setStaticNewsItemsArray = function (array) {
+				localStorage.setItem("staticNewsItemsArray", array);
+			};
+
+			/**
+			 * @ngdoc function
+			 * @name getNegetStaticNewsItemsArraywsItemsArray
+			 * @description gets array from localStorage
+			 * @returns (array)
+			 */
+			var getStaticNewsItemsArray = function () {
+				var getStaticItem = localStorage.getItem("staticNewsItemsArray");
+				if (getStaticItem) {
+					return JSON.parse(getStaticItem);
+				}
+				else {
+					return newsItemsArrayDefault
+				}
+			};
+
+			/**
+			 * @ngdoc function
 			 * @name setNewsItemsArray
 			 * @description sets array to localStorage
 			 * @param  (array)
@@ -141,6 +167,7 @@
 				if (!newsItemsArrayString) {
 					newsItemsArrayString = JSON.stringify(newsItemsArrayDefault);
 					setNewsItemsArray(newsItemsArrayString);
+					setStaticNewsItemsArray(newsItemsArrayString);
 				}
 				var newsItemsArray = JSON.parse(newsItemsArrayString);
 				for (var i = 0; i < newsItemsArray.length; i++) {
@@ -150,6 +177,7 @@
 				}
 				newsItemsArrayString = JSON.stringify(newsItemsArray);
 				setNewsItemsArray(newsItemsArrayString);
+				setStaticNewsItemsArray(newsItemsArrayString);
 			};
 
 			/**
@@ -164,6 +192,7 @@
 					newsItemsArrayString = JSON.stringify(newsItemsArrayDefault);
 					localStorage.setItem("newsItemsArray", newsItemsArrayString);
 				}
+				setStaticNewsItemsArray(newsItemsArrayString);
 				var newsItemsArray = JSON.parse(newsItemsArrayString);
 				delete newsItemsArray[index];
 				newsItemsArray[index] = object;
@@ -175,6 +204,7 @@
 				}
 				newsItemsArrayString = JSON.stringify(newsItemsArrayShown);
 				setNewsItemsArray(newsItemsArrayString);
+
 			};
 
 			return {
@@ -183,7 +213,8 @@
 				newsItemsArrayDefault: newsItemsArrayDefault,
 				setNewsItemsArray: setNewsItemsArray,
 				addEditNewsItem: addEditNewsItem,
-				deleteNewsItem: deleteNewsItem
+				deleteNewsItem: deleteNewsItem,
+				getStaticNewsItemsArray: getStaticNewsItemsArray
 			};
 
 		}]);

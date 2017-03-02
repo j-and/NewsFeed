@@ -10,7 +10,7 @@ angular.module('NewsFeed', [
 			templateUrl: 'src/mainPage/mainPage/mainPage.html'
 		});
 
-		$routeProvider.when('/newsfeed/fullNews', {
+		$routeProvider.when('/newsfeed/fullNews/:id', {
 			controller: 'fullNewsCtrl',
 			templateUrl: 'src/mainPage/fullNews/fullNews.html'
 		});

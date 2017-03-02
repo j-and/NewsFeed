@@ -1,5 +1,4 @@
 <div ng-repeat="x in users track by $index" id="{{$index}}" ng-if="x.deleted!='true'">
-<!--<div ng-repeat="x in users track by $index" id="{{$index}}" ng-class="(x.deleted=='true'?deleted:'')">-->
 	<div class="col-sm-8 col-sm-offset-2">
 		<ul>
 			<li ng-class="((x).status=='pending')?'pending-user':'form-control'">

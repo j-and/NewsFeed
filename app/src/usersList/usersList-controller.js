@@ -3,7 +3,7 @@
 
 	angular.module('NewsFeed')
 		.controller('usersListCtrl', ['searchService', 'usersService', '$scope', '$uibModal', function (searchService, usersService, $scope, $uibModal) {
-
+			$scope.role = usersService.getRole();
 			$scope.usersService = usersService;
 
 			//$scope.users = usersService.getUsersArray();
@@ -52,8 +52,8 @@
 				modalInstance.result.then(function () {
 					$scope.index = index;
 					$scope.user = usersService.getUsersArray()[index];
-					$scope.user.deleted='true';
-					usersService.deleteUser($scope.user,$scope.index);
+					$scope.user.deleted = 'true';
+					usersService.deleteUser($scope.user, $scope.index);
 				});
 			};
 
