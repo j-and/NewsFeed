@@ -5,30 +5,22 @@
 		.controller('mainPageCtrl', ['errorService', 'usersService', 'searchService', 'newsItemsService', '$scope', '$uibModal', function (errorService, usersService, searchService, newsItemsService, $scope, $uibModal) {
 
 			$scope.usersService = usersService;
-			// $scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.currentPage = 1;
 			$scope.itemsPerPage = 3;
-			//$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 
-			$scope.newsItems1 = newsItemsService.getNewsItemsArray();
-			$scope.newsItems = [];
-
-			if ($scope.newsItems1.length) {
-				for (var i = 0; i < $scope.newsItems1.length; i++) {
-					if ($scope.newsItems1[i].deleted != true) {
-						$scope.newsItems.push($scope.newsItems1[i])
-					}
-				}
-				newsItemsService.setNewsItemsArray(JSON.stringify($scope.newsItems))
-			}
-			console.log('$scope.newsItems')
+			$scope.localStorageArray = newsItemsService.getNewsItemsArray();
 			$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+
 
 			$scope.searchService = searchService;
 			$scope.newsItemsService = newsItemsService;
 
 			$scope.countTotalPages = function (array, itemsPerPage) {
-				$scope.totalPages = Math.round(array.length / itemsPerPage);
+				var arrayShown=[];
+				for(var i=0;i<array.length;i++){
+					arrayShown.push(array[i])
+				}
+				$scope.totalPages = Math.round(arrayShown.length / itemsPerPage);
 			};
 
 			$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
@@ -87,18 +79,20 @@
 
 			$scope.$watch('searchService.getSearchResultsArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
-					$scope.newsItems = searchService.getSearchResultsArray();//.splice(0, 3);
+					$scope.newsItems = searchService.getSearchResultsArray();
 					$scope.array = [];
 					for (var i = 0; i < searchService.getSearchResultsArray().length; i++) {
 						$scope.array.push(searchService.getSearchResultsArray()[i]);
 					}
 					$scope.newsItems = $scope.array.splice($scope.currentPage - 1, $scope.itemsPerPage);
+					$scope.countTotalPages(searchService.getSearchResultsArray(), $scope.itemsPerPage);
 				}
 			}, true);
 
 			$scope.$watch('newsItemsService.getNewsItemsArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
 					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+					$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
 				}
 			}, true);
 
@@ -152,10 +146,11 @@
 					}
 				});
 				modalInstance.result.then(function () {
-					$scope.index = index;
-					$scope.newsItem = newsItemsService.getNewsItemsArray()[index];
-					$scope.newsItem.deleted='true';
+					$scope.index = index + ($scope.currentPage - 1) * $scope.itemsPerPage;
+					$scope.newsItem = newsItemsService.getNewsItemsArray()[$scope.index];
+					$scope.newsItem.deleted = 'true';
 					newsItemsService.deleteNewsItem($scope.newsItem, $scope.index);
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 				});
 			};
 

@@ -5,6 +5,7 @@
 		.factory('searchService', ['newsItemsService', function (newsItemsService) {
 
 			var searchResultsArray;
+			var searchResultsArray;
 			var searchRecords;
 			var newArray = [];
 			var selectedFilters = {};
@@ -112,22 +113,22 @@
 			 */
 			var setDataArray = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray) {
 				var dataArray = [];
-				if(authorIsChecked){
+				if (authorIsChecked) {
 					for (var i = 0; i < objectsArray.length; i++) {
 						dataArray.push(objectsArray[i].author);
 					}
 				}
-				if(dateIsChecked) {
+				if (dateIsChecked) {
 					for (var i = 0; i < objectsArray.length; i++) {
 						dataArray.push(objectsArray[i].date);
 					}
 				}
-				if(tagIsChecked) {
+				if (tagIsChecked) {
 					for (var i = 0; i < objectsArray.length; i++) {
 						dataArray.push(objectsArray[i].tag);
 					}
 				}
-				if(!authorIsChecked&&!dateIsChecked&&!tagIsChecked){
+				if (!authorIsChecked && !dateIsChecked && !tagIsChecked) {
 					for (var i = 0; i < objectsArray.length; i++) {
 						dataArray.push(objectsArray[i].author);
 						dataArray.push(objectsArray[i].date);
@@ -235,7 +236,6 @@
 			var currentPage;
 
 
-
 			/**
 			 * @ngdoc function
 			 * @name divideToPages
@@ -247,7 +247,7 @@
 				var perPageArray = [];
 				var start = (currentPage - 1) * itemsPerPage;
 				for (var i = start; i < start + itemsPerPage; i++) {
-					if (array[i]) {
+					if (array[i] && array[i].deleted === 'false') {
 						perPageArray.push(array[i])
 					}
 				}

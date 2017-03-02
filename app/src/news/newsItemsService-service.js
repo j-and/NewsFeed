@@ -123,7 +123,7 @@
 			var getNewsItemsArray = function () {
 				var getItem = localStorage.getItem("newsItemsArray");
 				if (getItem) {
-					return JSON.parse(getItem)
+					return JSON.parse(getItem);
 				}
 				else {
 					return newsItemsArrayDefault
@@ -167,8 +167,13 @@
 				var newsItemsArray = JSON.parse(newsItemsArrayString);
 				delete newsItemsArray[index];
 				newsItemsArray[index] = object;
-				//console.log('newsItemsArray[index].deleted= '+newsItemsArray[index].deleted)
-				newsItemsArrayString = JSON.stringify(newsItemsArray);
+				var newsItemsArrayShown = [];
+				for (var i = 0; i < newsItemsArray.length; i++) {
+					if (newsItemsArray[i].deleted === 'false') {
+						newsItemsArrayShown.push(newsItemsArray[i])
+					}
+				}
+				newsItemsArrayString = JSON.stringify(newsItemsArrayShown);
 				setNewsItemsArray(newsItemsArrayString);
 			};
 
