@@ -1,35 +1,54 @@
-#title {
-	margin-top: -20px;
+.card {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: gainsboro;
+	max-height: 200px;
+}
+
+.fullnews.card {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: gainsboro;
+	max-height: none;
+}
+
+.theme {
+	margin-top: 150px;
+}
+
+.title {
+	margin-top: 40px;
 	font-size: 20px;
+	font-weight: bold;
+	color:black;
+}
+
+.summary {
+	font-size: 16px;
 	font-weight: bold;
 }
 
-#summary {
-	font-size: 16px;
-}
-
-#text {
-	font-size: 16px;
+.text {
 	font-weight: 200;
 }
 
-#author {
+.author {
 	position: relative;
-	margin-top: 20px;
+	margin-top: 16px;
 	bottom: 20px;
+	text-align: right;
 }
 
 .view-button {
-	position: relative;
-	top: 50px;
+	position: absolute;
 	z-index: 10;
-}
-
-#jumbotron {
-	padding-bottom: 0;
+	bottom: 10px;
+	right:20px;
 }
 
 .view-button.fullnews {
-	margin-bottom: 50px;
+	position: relative;
+	z-index: 10;
+	margin-bottom: 20px;
 }
 

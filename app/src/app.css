@@ -3,24 +3,20 @@
 	list-style: none;
 }
 
-span.remove-button {
+.remove-button {
 	top: -10px;
 	float: right;
 }
 
 .add-button {
 	position: fixed;
-	bottom: 120px;
+	bottom: 60px;
 	right: 50px;
 	z-index: 1000;
 }
 
 .add-button-size {
 	font-size: 50px;
-}
-
-.jumbotron.card {
-	max-height: 150px;
 }
 
 .profile-buttons {
@@ -33,11 +29,7 @@ span.remove-button {
 }
 
 .pagination {
-	position: fixed;
-	bottom: 100px;
+	position: absolute;
+	bottom: -40px;
 	z-index: 1000;
-}
-
-.deleted {
-	display: none;
 }
