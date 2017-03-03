@@ -2,11 +2,12 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('fullNewsCtrl', ['newsItemsService', 'usersService', '$uibModal', '$scope', '$window', function (newsItemsService, usersService, $uibModal, $scope, $window) {
+		.controller('fullNewsCtrl', ['newsItemsService', 'usersService', '$uibModal', '$scope', '$window', '$routeParams', function (newsItemsService, usersService, $uibModal, $scope, $window, $routeParams) {
 			$scope.usersService = usersService;
+			$scope.$routeParams = $routeParams;
 
-			$scope.index = location.toString().lastIndexOf('/');
-			$scope.id = location.toString().substr($scope.index + 2);
+			$scope.id = $scope.$routeParams.id.substr(1);
+
 			$scope.newsItems = newsItemsService.getNewsItemsArray();
 			$scope.newsItem = {
 				author: newsItemsService.getStaticNewsItemsArray()[$scope.id].author,

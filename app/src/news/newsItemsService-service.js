@@ -99,9 +99,10 @@
 					localStorage.setItem("newsItemsArray", newsItemsArrayString);
 				}
 				var newsItemsArray = JSON.parse(newsItemsArrayString);
-				newsItemsArray.unshift(object);
+				newsItemsArray.push(object);
 				newsItemsArrayString = JSON.stringify(newsItemsArray);
 				setNewsItemsArray(newsItemsArrayString);
+				setStaticNewsItemsArray(newsItemsArrayString);
 			};
 
 			/**

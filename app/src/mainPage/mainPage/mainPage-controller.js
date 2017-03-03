@@ -8,8 +8,8 @@
 			$scope.currentPage = 1;
 			$scope.itemsPerPage = 3;
 
-			$scope.localStorageArray = newsItemsService.getNewsItemsArray();
-			$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+			$scope.localStorageArray = newsItemsService.getNewsItemsArray().reverse();
+			$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray().reverse());
 
 
 			$scope.searchService = searchService;
@@ -23,14 +23,20 @@
 				$scope.totalPages = Math.round(arrayShown.length / itemsPerPage);
 			};
 
-			$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
+			$scope.countTotalPages(newsItemsService.getNewsItemsArray().reverse(), $scope.itemsPerPage);
 
 			$scope.goToErrorPage = function (message) {
 				errorService.setErrorMessage(message);
-				$window.location.href = '/#!/newsfeed/error';
+				$window.location.href = '/#/newsfeed/error';
 			};
 
-			$scope.countUp = function (event) {
+			/**
+			 * @ngdoc function
+			 * @name countUp
+			 * @description independent counter(counts up)
+			 * * @returns (number) currentPage++
+			 */
+			$scope.countUp = function () {
 				return function () {
 					return $scope.currentPage++;
 				}
@@ -38,25 +44,31 @@
 
 			$scope.counterUp = $scope.countUp();
 
-			$scope.counterClean = function () {
-				$scope.currentPage = 1;
-				return $scope.currentPage;
-			};
-
+			/**
+			 * @ngdoc function
+			 * @name goNext
+			 * @description redirects to next page if it exists
+			 */
 			$scope.goNext = function () {
 				$scope.counterUp();
 				if (searchService.getSearchResultsArray()) {
 					$scope.newsItems = searchService.divideToPages($scope.currentPage, searchService.getSearchResultsArray());
 				}
 				else {
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray().reverse());
 				}
 				if ($scope.currentPage > $scope.totalPages) {
 					$scope.goToErrorPage('No more news');
 				}
 			};
 
-			$scope.countDown = function (event) {
+			/**
+			 * @ngdoc function
+			 * @name countDown
+			 * @description independent counter(counts down)
+			 * * @returns (number) currentPage--
+			 */
+			$scope.countDown = function () {
 				return function () {
 					return $scope.currentPage--;
 				}
@@ -64,19 +76,30 @@
 
 			$scope.counterDown = $scope.countDown();
 
+			/**
+			 * @ngdoc function
+			 * @name goPrevious
+			 * @description redirects to previous page if it exists
+			 */
 			$scope.goPrevious = function () {
 				$scope.counterDown();
 				if (searchService.getSearchResultsArray()) {
 					$scope.newsItems = searchService.divideToPages($scope.currentPage, searchService.getSearchResultsArray());
 				}
 				else {
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray().reverse());
 				}
 				if ($scope.currentPage == 0) {
 					$scope.goToErrorPage('No more news');
 				}
 			};
 
+			/**
+			 * @ngdoc function
+			 * @name $watch
+			 * @description sets newsItems if it's changed (if query is entered)
+			 * @param ('searchService.getSearchResultsArray()', function (newValue, oldValue, $scope))
+			 */
 			$scope.$watch('searchService.getSearchResultsArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
 					$scope.newsItems = searchService.getSearchResultsArray();
@@ -89,10 +112,16 @@
 				}
 			}, true);
 
+			/**
+			 * @ngdoc function
+			 * @name $watch
+			 * @description sets newsItems if it's changed
+			 * @param ('newsItemsService.getNewsItemsArray()', function (newValue, oldValue, $scope))
+			 */
 			$scope.$watch('newsItemsService.getNewsItemsArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
-					$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray().reverse());
+					$scope.countTotalPages(newsItemsService.getNewsItemsArray().reverse(), $scope.itemsPerPage);
 				}
 			}, true);
 
@@ -150,7 +179,7 @@
 					$scope.newsItem = newsItemsService.getNewsItemsArray()[$scope.index];
 					$scope.newsItem.deleted = 'true';
 					newsItemsService.deleteNewsItem($scope.newsItem, $scope.index);
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray().reverse());
 				});
 			};
 
