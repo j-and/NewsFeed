@@ -3,7 +3,6 @@
 
 	angular.module('NewsFeed')
 		.controller('headerCtrl', ['usersService', '$scope', '$uibModal', function (usersService, $scope, $uibModal) {
-
 			$scope.usersService = usersService;
 			$scope.role = usersService.getRole();
 			/**
@@ -17,19 +16,6 @@
 					controller: 'loginModalCtrl',
 					controllerAs: 'profile'
 				});
-			};
-
-			/**
-			 * @ngdoc function
-			 * @name openEditProfileModal
-			 * @description opens edit profile modal window
-			 */
-			$scope.openEditProfileModal = function () {
-				// $uibModal.open({
-				// 	templateUrl: '/src/header/editProfileModal/editProfileModal.html',
-				// 	controller: 'editProfileModalCtrl',
-				// 	controllerAs: 'editProfile'
-				// })
 			};
 
 			/**

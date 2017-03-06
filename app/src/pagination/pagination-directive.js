@@ -1,9 +1,12 @@
 (function () {
 	'use strict';
 	angular.module('NewsFeed')
-		.directive('pagination', function () {
-			return {
-				templateUrl: '/src/pagination/pagination.html'
-			};
-		});
+		.directive('pagination', pagination);
+	function pagination() {
+		return {
+			controller: 'paginationCtrl',
+			controllerAs: 'pagination',
+			templateUrl: '/src/pagination/pagination.html'
+		};
+	}
 })();

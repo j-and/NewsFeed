@@ -1,18 +1,18 @@
-<div ng-repeat="x in users track by $index" id="{{$index}}" ng-if="x.deleted!='true'">
+<div ng-repeat="user in users track by $index" id="{{$index}}" ng-if="user.deleted!='true'">
 	<div class="col-sm-8 col-sm-offset-2">
 		<ul>
-			<li ng-class="((x).status=='pending')?'pending-user':'form-control'">
-				<span class="col-md-2">{{(x).date}}</span>
-				<span class="col-md-3">{{(x).name}}</span>
-				<span class="col-md-3">{{(x).email}}</span>
-				<span class="col-md-1">{{(x).role}}</span>
+			<li ng-class="(user.status=='pending')?'pending-user':'form-control'">
+				<span class="col-md-2">{{user.date}}</span>
+				<span class="col-md-3">{{user.name}}</span>
+				<span class="col-md-3">{{user.email}}</span>
+				<span class="col-md-1">{{user.role}}</span>
 				<span class="glyphicon glyphicon-ok-sign col-sm-offset-11"
 				      aria-hidden="true"
 				      ng-click="addPendingUser($index)"
-				      ng-show="((x).status=='pending')"></span>
+				      ng-show="(user.status=='pending')"></span>
 				<span aria-hidden="true"
-				      id="{{(x).id}}"
-				      ng-class="((x).status=='pending')?'glyphicon glyphicon-remove':'glyphicon glyphicon-remove col-sm-offset-11 remove-button'"
+				      id="{{user.id}}"
+				      ng-class="(user.status=='pending')?'glyphicon glyphicon-remove':'glyphicon glyphicon-remove col-sm-offset-11 remove-button'"
 				      ng-click="openDeleteUserModal($index)"></span>
 			</li>
 		</ul>

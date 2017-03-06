@@ -172,7 +172,7 @@
 				}
 				var newsItemsArray = JSON.parse(newsItemsArrayString);
 				for (var i = 0; i < newsItemsArray.length; i++) {
-					if (object.id == newsItemsArray[i].id) {
+					if (object.id === newsItemsArray[i].id) {
 						newsItemsArray[i] = object;
 					}
 				}

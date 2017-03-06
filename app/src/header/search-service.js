@@ -2,274 +2,294 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.factory('searchService', ['newsItemsService', function (newsItemsService) {
+		.factory('searchService', function () {
 
-			var searchResultsArray;
-			var searchResultsArray;
-			var searchRecords;
-			var newArray = [];
-			var selectedFilters = {};
-			var Query;
+				var searchResultsArray;
+				var searchRecords;
+				var newArray = [];
+				var searchQuery;
 
-			/**
+				/**
+				 * @ngdoc function
+				 * @name setRecords
+				 * @description  set records
+				 * @param  {object} array
+				 */
+				var setRecords = function (array) {
+					searchRecords = array;
+				};
+
+				/**
+				 * @ngdoc function
+				 * @name getRecords
+				 * @description  get records
+				 * @return  {object}searchRecords
+				 */
+				var getRecords = function () {
+					return searchRecords;
+				};
+
+				/**
+				 * @ngdoc function
+				 * @name setNewArray
+				 * @description  set new array
+				 * @param  {object} array
+				 */
+				var setNewArray = function (array) {
+					newArray = array;
+				};
+
+				/**
+				 * @ngdoc function
+				 * @name setSearchResultsArray
+				 * @description  set search results array
+				 * @param  {object} array
+				 */
+				var setSearchResultsArray = function (array) {
+					searchResultsArray = array;
+				};
+
+				/**
+				 * @ngdoc function
+				 * @name getSearchResultsArray
+				 * @description  gets search results array
+				 * @return {object} searchResultsArray
+				 */
+				var getSearchResultsArray = function () {
+					return searchResultsArray;
+				};
+
+				/**
+				 * @ngdoc function
+				 * @name getNewArray
+				 * @description  gets new array
+				 * @return {object}newArray
+				 */
+				var getNewArray = function () {
+					return newArray;
+				};
+
+				/**
 			 * @ngdoc function
-			 * @name setRecords
-			 * @description  set records
-			 * @param  ( array)
-			 */
-			var setRecords = function (array) {
-				searchRecords = array;
-			};
-
-			/**
-			 * @ngdoc function
-			 * @name getRecords
-			 * @description  get records
-			 * @param  ( searchRecords)
-			 */
-			var getRecords = function () {
-				return searchRecords;
-			};
-
-			/**
-			 * @ngdoc function
-			 * @name setNewArray
-			 * @description  set new array
-			 * @param  ( array)
-			 */
-			var setNewArray = function (array) {
-				newArray = array;
-			};
-
-			/**
-			 * @ngdoc function
-			 * @name setSearchResultsArray
-			 * @description  set search results array
-			 * @param  ( array)
-			 */
-			var setSearchResultsArray = function (array) {
-				searchResultsArray = array;
-			};
-
-			/**
-			 * @ngdoc function
-			 * @name getSearchResultsArray
-			 * @description  gets search results array
-			 * @returns( searchResultsArray)
-			 */
-			var getSearchResultsArray = function () {
-				return searchResultsArray;
-			};
-
-			/**
-			 * @ngdoc function
-			 * @name getNewArray
-			 * @description  gets new array
-			 * @returns( newArray)
-			 */
-			var getNewArray = function () {
-				return newArray;
-			};
-
-			/**
-			 * @ngdoc function
-			 * @name setQuery
+			 * @name setSearchQuery
 			 * @description  set query
-			 * @param  ( query)
+			 * @param  {object} query
 			 */
-			var setQuery = function (query) {
-				Query = query;
-			};
+			var setSearchQuery = function (query) {
+					searchQuery = query;
+				};
 
 			/**
 			 * @ngdoc function
-			 * @name getQuery
+			 * @name getSearchQuery
 			 * @description  get query
-			 * @returns( query)
+			 * @returns{object} query
 			 */
-			var getQuery = function () {
-				return Query;
-			}
+			var getSearchQuery = function () {
+				return searchQuery;
+			};
+
+				/**
+				 * @ngdoc function
+				 * @name showSearchResults
+				 * @description  shows search results
+				 * @returns {object} searchResults
+				 */
+				var showSearchResults = function () {
+					var searchResults;
+					event.stopPropagation();
+					if (searchQuery.query) {
+						return searchResults = true;
+					}
+				};
 
 			/**
 			 * @ngdoc function
-			 * @name showSearchResults
-			 * @description  shows search results
-			 * @returns( searchResults = true)
+			 * @name setSearchQuery
+			 * @description  set query
+			 * @param  {object} query
 			 */
-			var showSearchResults = function () {
-				var searchResults;
-				event.stopPropagation();
-				if (Query.query) {
-					return searchResults = true;
-				}
+			var setCurrentPage = function (page) {
+
+				currentPage = page;
 			};
 
 			/**
 			 * @ngdoc function
-			 * @name setDataArray
-			 * @description sets  dataArray according to selected filters
-			 * @param  (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray)
+			 * @name getSearchQuery
+			 * @description  get query
+			 * @returns{object} query
 			 */
-			var setDataArray = function (authorIsChecked, dateIsChecked, tagIsChecked, objectsArray) {
-				var dataArray = [];
-				if (authorIsChecked) {
-					for (var i = 0; i < objectsArray.length; i++) {
-						dataArray.push(objectsArray[i].author);
-					}
-				}
-				if (dateIsChecked) {
-					for (var i = 0; i < objectsArray.length; i++) {
-						dataArray.push(objectsArray[i].date);
-					}
-				}
-				if (tagIsChecked) {
-					for (var i = 0; i < objectsArray.length; i++) {
-						dataArray.push(objectsArray[i].tag);
-					}
-				}
-				if (!authorIsChecked && !dateIsChecked && !tagIsChecked) {
-					for (var i = 0; i < objectsArray.length; i++) {
-						dataArray.push(objectsArray[i].author);
-						dataArray.push(objectsArray[i].date);
-						if (objectsArray[i].tag) {
-							dataArray.push(objectsArray[i].tag);
+			var getCurrentPage = function () {	
+				return currentPage;
+			};
+
+
+				/**
+				 * @ngdoc function
+				 * @name setDataArray
+				 * @description sets  dataArray according to selected filters
+				 * @param  {object} searchQuery
+				 *  * @param  {object} objectsArray
+				 */
+				var setDataArray = function (searchQuery, objectsArray) {
+					var dataArray = [];
+					angular.forEach(objectsArray, function (value) {
+						if (searchQuery.authorIsChecked) {
+							dataArray.push(value.author);
 						}
-					}
-				}
-				setNewArray(dataArray)
-			};
+						if (searchQuery.dateIsChecked) {
+							dataArray.push(value.date);
+						}
+						if (searchQuery.tagIsChecked) {
+							if (value.tag) {
+								dataArray.push(value.tag);
+							}
+						}
+						if (!searchQuery.authorIsChecked && !searchQuery.dateIsChecked && !searchQuery.tagIsChecked) {
+							dataArray.push(value.author);
+							dataArray.push(value.date);
+							if (value.tag) {
+								dataArray.push(value.tag);
+							}
+						}
+					});
+					setNewArray(dataArray)
+				};
 
-			var object = {};
+				var object = {};
 
-			/**
-			 * @ngdoc function
-			 * @name search
-			 * @description filters array according to query
-			 * @param  (dataArray, objectsArray, query)
-			 * @returns {object}
-			 */
-			var search = function (dataArray, objectsArray, query) {
-				var matchesTitleArrayIndex = [];
-				for (var i = 0; i < dataArray.length; i++) {
-					if (dataArray[i]) {
-						for (var j = 0; j < dataArray[i].length + 1; j++) {
-							for (var k = 0; k < dataArray[i].length; k++) {
-								if (query.toUpperCase() == dataArray[i].substr(k, j).toUpperCase()) {
-									matchesTitleArrayIndex.push(i);
+				/**
+				 * @ngdoc function
+				 * @name search
+				 * @description filters array according to query
+				 * @param  {object} dataArray
+				 * @param  {object} objectsArray
+				 * @param  {string} query)
+				 * @returns {object} object
+				 *
+				 */
+				var search = function (dataArray, objectsArray, query) {
+					var matchesTitleArrayIndex = [];
+					for (var i = 0; i < dataArray.length; i++) {
+						if (dataArray[i]) {
+							for (var j = 0; j < dataArray[i].length + 1; j++) {
+								for (var k = 0; k < dataArray[i].length; k++) {
+									if (query.toUpperCase() === dataArray[i].substr(k, j).toUpperCase()) {
+										matchesTitleArrayIndex.push(i);
+									}
 								}
 							}
 						}
 					}
-				}
-				object = {
-					a: filterNewsRecords(matchesTitleArrayIndex, dataArray),
-					b: filterNews(dataArray, objectsArray)
+					object = {
+						records: filterNewsRecords(matchesTitleArrayIndex, dataArray),
+						newsItems: filterNews(dataArray, objectsArray)
+					};
+					return object;
 				};
-				return object;
-			};
 
-			/**
-			 * @ngdoc function
-			 * @name uniqueKeys
-			 * @description  find unique items in filtred array
-			 * @param  (array,)
-			 * @returns {Object.keys(obj)}
-			 */
-			var uniqueKeys = function (arr) {
-				var obj = {};
-				for (var i = 0; i < arr.length; i++) {
-					var str = arr[i];
-					obj[str] = true;
-				}
-				return Object.keys(obj);
-			};
+				/**
+				 * @ngdoc function
+				 * @name uniqueKeys
+				 * @description  find unique items in filtred array
+				 * @param  {object} array
+				 * @returns {object} {Object.keys(obj)}
+				 */
+				var uniqueKeys = function (array) {
+					var obj = {};
+					angular.forEach(array, function (value) {
+						obj[value] = true;
+					});
+					return Object.keys(obj);
+				};
 
-			/**
-			 * @ngdoc function
-			 * @name filterNewsRecords
-			 * @description  filter news records
-			 * @param  (array, dataArray)
-			 * @returns {searchResultsArray}
-			 */
-			var filterNewsRecords = function (array, dataArray) {
-				searchResultsArray = [];
-				uniqueKeys(array);
-				for (var k = 0; k < uniqueKeys(array).length; k++) {
-					var j = uniqueKeys(array)[k];
-					searchResultsArray.push(dataArray[j]);
-				}
-				setRecords(searchResultsArray);
-				array.length = 0;
-				return searchResultsArray;
-			};
+				/**
+				 * @ngdoc function
+				 * @name filterNewsRecords
+				 * @description  filter news records
+				 * @param  {object}array
+				 * @param  {object}dataArray
+				 * @returns {searchResultsArray}
+				 */
+				var filterNewsRecords = function (array, dataArray) {
+					searchResultsArray = [];
+					uniqueKeys(array);
+					angular.forEach(uniqueKeys(array), function (value) {
+						searchResultsArray.push(dataArray[value]);
+					});
+					setRecords(searchResultsArray);
+					array.length = 0;
+					return searchResultsArray;
+				};
 
-			/**
-			 * @ngdoc function
-			 * @name filterNews
-			 * @description  filter news
-			 * @param  (dataArray, objectsArray)
-			 * @returns {newObjectsArray}
-			 */
-			var filterNews = function (dataArray, objectsArray) {
-				var array = [];
-				var newObjectsArray = [];
-				for (var i = 0; i < getRecords().length; i++) {
-					for (var j = 0; j < objectsArray.length; j++) {
-						if (objectsArray[j].author == getRecords()[i] || objectsArray[j].date == getRecords()[i] || objectsArray[j].tag == getRecords()[i]) {
-							array.push(j);
+				/**
+				 * @ngdoc function
+				 * @name filterNews
+				 * @description  filter news
+				 * @param  {object}dataArray
+				 * @param  {object}objectsArray
+				 * @returns {object}newObjectsArray
+				 */
+				var filterNews = function (dataArray, objectsArray) {
+					var array = [];
+					var newObjectsArray = [];
+					angular.forEach(getRecords(), function (record) {
+						angular.forEach(objectsArray, function (newsItem) {
+							if (newsItem.author === record || newsItem.date === record || newsItem.tag === record) {
+								array.push(newsItem.id);
+							}
+						})
+					});
+					angular.forEach(uniqueKeys(array), function (id) {
+						newObjectsArray.push(objectsArray[id]);
+					});
+					setSearchResultsArray(newObjectsArray);
+					return newObjectsArray;
+
+				};
+
+				var itemsPerPage = 3;
+				var currentPage;
+
+
+				/**
+				 * @ngdoc function
+				 * @name divideToPages
+				 * @description  divide array to pages
+				 * @param  {number}currentPage
+				 * @param  {object} array
+				 * @returns {object}perPageArray
+				 */
+				var divideToPages = function (currentPage, array) {
+					var perPageArray = [];
+					var start = (currentPage - 1) * itemsPerPage;
+					for (var i = start; i < start + itemsPerPage; i++) {
+						if (array[i] && array[i].deleted === 'false') {
+							perPageArray.push(array[i])
 						}
 					}
-				}
-				var idArray = uniqueKeys(array);
-				for (var i = 0; i < idArray.length; i++) {
-					var id = idArray[i];
-					newObjectsArray.push(objectsArray[id]);
+					return perPageArray;
+				};
 
-				}
-				setSearchResultsArray(newObjectsArray);
-				return newObjectsArray;
+				return {
 
-			};
-
-			var itemsPerPage = 3;
-			var currentPage;
-
-
-			/**
-			 * @ngdoc function
-			 * @name divideToPages
-			 * @description  divide array to pages
-			 * @param  (currentPage, array)
-			 * @returns {perPageArray}
-			 */
-			var divideToPages = function (currentPage, array) {
-				var perPageArray = [];
-				var start = (currentPage - 1) * itemsPerPage;
-				for (var i = start; i < start + itemsPerPage; i++) {
-					if (array[i] && array[i].deleted === 'false') {
-						perPageArray.push(array[i])
-					}
-				}
-				return perPageArray;
-			};
-
-			return {
-
-				showSearchResults: showSearchResults,
-				getRecords: getRecords,
-				search: search,
-				newArray: newArray,
-				divideToPages: divideToPages,
-				currentPage: currentPage,
-				setDataArray: setDataArray,
-				getNewArray: getNewArray,
-				setSearchResultsArray: setSearchResultsArray,
-				getSearchResultsArray: getSearchResultsArray,
-				setQuery: setQuery,
-				getQuery: getQuery
-			};
-		}
-		]);
+					showSearchResults: showSearchResults,
+					getRecords: getRecords,
+					search: search,
+					// newArray: newArray,
+					divideToPages: divideToPages,
+					// currentPage: currentPage,
+					setDataArray: setDataArray,
+					getNewArray: getNewArray,
+					setSearchResultsArray: setSearchResultsArray,
+					getSearchResultsArray: getSearchResultsArray,
+					setSearchQuery: setSearchQuery,
+					getSearchQuery: getSearchQuery,
+					setCurrentPage:setCurrentPage,
+					getCurrentPage:getCurrentPage
+				};
+			}
+		);
 })
 ();

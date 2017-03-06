@@ -8,8 +8,8 @@
 			 * @ngdoc function
 			 * @name createId
 			 * @description creates id
-			 * @param (array)
-			 * @returns (createdId)
+			 * @param {object} array
+			 * @returns {number} createdId
 			 */
 			var createId = function (array) {
 				return array.length;

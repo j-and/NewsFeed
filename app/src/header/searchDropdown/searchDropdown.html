@@ -1,24 +1,24 @@
 <div class="input-group " ng-click="hideDropdown()">
 	<form class="form-inline">
 		<div class="form-group">
-			<span class="glyphicon glyphicon-search input-button" ng-show="!query"></span>
-			<span class="glyphicon glyphicon-remove input-button" ng-show="query"></span>
+			<span class="glyphicon glyphicon-search input-button" ng-show="!searchQuery.query"></span>
+			<span class="glyphicon glyphicon-remove input-button" ng-show="searchQuery.query"></span>
 
 			<input id="searchInput" class="form-control dropbtn" type="text" autocomplete="off"
-			       ng-model="Query.query" placeholder="Type query">
+			       ng-model="searchQuery.query" placeholder="Type searchQuery">
 		</div>
 	</form>
 </div>
 
 <div ng-show="searchResults" ng-click="hideDropdown()">
 	<ul class="custom-dropdown">
-		<li class="form-group col-sm-3 col-sm-offset-1"><input ng-model="Query.authorIsChecked" type="checkbox">Author
+		<li class="form-group col-sm-3 col-sm-offset-1"><input ng-model="searchQuery.authorIsChecked" type="checkbox">Author
 		</li>
-		<li class="form-group col-sm-3 col-sm-offset-1"><input ng-model="Query.dateIsChecked" type="checkbox">Date
+		<li class="form-group col-sm-3 col-sm-offset-1"><input ng-model="searchQuery.dateIsChecked" type="checkbox">Date
 		</li>
-		<li class="form-group col-sm-3 col-sm-offset-1"><input ng-model="Query.tagIsChecked" type="checkbox">Tag
+		<li class="form-group col-sm-3 col-sm-offset-1"><input ng-model="searchQuery.tagIsChecked" type="checkbox">Tag
 		</li>
-		<li ng-repeat="x in records track by $index">{{x}}</li>
+		<li ng-repeat="record in records track by $index">{{record}}</li>
 	</ul>
 </div>
 

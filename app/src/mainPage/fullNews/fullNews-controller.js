@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('fullNewsCtrl', ['newsItemsService', 'usersService', '$uibModal', '$scope', '$window', '$routeParams', function (newsItemsService, usersService, $uibModal, $scope, $window, $routeParams) {
+		.controller('fullNewsCtrl', ['newsItemsService', 'usersService', '$uibModal', '$scope', '$location', '$routeParams', function (newsItemsService, usersService, $uibModal, $scope, $location, $routeParams) {
 			$scope.usersService = usersService;
 			$scope.$routeParams = $routeParams;
 
@@ -36,7 +36,8 @@
 				modalInstance.result.then(function (param) {
 					if (param) {
 						$scope.newsItem.deleted = true;
-						$window.location.href = '/#!/newsfeed';
+						$location.location.href = '/#!/newsfeed';
+						$location.path('/newsfeed');
 					}
 				});
 			};

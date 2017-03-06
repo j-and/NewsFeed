@@ -2,103 +2,25 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('mainPageCtrl', ['errorService', 'usersService', 'searchService', 'newsItemsService', '$scope', '$uibModal', '$window', function (errorService, usersService, searchService, newsItemsService, $scope, $uibModal, $window) {
+		.controller('mainPageCtrl', ['errorService', 'usersService', 'searchService', 'newsItemsService', '$scope', '$uibModal', function (errorService, usersService, searchService, newsItemsService, $scope, $uibModal) {
 			$scope.role = usersService.getRole();
 			$scope.usersService = usersService;
-			$scope.currentPage = 1;
+			$scope.currentPage =  1;
 			$scope.itemsPerPage = 3;
 
 			$scope.localStorageArray = newsItemsService.getNewsItemsArray();
 			$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 
 
-			// $scope.searchService = searchService;
-			// $scope.newsItemsService = newsItemsService;
-
-			$scope.countTotalPages = function (array, itemsPerPage) {
-				var arrayShown = [];
-				for (var i = 0; i < array.length; i++) {
-					arrayShown.push(array[i])
-				}
-				$scope.totalPages = Math.round(arrayShown.length / itemsPerPage);
-			};
-
-			$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
-
-			$scope.goToErrorPage = function (message) {
-				errorService.setErrorMessage(message);
-				$window.location.href = '/#/newsfeed/error';
-			};
-
-			/**
-			 * @ngdoc function
-			 * @name countUp
-			 * @description independent counter(counts up)
-			 * * @returns (number) currentPage++
-			 */
-			$scope.countUp = function () {
-				return function () {
-					return $scope.currentPage++;
-				}
-			};
-
-			$scope.counterUp = $scope.countUp();
-
-			/**
-			 * @ngdoc function
-			 * @name goNext
-			 * @description redirects to next page if it exists
-			 */
-			$scope.goNext = function () {
-				$scope.counterUp();
-				if (searchService.getSearchResultsArray()) {
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, searchService.getSearchResultsArray());
-				}
-				else {
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
-				}
-				if ($scope.currentPage > $scope.totalPages) {
-					$scope.goToErrorPage('No more news');
-				}
-			};
-
-			/**
-			 * @ngdoc function
-			 * @name countDown
-			 * @description independent counter(counts down)
-			 * * @returns (number) currentPage--
-			 */
-			$scope.countDown = function () {
-				return function () {
-					return $scope.currentPage--;
-				}
-			};
-
-			$scope.counterDown = $scope.countDown();
-
-			/**
-			 * @ngdoc function
-			 * @name goPrevious
-			 * @description redirects to previous page if it exists
-			 */
-			$scope.goPrevious = function () {
-				$scope.counterDown();
-				if (searchService.getSearchResultsArray()) {
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, searchService.getSearchResultsArray());
-				}
-				else {
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
-				}
-				if ($scope.currentPage == 0) {
-					$scope.goToErrorPage('No more news');
-				}
-			};
+			$scope.searchService = searchService;
+			$scope.newsItemsService = newsItemsService;
 
 			/**
 			 * @ngdoc function
 			 * @name $watch
 			 * @description sets newsItems if it's changed (if query is entered)
-			 * @param ('searchService.getSearchResultsArray()', function (newValue, oldValue, $scope))
+			 * @param {object}searchService.getSearchResultsArray()
+			 * @param {object} function (newValue, oldValue, $scope)
 			 */
 			$scope.$watch('searchService.getSearchResultsArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
@@ -116,7 +38,8 @@
 			 * @ngdoc function
 			 * @name $watch
 			 * @description sets newsItems if it's changed
-			 * @param ('newsItemsService.getNewsItemsArray()', function (newValue, oldValue, $scope))
+			 * @param {object} newsItemsService.getNewsItemsArray()
+			 * @param {object} function (newValue, oldValue, $scope)
 			 */
 			$scope.$watch('newsItemsService.getNewsItemsArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
@@ -129,7 +52,7 @@
 			 * @ngdoc function
 			 * @name openEditNewsModal
 			 * @description open edit news modal
-			 * @param (index)
+			 * @param {number} index
 			 */
 			$scope.openEditNewsModal = function (index) {
 				$scope.newsItem = {
@@ -161,7 +84,7 @@
 			 * @ngdoc function
 			 * @name openDeleteNewsModal
 			 * @description open delete news modal
-			 * @param (index)
+			 * @param {number} index
 			 */
 			$scope.openDeleteNewsModal = function (index) {
 				var modalInstance = $uibModal.open({
@@ -187,13 +110,30 @@
 			 * @ngdoc function
 			 * @name $watch
 			 * @description set users role if it'schanged
-			 * @param ('usersService.getRole()', function (newValue, oldValue, $scope)
+			 * @param {object} usersService.getRole()
+			 * @param {object} function (newValue, oldValue, $scope)
 			 */
 			$scope.$watch('usersService.getRole()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
 					$scope.role = usersService.getRole();
 				}
 			}, true);
+
+
+			/**
+			 * @ngdoc function
+			 * @name $watch
+			 * @description gets currentPage
+			 * @param {object} searchService.getCurrentPage()
+			 * @param {object}  function (newValue, oldValue, $scope)
+			 */
+			$scope.$watch('searchService.getCurrentPage()', function (newValue, oldValue, $scope) {
+				if (newValue !== oldValue) {
+					$scope.newsItems = searchService.divideToPages(searchService.getCurrentPage(), newsItemsService.getNewsItemsArray());
+				}
+			}, true);
+
+
 		}]);
 })();
 
