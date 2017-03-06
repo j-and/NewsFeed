@@ -3,7 +3,7 @@
 		<div class="col-sm-10 col-sm-offset-1">
 			<p class="title">{{newsItem.title}}</p>
 			<p class="summary">{{newsItem.summary}}</p>
-			<span class="col-sm-3"><a ng-href="/#newsfeed/fullNews/{{mainPage.newsItem.id}}">More</a></span>
+			<span class="col-sm-3"><a ng-href="/#newsfeed/fullNews/{{newsItem.id}}">More</a></span>
 			<span class=" col-sm-9 author">By {{newsItem.author}} | {{newsItem.date}}</span>
 		</div>
 		<div class="col-sm-offset-10 view-button" ng-show="role == 'user'">

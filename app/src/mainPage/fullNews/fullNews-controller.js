@@ -24,7 +24,7 @@
 			 * @ngdoc function
 			 * @name openDeleteNewsModal
 			 * @description open delete news modal
-			 * @param (index)
+			 * @param {number} index
 			 */
 			$scope.openDeleteNewsModal = function (index) {
 				var modalInstance = $uibModal.open({
@@ -36,8 +36,8 @@
 				modalInstance.result.then(function (param) {
 					if (param) {
 						$scope.newsItem.deleted = true;
-						$location.location.href = '/#!/newsfeed';
-						$location.path('/newsfeed');
+						//$location.location.href = '/#!/newsfeed';
+						$location.path('/#newsfeed');
 					}
 				});
 			};
@@ -46,7 +46,8 @@
 			 * @ngdoc function
 			 * @name openEditNewsModal
 			 * @description open edit news modal
-			 * @returns {object} newsItem,index
+			 * @returns {object} newsItem
+			 * @returns {number} index
 			 **/
 			$scope.openEditNewsModal = function () {
 				var id = $scope.newsItem.id;
@@ -79,7 +80,8 @@
 			 * @ngdoc function
 			 * @name $watch
 			 * @description set users role if it'schanged
-			 * @param ('usersService.getRole()', function (newValue, oldValue, $scope)
+			 * @param {object} usersService.getRole()
+			 * @param {object} function (newValue, oldValue, $scope)
 			 */
 			$scope.$watch('usersService.getRole()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
