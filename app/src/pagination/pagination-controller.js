@@ -29,7 +29,7 @@
 			 * @ngdoc function
 			 * @name countUp
 			 * @description independent counter(counts up)
-			 * * @returns (number) currentPage++
+			 * @returns (number) currentPage
 			 */
 			vm.countUp = function () {
 				return function () {

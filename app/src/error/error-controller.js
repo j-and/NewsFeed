@@ -2,8 +2,9 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.controller('errorCtrl', ['errorService', '$scope', function (errorService, $scope) {
-			$scope.message = errorService.getErrorMessage();
+		.controller('errorCtrl', ['errorService', function (errorService) {
+			var vm = this;
+			vm.message = errorService.getErrorMessage();
 		}]);
 })
 ();

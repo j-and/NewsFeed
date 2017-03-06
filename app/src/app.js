@@ -7,6 +7,7 @@ angular.module('NewsFeed', [
 	.config(['$routeProvider', function ($routeProvider) {
 		$routeProvider.when("/newsfeed", {
 			controller: 'mainPageCtrl',
+			controllerAs: 'mainPage',
 			templateUrl: 'src/mainPage/mainPage/mainPage.html'
 		});
 
@@ -22,6 +23,7 @@ angular.module('NewsFeed', [
 
 		$routeProvider.when('/newsfeed/error', {
 			controller: 'errorCtrl',
+			controllerAs: 'error',
 			templateUrl: 'src/error/error.html'
 		})
 

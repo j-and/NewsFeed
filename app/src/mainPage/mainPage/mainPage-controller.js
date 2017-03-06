@@ -3,48 +3,47 @@
 
 	angular.module('NewsFeed')
 		.controller('mainPageCtrl', ['errorService', 'usersService', 'searchService', 'newsItemsService', '$scope', '$uibModal', function (errorService, usersService, searchService, newsItemsService, $scope, $uibModal) {
+
+			var vm = this;
+
 			$scope.role = usersService.getRole();
 			$scope.usersService = usersService;
-			$scope.currentPage =  1;
-			$scope.itemsPerPage = 3;
-
-			$scope.localStorageArray = newsItemsService.getNewsItemsArray();
-			$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
-
-
 			$scope.searchService = searchService;
 			$scope.newsItemsService = newsItemsService;
+
+			vm.currentPage = 1;
+			vm.itemsPerPage = 3;
+
+			vm.localStorageArray = newsItemsService.getNewsItemsArray();
+			vm.newsItems = searchService.divideToPages(vm.currentPage, newsItemsService.getNewsItemsArray());
 
 			/**
 			 * @ngdoc function
 			 * @name $watch
-			 * @description sets newsItems if it's changed (if query is entered)
+			 * @description sets vm.newsItems if it's changed (if query is entered)
 			 * @param {object}searchService.getSearchResultsArray()
 			 * @param {object} function (newValue, oldValue, $scope)
 			 */
 			$scope.$watch('searchService.getSearchResultsArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
-					$scope.newsItems = searchService.getSearchResultsArray();
-					$scope.array = [];
-					for (var i = 0; i < searchService.getSearchResultsArray().length; i++) {
-						$scope.array.push(searchService.getSearchResultsArray()[i]);
-					}
-					$scope.newsItems = $scope.array.splice($scope.currentPage - 1, $scope.itemsPerPage);
-					$scope.countTotalPages(searchService.getSearchResultsArray(), $scope.itemsPerPage);
+					var array = [];
+					angular.forEach(searchService.getSearchResultsArray(), function (searchResult) {
+						array.push(searchResult);
+					});
+					vm.newsItems = array.splice(vm.currentPage - 1, vm.itemsPerPage);
 				}
 			}, true);
 
 			/**
 			 * @ngdoc function
 			 * @name $watch
-			 * @description sets newsItems if it's changed
-			 * @param {object} newsItemsService.getNewsItemsArray()
+			 * @description sets vm.newsItems if it's changed
+			 * @param {object} newsItemsService.getvm.newsItemsArray()
 			 * @param {object} function (newValue, oldValue, $scope)
 			 */
 			$scope.$watch('newsItemsService.getNewsItemsArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
-					$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
+					vm.newsItems = searchService.divideToPages(vm.currentPage, newsItemsService.getNewsItemsArray());
 				}
 			}, true);
 
@@ -55,15 +54,15 @@
 			 * @param {number} index
 			 */
 			$scope.openEditNewsModal = function (index) {
-				$scope.newsItem = {
-						author: $scope.newsItems[index].author,
-						date: $scope.newsItems[index].date,
+				vm.newsItem = {
+						author: vm.newsItems[index].author,
+						date: vm.newsItems[index].date,
 						deleted: 'false',
-						id: $scope.newsItems[index].id,
-						summary: $scope.newsItems[index].summary,
-						tag: $scope.newsItems[index].tag,
-						text: $scope.newsItems[index].text,
-						title: $scope.newsItems[index].title
+						id: vm.newsItems[index].id,
+						summary: vm.newsItems[index].summary,
+						tag: vm.newsItems[index].tag,
+						text: vm.newsItems[index].text,
+						title: vm.newsItems[index].title
 					} || {};
 				$uibModal.open({
 					templateUrl: '/src/news/editNewsModal/editNewsModal.html',
@@ -71,7 +70,7 @@
 					controllerAs: 'editNews',
 					resolve: {
 						newsItem: function () {
-							return $scope.newsItem;
+							return vm.newsItem;
 						},
 						index: function () {
 							return index;
@@ -93,16 +92,16 @@
 					controllerAs: 'deleteNews',
 					resolve: {
 						index: function () {
-							return $scope.index;
+							return vm.index;
 						}
 					}
 				});
 				modalInstance.result.then(function () {
-					$scope.index = index + ($scope.currentPage - 1) * $scope.itemsPerPage;
-					$scope.newsItem = newsItemsService.getNewsItemsArray()[$scope.index];
-					$scope.newsItem.deleted = 'true';
-					newsItemsService.deleteNewsItem($scope.newsItem, $scope.index);
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+					vm.index = index + (vm.currentPage - 1) * vm.itemsPerPage;
+					vm.newsItem = newsItemsService.getNewsItemsArray()[vm.index];
+					vm.newsItem.deleted = 'true';
+					newsItemsService.deleteNewsItem(vm.newsItem, vm.index);
+					vm.newsItems = searchService.divideToPages(vm.currentPage, newsItemsService.getNewsItemsArray());
 				});
 			};
 
@@ -129,11 +128,9 @@
 			 */
 			$scope.$watch('searchService.getCurrentPage()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
-					$scope.newsItems = searchService.divideToPages(searchService.getCurrentPage(), newsItemsService.getNewsItemsArray());
+					vm.newsItems = searchService.divideToPages(searchService.getCurrentPage(), newsItemsService.getNewsItemsArray());
 				}
 			}, true);
-
-
 		}]);
 })();
 
