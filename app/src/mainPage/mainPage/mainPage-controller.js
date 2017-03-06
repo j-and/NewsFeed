@@ -8,12 +8,12 @@
 			$scope.currentPage = 1;
 			$scope.itemsPerPage = 3;
 
-			$scope.localStorageArray = newsItemsService.getNewsItemsArray().reverse();
-			$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray().reverse());
+			$scope.localStorageArray = newsItemsService.getNewsItemsArray();
+			$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 
 
-			$scope.searchService = searchService;
-			$scope.newsItemsService = newsItemsService;
+			// $scope.searchService = searchService;
+			// $scope.newsItemsService = newsItemsService;
 
 			$scope.countTotalPages = function (array, itemsPerPage) {
 				var arrayShown = [];
@@ -23,7 +23,7 @@
 				$scope.totalPages = Math.round(arrayShown.length / itemsPerPage);
 			};
 
-			$scope.countTotalPages(newsItemsService.getNewsItemsArray().reverse(), $scope.itemsPerPage);
+			$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
 
 			$scope.goToErrorPage = function (message) {
 				errorService.setErrorMessage(message);
@@ -55,7 +55,7 @@
 					$scope.newsItems = searchService.divideToPages($scope.currentPage, searchService.getSearchResultsArray());
 				}
 				else {
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray().reverse());
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 				}
 				if ($scope.currentPage > $scope.totalPages) {
 					$scope.goToErrorPage('No more news');
@@ -87,7 +87,7 @@
 					$scope.newsItems = searchService.divideToPages($scope.currentPage, searchService.getSearchResultsArray());
 				}
 				else {
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray().reverse());
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 				}
 				if ($scope.currentPage == 0) {
 					$scope.goToErrorPage('No more news');
@@ -120,8 +120,8 @@
 			 */
 			$scope.$watch('newsItemsService.getNewsItemsArray()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray().reverse());
-					$scope.countTotalPages(newsItemsService.getNewsItemsArray().reverse(), $scope.itemsPerPage);
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
+					$scope.countTotalPages(newsItemsService.getNewsItemsArray(), $scope.itemsPerPage);
 				}
 			}, true);
 
@@ -179,7 +179,7 @@
 					$scope.newsItem = newsItemsService.getNewsItemsArray()[$scope.index];
 					$scope.newsItem.deleted = 'true';
 					newsItemsService.deleteNewsItem($scope.newsItem, $scope.index);
-					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray().reverse());
+					$scope.newsItems = searchService.divideToPages($scope.currentPage, newsItemsService.getNewsItemsArray());
 				});
 			};
 

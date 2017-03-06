@@ -211,7 +211,7 @@
 			return {
 				addNewsItem: addNewsItem,
 				getNewsItemsArray: getNewsItemsArray,
-				newsItemsArrayDefault: newsItemsArrayDefault,
+				// newsItemsArrayDefault: newsItemsArrayDefault,
 				setNewsItemsArray: setNewsItemsArray,
 				addEditNewsItem: addEditNewsItem,
 				deleteNewsItem: deleteNewsItem,
