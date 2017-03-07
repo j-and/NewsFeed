@@ -2,8 +2,10 @@
 	'use strict';
 
 	angular.module('NewsFeed')
-		.factory('errorService', ['$q','$timeout',function ($q,$timeout) {
+		.factory('errorService', ['$q',function ($q) {
 			var errorMessage;
+			var vm=this;
+
 				/**
 				 * @ngdoc function
 				 * @name setErrorMessage
@@ -11,6 +13,7 @@
 				 * @param (message)
 				 */
 				var setErrorMessage = function (message) {
+					// console.log('message='+message);
 					errorMessage = message;
 				};
 
@@ -21,16 +24,9 @@
 				 * @returns(errorMessage)
 				 */
 				var getErrorMessage = function () {
-
-					// //
-					// console.log('error');
-					//  var errorMessage = message;
-					// var deferral = $q.defer();
-					// $timeout(function() {
-					// 	deferral.resolve( setErrorMessage(message) );
-					// }, 1000);
-					// return deferral.promise;
-					return errorMessage;
+					var deferral = $q.defer();
+						deferral.resolve( {message:errorMessage} );
+					return deferral.promise;
 				};
 
 				return {

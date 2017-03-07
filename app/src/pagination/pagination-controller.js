@@ -4,7 +4,7 @@
 		.controller('paginationCtrl', ['newsItemsService', 'searchService', 'errorService', '$location', function (newsItemsService, searchService, errorService, $location) {
 
 			var vm = this;
-
+			var object=$.getJSON("/src/mocks/errorMessages.json");
 			var newsItems = [];
 			vm.currentPage = 1;
 			var itemsPerPage = 3;
@@ -13,7 +13,9 @@
 			vm.countTotalPages = function (array, itemsPerPage) {
 				var arrayShown = [];
 				for (var i = 0; i < array.length; i++) {
-					arrayShown.push(array[i])
+					if(array[i].deleted=='false'){
+						arrayShown.push(array[i])
+					}
 				}
 				totalPages = Math.round(arrayShown.length / itemsPerPage);
 			};
@@ -21,8 +23,8 @@
 			vm.countTotalPages(newsItemsService.getNewsItemsArray(), itemsPerPage);
 
 			vm.goToErrorPage = function (message) {
-				errorService.setErrorMessage(message);
 				$location.path('/newsfeed/error');
+				errorService.setErrorMessage(message);
 			};
 
 			/**
@@ -53,8 +55,10 @@
 				else {
 					newsItems = searchService.divideToPages(vm.currentPage, newsItemsService.getNewsItemsArray());
 				}
-				if (vm.currentPage > totalPages) {
-					vm.goToErrorPage('No more news');
+				if (vm.currentPage> totalPages) {
+					$.getJSON("/src/mocks/errorMessages.json", function(object) {
+						vm.goToErrorPage(object.errorMessageText);
+					});
 				}
 				searchService.setCurrentPage(vm.currentPage);
 			};

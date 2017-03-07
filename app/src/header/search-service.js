@@ -110,7 +110,6 @@
 			 * @param  {object} query
 			 */
 			var setCurrentPage = function (page) {
-
 				currentPage = page;
 			};
 

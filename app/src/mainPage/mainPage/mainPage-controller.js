@@ -128,7 +128,7 @@
 			 */
 			$scope.$watch('searchService.getCurrentPage()', function (newValue, oldValue, $scope) {
 				if (newValue !== oldValue) {
-					vm.newsItems = searchService.divideToPages(searchService.getCurrentPage(), newsItemsService.getNewsItemsArray());
+					$scope.newsItems = searchService.divideToPages(searchService.getCurrentPage(), newsItemsService.getNewsItemsArray());
 				}
 			}, true);
 		}]);
